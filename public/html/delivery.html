@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+  <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+  <title>Choose Delivery</title>
+</head>
+
+<body>
+  <div class="employee-login"></div>
+  <div id="steps"></div>
+  <ul class="delivery-guys"></ul>
+  <ul class="orders-list">
+    <button type="button" id="ready-to-deliver" class="btn btn-outline-dark btn-sm">Ready to Go</button>
+  </ul>
+
+  <script id="delivery-template" type="text/x-handlebars-template">
+    <li class="employee" data-id="{{employeeId}}" data-name="{{name}}">
+      <h3>{{name}}</h3>
+      <span>{{employeeId}}</span>
+    </li>
+  </script>
+
+  <script id="orders-template" type="text/x-handlebars-template">
+    <li class="order" data-id="{{orderId}}">
+      <span class="icon-selected">
+        <i class="fas fa-check"></i>
+      </span>
+      <h3 class="order-name">{{name}} - Order Number {{orderId}}</h3>
+      <p class="time">{{time}}</p>
+      <p class="address">{{location.address}}</p>
+      <p class="phone">Phone: {{phoneNumber}}</p>
+      <ul class="dishes"> dishes:
+          {{#dishes}}
+          <li>{{name}} - amount: {{amount}}</li>
+          {{/dishes}}
+      </ul>
+      <p class="total-price">Total: {{totalPrice}}$</p>
+      <p class="paid-mathod">Paid in: {{paidMethod}}</p>
+      <button type="button" id="select-to-deliver" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus"></i></button>
+      </div>
+    </li>
+  </script>
+
+  <script src="jquery/dist/jquery.js"></script>
+  <script src="handlebars/dist/handlebars.js"></script>
+  <script src="../js/delivery/main-delivery.js" type="module"></script>
+</body>
+
+</html>
