@@ -5,6 +5,7 @@ class DeliveryRepository {
   constructor() {
     this.employeesList = [];
     this.ordersReadyList = [];
+    this.selectedOrders = [];
   }
 
   // request all the employees from the DB
@@ -27,7 +28,9 @@ class DeliveryRepository {
       method: 'Get',
       url: 'delivery/ordersReady',
       success: (orders) => {
+        // empty the array
         this.ordersReadyList = [];
+        // check for the orders that are ready and not selected for delivery
         orders.forEach((order) => {
           if (!order.isTaken && order.status === 'ready') {
             this.ordersReadyList.push(order);
@@ -44,20 +47,43 @@ class DeliveryRepository {
   updateOrderTaken(orderId, status, index) {
     return $.ajax({
       method: 'Put',
-      url: '/orders/:orderId\'',
+      url: `/orders/${orderId}`,
       data: {
         property: 'isTaken',
         value: status
       },
-      success: (updatedOrder) => {
-        this.ordersReadyList[index] = updatedOrder;
-        console.log('order in local array updated');
+      success: (orders) => {
+        // update order's property "isTaken" in the local array
+        orders.forEach((order) => {
+          if (order.orderId == orderId) {
+            this.ordersReadyList[index] = order;
+            console.log(order);
+
+            console.log('order in local array updated');
+            return;
+          }
+        });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
       }
     });
   }
+
+  makeNewDelivery() {
+    // empty selected-order array
+    this.selectedOrders = [];
+    // go through the array of orders and check if an order was selected to delivery
+    this.ordersReadyList.forEach((order) => {
+      console.log(order);
+      if (order.isTaken) {
+        // add the selected ones to the array
+        this.selectedOrders.push(order);
+      }
+      console.log(this.selectedOrders);
+    });
+  }
 }
+
 
 export default DeliveryRepository;

@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+
 // PORT
 const SERVER_PORT = process.env.PORT || 8000;
 app.listen(SERVER_PORT, () => console.log(`Server up and running on port ${SERVER_PORT}...`));
@@ -43,17 +44,14 @@ app.route('/orders')
 // 3) update order property
 app.put('/orders/:id', (req, res) => {
   let id = req.params.id;
-
-  // Check if the ID is a valid mongoose id
-  if (!ObjectID.isValid(id)) {
-    return res.status(400).send('Id not in the correct format');
-  }
+  console.log(id);
 
   let $update = { $set: {} };
   $update.$set[`orders.$.${req.body.property}`] = req.body.value;
-  Restaurant.update({ 'orders.orderId': id }, $update, { new: true }, (err, updatedOrder) => {
+
+  Restaurant.findOneAndUpdate({ 'orders.orderId': id },  $update, { new: true }, (err, updatedRestaurant) => {
     if (err) throw err;
-    res.send(updatedOrder);
+    res.send(updatedRestaurant.orders);
   });
 });
 
@@ -63,23 +61,32 @@ app.get('/delivery', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/delivery.html'));
 });
 
+
 // 2) get the deliveryOnTheWay Page
-app.get('/deliveryOnTheWay', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/html/deliveryOnTheWay.html'));
-});
+// app.get('/deliveryOnTheWay', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/public/html/deliveryOnTheWay.html'));
+// });
+
+// app.get('/deliveryOnTheWay/:employeeId', (req, res) => {
+//   res.redirect('/deliveryOnTheWay');
+// });
 
 // 3) get the list of employees
 app.get('/delivery/employees', (req, res) => {
   Restaurant.find({}).populate('employees').exec((err, restaurantResult) => {
     if (err) throw err;
+    console.log('employees');
+
     res.send(restaurantResult[0].employees);
   });
 });
 
-// 4) get all the orders that are ready for delivery
+// 4) get all the orders
 app.get('/delivery/ordersReady', (req, res) => {
   Restaurant.find({}).populate('orders').exec((err, restaurantResult) => {
     if (err) throw err;
+    console.log('orders');
+
     console.log(restaurantResult[0].orders);
     res.send(restaurantResult[0].orders);
   });

@@ -5,8 +5,10 @@ class DeliveryRenderer {
   constructor() {
     this.$deliveryList = $('.delivery-guys');
     this.$ordersList = $('.orders-list');
+    this.$ordersToDeliverList = $('.orders-to-deliver');
     this.$deliveryTemplate = $('#delivery-template').html();
     this.$orderTemplate = $('#orders-template').html();
+    this.$orderToDeliverTemplate = $('#readyToDeliverOrders-template').html();
   }
 
   renderDeliveryList(employees) {
@@ -27,6 +29,17 @@ class DeliveryRenderer {
       let newHTML = template(orders[i]);
       console.log(newHTML);
       this.$ordersList.append(newHTML);
+    }
+  }
+
+  renderOrdersToDeliver(orders) {
+    this.$ordersToDeliverList.empty();
+    let template = Handlebars.compile(this.$orderToDeliverTemplate);
+    for (let i = 0; i < orders.length; i++) {
+      console.log(orders[i]);
+      let newHTML = template(orders[i]);
+      console.log(newHTML);
+      this.$ordersToDeliverList.append(newHTML);
     }
   }
 }

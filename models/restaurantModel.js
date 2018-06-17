@@ -44,7 +44,7 @@ let orderSchema = new mongoose.Schema({
     required: true,
     default: 'received'
   },
-  paidMethod: {
+  paymentMethod: {
     type: String,
     required: true
   },

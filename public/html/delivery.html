@@ -12,12 +12,18 @@
 </head>
 
 <body>
-  <div class="employee-login"></div>
-  <div id="steps"></div>
-  <ul class="delivery-guys"></ul>
-  <ul class="orders-list">
-    <button type="button" id="ready-to-deliver" class="btn btn-outline-dark btn-sm">Ready to Go</button>
-  </ul>
+  <div class="before-delivery">
+    <div class="employee-login"></div>
+    <div id="steps"></div>
+    <ul class="delivery-guys"></ul>
+    <ul class="orders-list"></ul>
+    <div class="msg"></div>
+  </div>
+  <div class="on-delivery">
+  <ul class="orders-to-deliver"></ul>
+  <div id="map"></div>
+  <div id="directions-canvas"></div>
+  </div>
 
   <script id="delivery-template" type="text/x-handlebars-template">
     <li class="employee" data-id="{{employeeId}}" data-name="{{name}}">
@@ -35,15 +41,30 @@
       <p class="time">{{time}}</p>
       <p class="address">{{location.address}}</p>
       <p class="phone">Phone: {{phoneNumber}}</p>
-      <ul class="dishes"> dishes:
+      <ul class="dishes">dishes:
           {{#dishes}}
           <li>{{name}} - amount: {{amount}}</li>
           {{/dishes}}
       </ul>
       <p class="total-price">Total: {{totalPrice}}$</p>
-      <p class="paid-mathod">Paid in: {{paidMethod}}</p>
+      <p class="paid-mathod">Paid in: {{paymentMethod}}</p>
       <button type="button" id="select-to-deliver" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus"></i></button>
       </div>
+    </li>
+  </script>
+
+  <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">
+    <li class="order-selected" data-id="{{orderId}}">
+      <h5>{{name}} - {{phoneNumber}}</h5>
+      <p class="address">{{location.address}}</p>
+      <ul class="dishes">dishes:
+          {{#dishes}}
+          <li>{{name}} - amount: {{amount}}</li>
+          {{/dishes}}
+      </ul>
+      <p class="price-payment">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
+      <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm"><i class="fas fa-check"></i>
+      </button>
     </li>
   </script>
 
