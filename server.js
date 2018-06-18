@@ -61,22 +61,10 @@ app.get('/delivery', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/delivery.html'));
 });
 
-
-// 2) get the deliveryOnTheWay Page
-// app.get('/deliveryOnTheWay', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/public/html/deliveryOnTheWay.html'));
-// });
-
-// app.get('/deliveryOnTheWay/:employeeId', (req, res) => {
-//   res.redirect('/deliveryOnTheWay');
-// });
-
 // 3) get the list of employees
 app.get('/delivery/employees', (req, res) => {
   Restaurant.find({}).populate('employees').exec((err, restaurantResult) => {
     if (err) throw err;
-    console.log('employees');
-
     res.send(restaurantResult[0].employees);
   });
 });
@@ -85,10 +73,15 @@ app.get('/delivery/employees', (req, res) => {
 app.get('/delivery/ordersReady', (req, res) => {
   Restaurant.find({}).populate('orders').exec((err, restaurantResult) => {
     if (err) throw err;
-    console.log('orders');
-
-    console.log(restaurantResult[0].orders);
     res.send(restaurantResult[0].orders);
+  });
+});
+
+// 4) get restaurant location
+app.get('/delivery/restauranLocation', (req, res) => {
+  Restaurant.find({}).exec((err, restaurantResult) => {
+    if (err) throw err;
+    res.send(restaurantResult[0].address);
   });
 });
 

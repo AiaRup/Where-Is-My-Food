@@ -6,6 +6,7 @@ class DeliveryRepository {
     this.employeesList = [];
     this.ordersReadyList = [];
     this.selectedOrders = [];
+    this.restaurantLocation = {};
   }
 
   // request all the employees from the DB
@@ -81,6 +82,20 @@ class DeliveryRepository {
         this.selectedOrders.push(order);
       }
       console.log(this.selectedOrders);
+    });
+  }
+
+  getRestaurantLocation() {
+    return $.ajax({
+      method: 'Get',
+      url: 'delivery/restauranLocation',
+      success: (location) => {
+        // set local restaurant location
+        this.restaurantLocation = location;
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
     });
   }
 }
