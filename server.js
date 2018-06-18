@@ -41,7 +41,6 @@ app.route('/orders')
   .post((res, req) => {
   });
 
-
 // 3) update order property
 app.put('/orders/:id', (req, res) => {
   let id = req.params.id;
@@ -54,7 +53,6 @@ app.put('/orders/:id', (req, res) => {
     if (err) throw err;
     res.send(updatedRestaurant.orders);
   });
-
 });
 
 // delivery
