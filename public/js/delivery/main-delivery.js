@@ -13,6 +13,8 @@ eventsHandler.registerSelectOrder();
 eventsHandler.registerUnSelectOrder();
 eventsHandler.registerReadyToGo();
 eventsHandler.registerChangeEmployee();
+eventsHandler.registerSelectDestination();
+eventsHandler.registerOrderDeliverd();
 
 // Get all employees as soon as the page loads
 deliveryRepository.getEmployeesList().then(() => {

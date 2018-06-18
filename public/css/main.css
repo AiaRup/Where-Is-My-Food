@@ -13,6 +13,14 @@ body {
     width: 500px;
 }
 
+.on-delivery, .employee-login, .orders-list, .fa-check {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* body,
 html {
     padding: 0;

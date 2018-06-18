@@ -20,9 +20,24 @@
     <div class="msg"></div>
   </div>
   <div class="on-delivery">
-  <ul class="orders-to-deliver"></ul>
-  <div id="map"></div>
-  <div id="directions-canvas"></div>
+    <ul class="orders-to-deliver"></ul>
+    <div class="choose-route">
+      <p>Start:
+        <span class="restaurant-location"></span>
+      </p>
+      <p>Destination:
+        <select id="destination" name="destination">
+          <option value="0" selected="selected">Select Destination</option>
+        </select>
+      </p>
+      <button type="button" id="select-Destination">Go</button>
+    </div>
+    <div class="msg-select-destination"></div>
+    <div id="directions-panel"></div>
+
+
+
+    <div id="map"></div>
   </div>
 
   <script id="delivery-template" type="text/x-handlebars-template">
@@ -41,14 +56,15 @@
       <p class="time">{{time}}</p>
       <p class="address">{{location.address}}</p>
       <p class="phone">Phone: {{phoneNumber}}</p>
-      <ul class="dishes">dishes:
-          {{#dishes}}
-          <li>{{name}} - amount: {{amount}}</li>
-          {{/dishes}}
+      <ul class="dishes">dishes: {{#dishes}}
+        <li>{{name}} - amount: {{amount}}</li>
+        {{/dishes}}
       </ul>
       <p class="total-price">Total: {{totalPrice}}$</p>
       <p class="paid-mathod">Paid in: {{paymentMethod}}</p>
-      <button type="button" id="select-to-deliver" class="btn btn-outline-dark btn-sm"><i class="fas fa-plus"></i></button>
+      <button type="button" id="select-to-deliver" class="btn btn-outline-dark btn-sm">
+        <i class="fas fa-plus"></i>
+      </button>
       </div>
     </li>
   </script>
@@ -57,20 +73,24 @@
     <li class="order-selected" data-id="{{orderId}}">
       <h5>{{name}} - {{phoneNumber}}</h5>
       <p class="address">{{location.address}}</p>
-      <ul class="dishes">dishes:
-          {{#dishes}}
-          <li>{{name}} - amount: {{amount}}</li>
-          {{/dishes}}
+      <ul class="dishes">dishes: {{#dishes}}
+        <li>{{name}} - amount: {{amount}}</li>
+        {{/dishes}}
       </ul>
       <p class="price-payment">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
-      <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm"><i class="fas fa-check"></i>
+      <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
       </button>
     </li>
   </script>
 
+
+
   <script src="jquery/dist/jquery.js"></script>
   <script src="handlebars/dist/handlebars.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&language=en" async defer></script>
   <script src="../js/delivery/main-delivery.js" type="module"></script>
+
+
 </body>
 
 </html>
