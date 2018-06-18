@@ -135,6 +135,9 @@ class EventsHandlerDelivery {
   registerOrderDeliverd() {
     $('.orders-to-deliver').on('click', '#deliverd-complete', (event) => {
       // TODO:
+      //change icon on the map
+      // addapte time
+      // check if all orders are delivered go back to a new
     });
   }
 }
