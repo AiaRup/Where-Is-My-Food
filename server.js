@@ -40,7 +40,7 @@ app.route('/orders')
   .post((res, req) => {
   });
 
-app.update('/orders/:id', (req, res) => {
+app.put('/orders/:id', (req, res) => {
 });
 
 // delivery
