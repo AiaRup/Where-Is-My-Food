@@ -4,9 +4,9 @@ class GoogleMap {
   getCoords(location) {
     let apiKey = 'AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM';
     $.ajax({
-        method: 'GET',
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
-      })
+      method: 'GET',
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
+    })
       .then(function (response) {
         // Log full response
         console.log(response);
@@ -31,10 +31,8 @@ class GoogleMap {
 
     // calaulate route
     this.calculateAndDisplayRoute(directionsService, directionsDisplay, restaurantLocation, destination, waypoints);
-    // this.calculateAndDisplayRoute(directionsService, directionsDisplay, restaurantLocation, destination);
   }
 
-  // calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination) {
   calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination, waypoints) {
     var waypts = [];
 
@@ -44,10 +42,6 @@ class GoogleMap {
         stopover: true
       });
     }
-    console.log('start', start);
-    console.log('des', destination);
-    console.log('way', waypts);
-
 
     directionsService.route({
       origin: start,

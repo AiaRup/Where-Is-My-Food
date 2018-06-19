@@ -58,8 +58,6 @@ class DeliveryRepository {
         orders.forEach((order) => {
           if (order.orderId == orderId) {
             this.ordersReadyList[index] = order;
-            console.log(order);
-            console.log('order in local array updated');
             return;
           }
         });

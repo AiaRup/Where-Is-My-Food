@@ -71,6 +71,7 @@ class EventsHandlerDelivery {
   registerReadyToGo() {
     $('.orders-list').on('click', '#ready-to-deliver', (event) => {
       this.deliveryRepository.makeNewDelivery();
+      console.log('after make new delivery', this.deliveryRepository.selectedOrders);
       // if no order was selected to delivery
       if (!this.deliveryRepository.selectedOrders.length) {
         $('.msg').text('Please select at least one order to deliver.').show().fadeOut(5000);
@@ -130,7 +131,6 @@ class EventsHandlerDelivery {
       // TODO:
       //change icon on the map
       // check if all orders are delivered go back to a new deliver
-
       console.log(this.deliveryRepository.selectedOrders);
       let $order =  $(event.currentTarget).closest('.order-selected');
       // hide all the order's details
@@ -145,7 +145,7 @@ class EventsHandlerDelivery {
         if (this.deliveryRepository.selectedOrders[i].orderId == orderId) {
           this.deliveryRepository.selectedOrders.splice(i, 1);
           // hide segment instructions
-          $(`#route-${i+1}`).hide();
+          // $(`#route-${i+1}`).hide();
           return;
         }
         if (this.deliveryRepository.selectedOrders.length) {
