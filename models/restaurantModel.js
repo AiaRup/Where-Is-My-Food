@@ -90,6 +90,11 @@ let restaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  numOrders: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   menu: {
     type: [dishSchema],
     required: true
