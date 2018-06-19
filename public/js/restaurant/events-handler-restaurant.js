@@ -36,7 +36,9 @@ class EventsHandler {
         orderId: this.counter++
       }
 
-      this.restaurantRepositories.addNewOrder(newOrder)
+      this.restaurantRepositories.addNewOrder(newOrder).then(() => {
+        console.log('returned')
+      })
 
       $('.modal').show();
     })

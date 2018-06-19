@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // PORT
-const SERVER_PORT = process.env.PORT || 8000;
+const SERVER_PORT = process.env.PORT || 80;
 app.listen(SERVER_PORT, () => console.log(`Server up and running on port ${SERVER_PORT}...`));
 
 
@@ -38,8 +38,15 @@ app.route('/orders')
   .get((req, res) => {
     res.sendFile(path.join(__dirname + '/public/html/orders.html'));
   })
-  .post((res, req) => {
-  });
+
+ .put((req, res) => {
+    console.log(req.body)
+    Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
+      console.log(updatedRes)
+      res.send(updatedRes);
+    }
+  )
+})
 
 // 3) update order property
 app.put('/orders/:id', (req, res) => {

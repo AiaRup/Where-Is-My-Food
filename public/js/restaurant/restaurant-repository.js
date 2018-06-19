@@ -4,11 +4,32 @@ class RestaurantRepository {
   }
 
   addNewOrder(newOrder) {
-    return $.post('/orders', newOrder, (orderReceived)=> {
-      this.orderes.push(orderReceived);
-    } )
-  }
-}
+    
+    return $.ajax({
+      method: 'Put',
+      url: `/orders`,
+      data: newOrder,
+      success: (orders) => {
+      this.orders.push(newOrder);
+      console.log(this.orders)
+      console.log(orderReceived)
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+
+
+  //   return $.put('/orders', newOrder, (orderReceived)=> {
+  //     if (err) throw err;
+  //     this.orders.push(newOrder);
+  //     console.log(this.orders)
+  //     console.log(orderReceived)
+      
+  //   })
+    
+  // }
+  }}
 
 
 export default RestaurantRepository;
