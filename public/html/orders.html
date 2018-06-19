@@ -4,7 +4,7 @@
 <head>
   <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/orders.css">
   <title>Orders</title>
 </head>
@@ -12,74 +12,158 @@
   <form>
       <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
   </form>
-  <table class="table  table-bordered table-hover table-striped ">
+  <table class="table  table-bordered table-hover table-striped table-sm">
     <thead>
-      <tr class="table-active ">
-        <th scope="col" width="2.5%" class="border border-dark">#</th>
-        <th scope="col" width="15%" class="border border-dark text-center">Hour received</th>
+      <tr >
+        <th scope="col" width="9%" class="border border-dark">Dish</th>
+        <th scope="col" width="10%" class="border border-dark text-center">Hour received</th>
         <th scope="col" width="30%" class="border border-dark text-center">Destination</th>
         <th scope="col" width="15%" class="border border-dark text-center">Name</th>
-        <th scope="col" width="15%" class="border border-dark text-center">Phone</th>
+        <th scope="col" width="10%" class="border border-dark text-center">Phone</th>
         <th scope="col" width="5%" class="border border-dark text-center">Total</th>
-        <th scope="col" width="10%" class="border border-dark text-center">ID</th>
-        <th scope="col" width="5%" class="border border-dark text-center">Status</th>
-        <th scope="col" width="2.5%" class="border border-dark">Edit</th>
+        <th scope="col" width="8%" class="border border-dark text-center">Order ID</th>
+        <th scope="col" width="12.5%" class="border border-dark text-center">Status</th>
+        <th scope="col" width="0.5%" class="border border-dark"></th>
 
       </tr>
     </thead>
     <tbody>
       <tr >
-        <th class="border border-dark" scope="row">1</th>
+        <th class="border border-dark">1</th>
         <td class="border border-dark">Mark</td>
         <td class="border border-dark" >Otto</td>
         <td class="border border-dark">@mdo</td>
         <td class="border border-dark">Mark</td>
         <td class="border border-dark" >Otto</td>
         <td class="border border-dark">@mdo</td>   
-        <td class="border border-dark table-warning">@mdo</td>       
-        <td class="border border-dark"><i class="fa fa-edit"></i></td>   
+        <td class="border border-dark table-warning text-center">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-link " data-toggle="modal" data-target="#changeStatusModal">
+            Ready
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="changeStatusModalLabel">Change Status</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <select class="form-control" id="status-select">
+                        <option>Received</option>
+                        <option>Ready</option>
+                        <option>Out for delivery</option>
+                        <option>Delivered</option>
+                        <option>Canceled</option>
+                      </select>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>    
+          
+        </td>       
+        <td class="border border-dark "><button type="button" class="btn btn-link" data-toggle="modal" data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>   
+        <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form class="needs-validation" novalidate>
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom01">Name</label>
+                          <input type="text" class="form-control" id="validationCustom01" placeholder="Name" required>
+                          <div class="valid-feedback">
+                              &#10003;
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom02">Phone Number</label>
+                          <input type="tel" class="form-control" id="validationCustom02" placeholder="Phone Number" required>
+                          <div class="valid-feedback">
+                            rerre  &#10003;
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom03">Dish</label>
+                          <input type="text" class="form-control" id="validationCustom03" placeholder="Dish" required>
+                          <div class="valid-feedback">
+                              &#10003;
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom04">Total</label>
+                          <input type="tel" class="form-control" id="validationCustom04" placeholder="Total" required>
+                          <div class="valid-feedback">
+                              &#10003;
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-12 mb-3">
+                            <label for="validationCustom05">Status</label>
+                            <select class="form-control" id="validationCustom05">
+                                <option>Received</option>
+                                <option>Ready</option>
+                                <option>Out for delivery</option>
+                                <option>Delivered</option>
+                                <option>Canceled</option>
+                              </select>
+                            
+                          </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div> 
+      </tr>
       
-      </tr>
-      <tr >
-        <th class="border border-dark" scope="row">1</th>
-        <td class="border border-dark">Mark</td>
-        <td class="border border-dark" >Otto</td>
-        <td class="border border-dark">@mdo</td>
-        <td class="border border-dark">Mark</td>
-        <td class="border border-dark" >Otto</td>
-        <td class="border border-dark">@mdo</td>   
-        <td class="border border-dark table-warning">@mdo</td>       
-        <td class="border border-dark">@mdo</td>   
-
-      </tr>
-      <tr >
-        <th class="border border-dark" scope="row">1</th>
-        <td class="border border-dark">Mark</td>
-        <td class="border border-dark" >Otto</td>
-        <td class="border border-dark">@mdo</td>
-        <td class="border border-dark">Mark</td>
-        <td class="border border-dark" >Otto</td>
-        <td class="border border-dark">@mdo</td>   
-        <td class="border border-dark bg-danger">@mdo</td>       
-        <td class="border border-dark">@mdo</td>   
-
-      </tr>
-      <tr >
-        <th scope="row">2</th>
-        <td >Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
     </tbody>
   </table>
-  
+  <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
   <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/orders/orders.js"></script>
 </body>
