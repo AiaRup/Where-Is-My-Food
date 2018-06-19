@@ -12,9 +12,16 @@
 
 <body>
   <header class="logo" />
+  <img class="res-logo" src="https://cdn.dribbble.com/users/60266/screenshots/1926787/ricos-quesos-pizza.jpg" alt="logo-pic">
+  </div>
   <h1 class="headline">Resaurant Name</h1>
+
+  <!-- div of new order & update order -->
   <section class="order-cubes">
-    <div class="new-order btn btnNewOrder">New Order
+
+    <div class="new-order btn btnNewOrder">New Order</div>
+
+      <!-- new order form -->
       <form class="order-form">
         Name:
         <br>
@@ -29,6 +36,8 @@
         <input type="number" placeholder="Enter Phone" name="Phone Number" id="phone" required/>
         <br>
         <br>
+
+        <!-- payement choice -->
         <div class="option-menu">Payment Method:
           <br>
           <select id="paymentSelection" required/>
@@ -37,32 +46,46 @@
           </select>
         </div>
         <br>
+
+        <!-- choose dish & amounts -->
         <div class="order-menu">
           <div class="dish">
             Choose Dish:
             <br>
             <select id="dishOptions" required/>
-              <option value="pizza">Pizza</option>
-              <option value="Burger">Burger</option>
-              <option value="Pasta">Pasta</option>
+            <option value="pizza">Pizza</option>
+            <option value="Burger">Burger</option>
+            <option value="Pasta">Pasta</option>
             </select>
           </div>
+
           <div class="amount">
             Amount:
             <br>
-            <input type="text" placeholder="Amount" name="Amount">
+            <input type="text" placeholder="Quantity" name="Quantity" class="quantity">
           </div>
+
+          <input type="button" name="Choose Dish" class="btn choose-dish" value="O.K">
         </div>
+
+        <!-- dish list div -->
+        <div class="order-list">
+          <ul class="dish-list">
+          </ul>
+          <p class="total-price"></p>
+        </div>
+
+        <!-- clear choice or submit form -->
         <br>
         <input type="submit" name="Submit Order" class="btn submitOrder" value="Submit Order">
         <input type="reset" class="btn reset" value="Reset" />
-
       </form>
-    </div>
 
-    <div class="update-order">
+    
+    <!-- end of new order --------------------------------------->
 
-    </div>
+    <!-- update order -->
+    <div class="update-order btn btn-update" id="update-order-btn" onClick="window.location='orders.html'">Update Order</div>
   </section>
 
   <!-- pop-up -->
@@ -76,8 +99,18 @@
     </div>
   </section>
 
-    <script type="module" src="../js/restaurant/main-restaurant.js">
-    </script>
+  <script type="module" src="../js/restaurant/main-restaurant.js">
+  </script>
+
+  <!-- AUTO COMPLETE ADDRESS -->
+  <script>
+    function activatePlacesSearch() {
+      let input = document.getElementById('address');
+      let autocomplete = new google.maps.places.Autocomplete(input);
+    };
+  </script>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&libraries=places&callback=activatePlacesSearch"></script>
 </body>
 
 </html>

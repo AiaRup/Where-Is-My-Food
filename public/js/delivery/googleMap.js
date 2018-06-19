@@ -4,21 +4,18 @@ class GoogleMap {
 
   getCoords (location) {
     let apiKey = 'AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM';
-    $.ajax({
+   return $.ajax({
       method: 'GET',
-      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
-    })
-      .then(function(response) {
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`,
+    
+      success: (response) => {
         // Log full response
-        console.log(response);
-        // Formatted Address
-        let formattedAddress = response.results[0].formatted_address;
-        // Geomatry
-        let lat = response.results[0].geometry.location.lat;
-        let lng = response.results[0].geometry.location.lng;
-      }).catch(function(error) {
+        console.log(response)
+      },
+      error: (err) => {
         console.log(error);
-      });
+      }
+    })
   }
 
   initMap(restaurantLocation, destination, waypoints) {

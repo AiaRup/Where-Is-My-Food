@@ -12,23 +12,12 @@ class RestaurantRepository {
       success: (orders) => {
       this.orders.push(newOrder);
       console.log(this.orders)
-      console.log(orderReceived)
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
       }
     });
 
-
-  //   return $.put('/orders', newOrder, (orderReceived)=> {
-  //     if (err) throw err;
-  //     this.orders.push(newOrder);
-  //     console.log(this.orders)
-  //     console.log(orderReceived)
-      
-  //   })
-    
-  // }
   }}
 
 
