@@ -40,8 +40,12 @@ class EventsHandler {
     $('.dish-list').on('click','#dltBtn', (e) => {
       let dishCost = $(e.currentTarget).parent("li").data("cost");
       let totalCost =  $(e.currentTarget).closest(".dish-list").siblings(".total-price").data("total");
-      
-      // $(e.currentTarget).parent().remove();s
+      $(.)
+      totalCost = totalCost - dishCost;
+
+      $('.total-price').text(`Total Price: ` + totalCost)
+    
+      $(e.currentTarget).parent().remove();
     })
   }
 
