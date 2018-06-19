@@ -37,7 +37,6 @@ class EventsHandler {
       }
 
       this.restaurantRepositories.addNewOrder(newOrder).then(() => {
-        console.log('returned')
       })
 
       $('.modal').show();
