@@ -38,8 +38,15 @@ app.route('/orders')
   .get((req, res) => {
     res.sendFile(path.join(__dirname + '/public/html/orders.html'));
   })
-  .post((res, req) => {
-  });
+
+ .put((req, res) => {
+    console.log(req.body)
+    Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
+      console.log(updatedRes)
+      res.send(updatedRes);
+    }
+  )
+})
 
 // 3) update order property
 app.put('/orders/:id', (req, res) => {
