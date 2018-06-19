@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // PORT
-const SERVER_PORT = process.env.PORT || 80;
+const SERVER_PORT = process.env.PORT || 8000;
 app.listen(SERVER_PORT, () => console.log(`Server up and running on port ${SERVER_PORT}...`));
 
 
@@ -101,4 +101,3 @@ app.get('/customer', (req, res) => {
 app.get('/customer/:id', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/customerTime.html'));
 });
-
