@@ -1,0 +1,100 @@
+#map {
+  height: 500px;
+  width: 500px;
+}
+
+.on-delivery, .employee-login, .orders-section, .icon-selected {
+  display: none;
+}
+
+.orders-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.order {
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+  flex-basis: 350px;
+  min-height: 300px;
+}
+
+.show {
+  display: block;
+}
+
+.before-delivery,  {
+  margin: 0 auto;
+  width: 800px;
+  position: relative;
+  // transform: translateY(-50%);
+}
+
+.show-employees {
+  top: 300px;
+}
+
+.section-employees {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  h1 {
+    flex: 1;
+  }
+  .delivery-guys {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 3;
+  }
+}
+
+.employee {
+  color: #fff;
+  background-color: $color-turquize;
+  flex-basis: 20%;
+  // width: 20%;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  padding: 5px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+
+}
+
+.order-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  .icon-selected, #select-to-deliver {
+    margin: 0 5px;
+  }
+}
+
+#ready-to-deliver {
+  display: block;
+  margin: 0 auto;
+}
+
+.employee-login {
+ font-weight: bold;
+ margin: 10px 0;
+  #change-employee {
+    margin-left: 10px;
+  }
+}
+
+
+
+
+
+
