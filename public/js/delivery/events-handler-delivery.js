@@ -12,16 +12,17 @@ class EventsHandlerDelivery {
       let employeeName = $(event.currentTarget).data('name');
       let employeeId = $(event.currentTarget).data('id');
       // show the selected employee on the page
-      $('.employee-login').toggleClass('show').text(`${employeeName} - ${employeeId}`)
-        .append('<button type="button" id="change-employee" class="btn btn-outline-dark btn-sm">Change Employee</button>');
+      $('.employee-login').toggleClass('show').text(`Employee: ${employeeName}`)
+        .append('<button type="button" id="change-employee" class="btn btn-outline-dark btn-sm">Change</button>');
       // hide the list of employees
-      $('.delivery-guys').hide();
+      $('.section-employees').hide();
+      $('.before-delivery').toggleClass('show-employees');
       // ask the server for all the orders that are ready to deliver and show them on th page
       this.deliveryRepository.getOrdersReadyList().then(() => {
         // check if there is any order to deliver
         if (this.deliveryRepository.ordersReadyList.length) {
+          $('.orders-section').toggleClass('show');
           this.deliveryRenderer.renderOrders(this.deliveryRepository.ordersReadyList);
-          $('.orders-list').toggleClass('show').append('<button type="button" id="ready-to-deliver" class="btn btn-outline-dark btn-sm">Ready to Go</button>');
         } else {
           $('.msg').text('No orders are ready to deliver.').show().fadeOut(5000);
         }
@@ -32,9 +33,9 @@ class EventsHandlerDelivery {
   registerChangeEmployee() {
     $('.employee-login').on('click', '#change-employee', (event) => {
       $('.employee-login').toggleClass('show');
-      $('.delivery-guys').show();
-
-      $('.orders-list').toggleClass('show');
+      $('.section-employees').show();
+      $('.before-delivery').toggleClass('show-employees');
+      $('.orders-section').toggleClass('show');
       // Get all employees as soon as the page loads
       this.deliveryRepository.getEmployeesList().then(() => {
         // render all employees on the page
@@ -50,7 +51,7 @@ class EventsHandlerDelivery {
       // update the order's property "isTaken"  to true
       this.deliveryRepository.updateOrderTaken($order.data('id'), true, $order.index()).then(() => {
         // show the icon "check" to see that the order was selected
-        $order.find('.fa-check').toggleClass('show');
+        $order.find('.icon-selected').toggleClass('show');
         // disable the "select order" button
         $(event.currentTarget).attr('disabled', true);
       });
@@ -58,18 +59,18 @@ class EventsHandlerDelivery {
   }
 
   registerUnSelectOrder() {
-    $('.orders-list').on('click', '.fa-check', (event) => {
+    $('.orders-list').on('click', '.icon-selected', (event) => {
       let $order = $(event.currentTarget).closest('.order');
       // unselect order that was previously selected
       this.deliveryRepository.updateOrderTaken($order.data('id'), false, $order.index()).then(() => {
-        $order.find('.fa-check').toggleClass('show');
+        $order.find('.icon-selected').toggleClass('show');
         $order.find('#select-to-deliver').attr('disabled', false);
       });
     });
   }
 
   registerReadyToGo() {
-    $('.orders-list').on('click', '#ready-to-deliver', (event) => {
+    $('.orders-section').on('click', '#ready-to-deliver', (event) => {
       this.deliveryRepository.makeNewDelivery();
       // if no order was selected to delivery
       if (!this.deliveryRepository.selectedOrders.length) {
@@ -104,40 +105,90 @@ class EventsHandlerDelivery {
           // if nothing was selected (first option)
           if (($(this)).val() == 0) {
             $('.msg-select-destination').text('Please select your destination').show().fadeOut(5000);
-            return;
+          } else {
+            // check for the coords of the order selected for the destination and wayPoints
+            thisClass.deliveryRepository.selectedOrders.forEach((order) => {
+              if (order.orderId == $(this).val()) {
+                destinationSelect = order.location.address;
+              } else {
+                wayPoints.push(order.location.address);
+              }
+            });
+            // get the route from the google map and display it
+            let restaurantCoords = { lat: thisClass.deliveryRepository.restaurantLocation.latitude, lng: thisClass.deliveryRepository.restaurantLocation.longitude };
+            thisClass.googleMap.initMap(restaurantCoords, destinationSelect, wayPoints);
+            // hide the option to choose route
+            $('.choose-route').hide();
           }
-          // check for the coords of the order selected for the destination and wayPoints
-          thisClass.deliveryRepository.selectedOrders.forEach((order) => {
-            if (order.orderId == $(this).val()) {
-              destinationSelect = order.location.address;
-              // destinationSelect = { lat: order.location.latitude,
-              //   lng: order.location.latitude };
-              console.log('lat-lng', destinationSelect);
-            } else {
-              wayPoints.push(order.location.address);
-              // wayPoints.push({ lat: order.location.latitude,
-              //   lng: order.location.latitude });
-              console.log(wayPoints);
-            }
-          });
         }
       });
-      // get the route from the google map and display it
-      // let restaurantCoords =  this.deliveryRepository.restaurantLocation.address;
-      let restaurantCoords = { lat: this.deliveryRepository.restaurantLocation.latitude, lng: this.deliveryRepository.restaurantLocation.longitude };
-      this.googleMap.initMap(restaurantCoords, destinationSelect, wayPoints);
-      // hide the option to choose route
-      $('.choose-route').hide();
-
     });
   }
+
+  // registerSelectDestination() {
+  //   $('#select-Destination').on('click', (event) => {
+  //     let thisClass = this;
+  //     let destinationSelect;
+  //     let wayPoints = [];
+  //     $('#destination option').each(function() {
+  //       if($(this).is(':selected')) {
+  //         // if nothing was selected (first option)
+  //         if (($(this)).val() == 0) {
+  //           $('.msg-select-destination').text('Please select your destination').show().fadeOut(5000);
+  //           return;
+  //         }
+  //         // check for the coords of the order selected for the destination and wayPoints
+  //         thisClass.deliveryRepository.selectedOrders.forEach((order) => {
+  //           if (order.orderId == $(this).val()) {
+  //             destinationSelect = order.location.address;
+  //             // destinationSelect = { lat: order.location.latitude,
+  //             //   lng: order.location.latitude };
+  //             console.log('lat-lng', destinationSelect);
+  //           } else {
+  //             wayPoints.push(order.location.address);
+  //             // wayPoints.push({ lat: order.location.latitude,
+  //             //   lng: order.location.latitude });
+  //             console.log(wayPoints);
+  //           }
+  //         });
+  //       }
+  //     });
+  //     // get the route from the google map and display it
+  //     // let restaurantCoords =  this.deliveryRepository.restaurantLocation.address;
+  //     let restaurantCoords = { lat: this.deliveryRepository.restaurantLocation.latitude, lng: this.deliveryRepository.restaurantLocation.longitude };
+  //     this.googleMap.initMap(restaurantCoords, destinationSelect, wayPoints);
+  //     // hide the option to choose route
+  //     $('.choose-route').hide();
+
+  //   });
+  // }
 
   registerOrderDeliverd() {
     $('.orders-to-deliver').on('click', '#deliverd-complete', (event) => {
       // TODO:
       //change icon on the map
-      // addapte time
-      // check if all orders are delivered go back to a new
+      // check if all orders are delivered go back to a new deliver
+      console.log(this.deliveryRepository.selectedOrders);
+      let $order =  $(event.currentTarget).closest('.order-selected');
+      // hide all the order's details
+      $(event.currentTarget).closest('.selected-order-content').hide();
+      // add icon to delivered order
+      $order.find('h5').append('<i class="fas fa-check-square"></i>');
+
+      let orderId = $order.data('id');
+
+      // TODO: why array empty
+      for (let i = 0; i < this.deliveryRepository.selectedOrders.length; i++) {
+        if (this.deliveryRepository.selectedOrders[i].orderId == orderId) {
+          this.deliveryRepository.selectedOrders.splice(i, 1);
+          // hide segment instructions
+          // $(`#route-${i+1}`).hide();
+          return;
+        }
+        if (this.deliveryRepository.selectedOrders.length) {
+        // go back to select an employee
+        }
+      }
     });
   }
 }

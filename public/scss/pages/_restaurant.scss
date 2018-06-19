@@ -1,0 +1,112 @@
+body {
+  background-color: $color-gray;
+  color: $color-turquize;
+  height: 100%;
+  width: 100%;
+}
+
+.order-cubes {
+  border: 1px solid black;
+  width: 80%;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline {
+  text-align: center;
+  margin: 50px 0;
+  padding: 10px;
+}
+
+.new-order,
+.update-order {
+  position: relative;
+  width: 40%;
+  height: 50%; // position: relative;
+  // top: 50%;
+  // transform: translateY(-50%);
+  font-size: $font-size-large;
+  color: #fff;
+  background-color: $color-turquize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* Aligning the dish & amount in the form/ */
+
+// .order-menu {
+//   width: 40%;
+// }
+
+// .dish {
+//   display: inline-block;
+// }
+
+// .amount {
+//   display: inline-block;
+//   width: 40%;
+// }
+
+.order-form,
+.modal {
+  display: none;
+}
+
+/* modal (popup window) */
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  padding: 20px;
+  width: 70%;
+  height: 40%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2)
+}
+
+.order-form {
+  background-color: #fff;
+  width: 700px;
+  // height: 30px;
+  border-radius: 5px;
+  position: absolute;
+  top: 110%;
+  left: 50px;
+  padding: 10px;
+  font-family: Roboto, sans-serif;
+  font-size: $font-size-medium;
+  line-height: 22px;
+  color: #313333;
+  text-align: center;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  &:before {
+    content: ' ';
+    width: 0px;
+    height: 0px;
+    border-bottom: 20px solid #fff;
+    border-left: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    top: -40px;
+    left: 120px;
+  }
+}
