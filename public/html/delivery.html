@@ -72,14 +72,16 @@
   <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">
     <li class="order-selected" data-id="{{orderId}}">
       <h5>{{name}} - {{phoneNumber}}</h5>
-      <p class="address">{{location.address}}</p>
-      <ul class="dishes">dishes: {{#dishes}}
-        <li>{{name}} - amount: {{amount}}</li>
-        {{/dishes}}
-      </ul>
-      <p class="price-payment">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
-      <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
-      </button>
+      <div class="selected-order-content">
+        <p class="address">{{location.address}}</p>
+        <ul class="dishes">dishes: {{#dishes}}
+          <li>{{name}} - amount: {{amount}}</li>
+          {{/dishes}}
+        </ul>
+        <p class="price-payment">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
+        <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
+        </button>
+      </div>
     </li>
   </script>
 

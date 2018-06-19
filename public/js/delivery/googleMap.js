@@ -1,14 +1,13 @@
-
 class GoogleMap {
   constructor() {}
 
-  getCoords (location) {
+  getCoords(location) {
     let apiKey = 'AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM';
     $.ajax({
-      method: 'GET',
-      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
-    })
-      .then(function(response) {
+        method: 'GET',
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
+      })
+      .then(function (response) {
         // Log full response
         console.log(response);
         // Formatted Address
@@ -16,7 +15,7 @@ class GoogleMap {
         // Geomatry
         let lat = response.results[0].geometry.location.lat;
         let lng = response.results[0].geometry.location.lng;
-      }).catch(function(error) {
+      }).catch(function (error) {
         console.log(error);
       });
   }
@@ -56,7 +55,7 @@ class GoogleMap {
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: 'DRIVING'
-    }, function(response, status) {
+    }, function (response, status) {
       if (status === 'OK') {
         console.log(response);
 
@@ -67,8 +66,8 @@ class GoogleMap {
         // For each route, display summary information.
         for (let i = 0; i < route.legs.length; i++) {
           let routeSegment = i + 1;
-          summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-              '</b><br>';
+          summaryPanel.innerHTML += `<div id="route-${routeSegment}">`;
+          summaryPanel.innerHTML += `<b>Route Segment: ${routeSegment}</b><br>`;
           summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
           summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
           summaryPanel.innerHTML += route.legs[i].distance.text + '<br>';
@@ -79,7 +78,7 @@ class GoogleMap {
             }
             summaryPanel.innerHTML += route.legs[i].steps[j].instructions + '<br>';
           }
-
+          summaryPanel.innerHTML += '</div>';
         }
       } else {
         window.alert('Directions request failed due to ' + status);
@@ -89,8 +88,3 @@ class GoogleMap {
 }
 
 export default GoogleMap;
-
-
-
-
-

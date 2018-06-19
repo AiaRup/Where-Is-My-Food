@@ -59,7 +59,6 @@ class DeliveryRepository {
           if (order.orderId == orderId) {
             this.ordersReadyList[index] = order;
             console.log(order);
-
             console.log('order in local array updated');
             return;
           }
@@ -81,7 +80,7 @@ class DeliveryRepository {
         // add the selected ones to the array
         this.selectedOrders.push(order);
       }
-      console.log(this.selectedOrders);
+      console.log('selecteorders-repository', this.selectedOrders);
     });
   }
 

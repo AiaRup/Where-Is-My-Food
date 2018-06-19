@@ -104,40 +104,54 @@ class EventsHandlerDelivery {
           // if nothing was selected (first option)
           if (($(this)).val() == 0) {
             $('.msg-select-destination').text('Please select your destination').show().fadeOut(5000);
-            return;
+          } else {
+            // check for the coords of the order selected for the destination and wayPoints
+            thisClass.deliveryRepository.selectedOrders.forEach((order) => {
+              if (order.orderId == $(this).val()) {
+                destinationSelect = order.location.address;
+              } else {
+                wayPoints.push(order.location.address);
+              }
+            });
+            // get the route from the google map and display it
+            let restaurantCoords = { lat: thisClass.deliveryRepository.restaurantLocation.latitude, lng: thisClass.deliveryRepository.restaurantLocation.longitude };
+            thisClass.googleMap.initMap(restaurantCoords, destinationSelect, wayPoints);
+            // hide the option to choose route
+            $('.choose-route').hide();
           }
-          // check for the coords of the order selected for the destination and wayPoints
-          thisClass.deliveryRepository.selectedOrders.forEach((order) => {
-            if (order.orderId == $(this).val()) {
-              destinationSelect = order.location.address;
-              // destinationSelect = { lat: order.location.latitude,
-              //   lng: order.location.latitude };
-              console.log('lat-lng', destinationSelect);
-            } else {
-              wayPoints.push(order.location.address);
-              // wayPoints.push({ lat: order.location.latitude,
-              //   lng: order.location.latitude });
-              console.log(wayPoints);
-            }
-          });
         }
       });
-      // get the route from the google map and display it
-      // let restaurantCoords =  this.deliveryRepository.restaurantLocation.address;
-      let restaurantCoords = { lat: this.deliveryRepository.restaurantLocation.latitude, lng: this.deliveryRepository.restaurantLocation.longitude };
-      this.googleMap.initMap(restaurantCoords, destinationSelect, wayPoints);
-      // hide the option to choose route
-      $('.choose-route').hide();
-
     });
   }
+
 
   registerOrderDeliverd() {
     $('.orders-to-deliver').on('click', '#deliverd-complete', (event) => {
       // TODO:
       //change icon on the map
-      // addapte time
-      // check if all orders are delivered go back to a new
+      // check if all orders are delivered go back to a new deliver
+
+      console.log(this.deliveryRepository.selectedOrders);
+      let $order =  $(event.currentTarget).closest('.order-selected');
+      // hide all the order's details
+      $(event.currentTarget).closest('.selected-order-content').hide();
+      // add icon to delivered order
+      $order.find('h5').append('<i class="fas fa-check-square"></i>');
+
+      let orderId = $order.data('id');
+
+      // TODO: why array empty
+      for (let i = 0; i < this.deliveryRepository.selectedOrders.length; i++) {
+        if (this.deliveryRepository.selectedOrders[i].orderId == orderId) {
+          this.deliveryRepository.selectedOrders.splice(i, 1);
+          // hide segment instructions
+          $(`#route-${i+1}`).hide();
+          return;
+        }
+        if (this.deliveryRepository.selectedOrders.length) {
+        // go back to select an employee
+        }
+      }
     });
   }
 }
