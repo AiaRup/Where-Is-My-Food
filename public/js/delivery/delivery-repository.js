@@ -37,7 +37,6 @@ class DeliveryRepository {
             this.ordersReadyList.push(order);
           }
         });
-        console.log(this.ordersReadyList);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -58,8 +57,6 @@ class DeliveryRepository {
         orders.forEach((order) => {
           if (order.orderId == orderId) {
             this.ordersReadyList[index] = order;
-            console.log(order);
-
             console.log('order in local array updated');
             return;
           }
@@ -76,12 +73,11 @@ class DeliveryRepository {
     this.selectedOrders = [];
     // go through the array of orders and check if an order was selected to delivery
     this.ordersReadyList.forEach((order) => {
-      console.log(order);
       if (order.isTaken) {
         // add the selected ones to the array
         this.selectedOrders.push(order);
       }
-      console.log(this.selectedOrders);
+
     });
   }
 

@@ -82,6 +82,7 @@ class EventsHandlerDelivery {
       $('.before-delivery').hide();
       // show selected orders
       this.deliveryRenderer.renderOrdersToDeliver(this.deliveryRepository.selectedOrders);
+      $('#deliverd-complete').attr('disabled', true);
       // get restaurant location
       this.deliveryRepository.getRestaurantLocation().then(() => {
         $('.restaurant-location').text(this.deliveryRepository.restaurantLocation.address);
@@ -106,6 +107,8 @@ class EventsHandlerDelivery {
           if (($(this)).val() == 0) {
             $('.msg-select-destination').text('Please select your destination').show().fadeOut(5000);
           } else {
+            // enable delivered button
+            $('#deliverd-complete').attr('disabled', false);
             // check for the coords of the order selected for the destination and wayPoints
             thisClass.deliveryRepository.selectedOrders.forEach((order) => {
               if (order.orderId == $(this).val()) {
@@ -168,7 +171,7 @@ class EventsHandlerDelivery {
       // TODO:
       //change icon on the map
       // check if all orders are delivered go back to a new deliver
-      console.log(this.deliveryRepository.selectedOrders);
+
       let $order =  $(event.currentTarget).closest('.order-selected');
       // hide all the order's details
       $(event.currentTarget).closest('.selected-order-content').hide();
@@ -177,12 +180,11 @@ class EventsHandlerDelivery {
 
       let orderId = $order.data('id');
 
-      // TODO: why array empty
       for (let i = 0; i < this.deliveryRepository.selectedOrders.length; i++) {
         if (this.deliveryRepository.selectedOrders[i].orderId == orderId) {
           this.deliveryRepository.selectedOrders.splice(i, 1);
           // hide segment instructions
-          // $(`#route-${i+1}`).hide();
+          $(`.route-${i+1}`).hide();
           return;
         }
         if (this.deliveryRepository.selectedOrders.length) {
