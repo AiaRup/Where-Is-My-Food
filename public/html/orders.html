@@ -10,9 +10,10 @@
 </head>
 <body>
   <form>
-      <input class="form-control form-control-lg search-order mb-4 mt-1" type="text"   placeholder="Search order">
+      <input class="form-control form-control-lg search-order mb-4 mt-1 bg-warning
+      " type="text"   placeholder="Search order">
   </form>
-  <table class="table  table-bordered table-hover table-striped table-sm">
+  <table class="table  table-bordered table-hover table-striped table-sm ">
     <thead class="thead-dark">
       <tr >
         <th scope="col" width="9%" class="border border-dark text-center">Dish</th>
@@ -132,7 +133,7 @@
   <!-- END OF EDIT ORDER MODAL -->
   <!-- ORDER TEMPLETE -->
   <script id="order-template" type="text/x-handlebars-template">
-    <tr>
+    <tr class="text-light">
       <td class="border border-dark">{{dishes}}</td>
       <td class="border border-dark">{{time}}</td>
       <td class="border border-dark" >{{location}}</td>
