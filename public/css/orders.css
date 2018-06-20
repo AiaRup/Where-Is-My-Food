@@ -37,10 +37,11 @@ table, th, td {
 }
 .search-order {
     border-radius: 20px;
-    background-color: burlywood;
+    background-color: rgba(235, 145, 27, 0.9);
 }
 
 .modal-content {
     border-radius: 20px;
-    background-color: burlywood;
+    /* background-color: burlywood; */
+    background-color: rgba(235, 145, 27, 0.9);
 }

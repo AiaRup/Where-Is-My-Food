@@ -15,6 +15,7 @@
   <table class="table  table-bordered table-hover table-striped table-sm ">
     <thead class="thead-dark">
       <tr >
+          <th scope="col" width="0.5%" class="border border-dark">Edit</th>
         <th scope="col" width="9%" class="border border-dark text-center">Dish</th>
         <th scope="col" width="10%" class="border border-dark text-center">Hour received</th>
         <th scope="col" width="30%" class="border border-dark text-center">Destination</th>
@@ -23,7 +24,7 @@
         <th scope="col" width="5%" class="border border-dark text-center">Total</th>
         <th scope="col" width="8%" class="border border-dark text-center">Order ID</th>
         <th scope="col" width="12.5%" class="border border-dark text-center">Status</th>
-        <th scope="col" width="0.5%" class="border border-dark">Edit</th>
+        
 
       </tr>
     </thead>
@@ -133,6 +134,7 @@
   <!-- ORDER TEMPLETE -->
   <script id="order-template" type="text/x-handlebars-template">
     <tr class="text-light">
+      <td class="border border-dark "><button type="button" class="btn btn-link button-edit"  data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>
       <td class="border border-dark">{{dishes}}</td>
       <td class="border border-dark">{{time}}</td>
       <td class="border border-dark" >{{location}}</td>
@@ -140,13 +142,13 @@
       <td class="border border-dark">{{phoneNumber}}</td>
       <td class="border border-dark" >{{totalPrice}} &#x20aa;</td>
       <td class="border border-dark">{{orderId}}</td>   
-      <td class="border border-dark table-warning text-center">
+      <td class="border border-dark text-center" style="background-color: rgb(36, 63, 18)">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-link text-center button-status"  data-target="#changeStatusModal">
           {{status}}
         </button>    
       </td>       
-      <td class="border border-dark "><button type="button" class="btn btn-link button-edit"  data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>   
+   
 
     </tr>
   </script>
