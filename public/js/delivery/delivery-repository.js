@@ -7,6 +7,7 @@ class DeliveryRepository {
     this.ordersReadyList = [];
     this.selectedOrders = [];
     this.restaurantLocation = {};
+    this.STORAGE_ID = 'selectedOrders';
   }
 
   // request all the employees from the DB
@@ -44,23 +45,26 @@ class DeliveryRepository {
     });
   }
 
-  updateOrderTaken(orderId, status, index) {
+  updateOrderProperty(orderId, objectToUpdate, index) {
     return $.ajax({
       method: 'Put',
       url: `/orders/${orderId}`,
-      data: {
-        property: 'isTaken',
-        value: status
-      },
+      // data: {
+      //   property: objectToUpdate.property,
+      //   value: objectToUpdate.value
+      // },
+      data: objectToUpdate,
       success: (orders) => {
+        if (objectToUpdate.property == 'isTaken') {
         // update order's property "isTaken" in the local array
-        orders.forEach((order) => {
-          if (order.orderId == orderId) {
-            this.ordersReadyList[index] = order;
-            console.log('order in local array updated');
-            return;
-          }
-        });
+          orders.forEach((order) => {
+            if (order.orderId == orderId) {
+              this.ordersReadyList[index] = order;
+              console.log('order in local array updated');
+              return;
+            }
+          });
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -77,7 +81,6 @@ class DeliveryRepository {
         // add the selected ones to the array
         this.selectedOrders.push(order);
       }
-
     });
   }
 
@@ -93,6 +96,28 @@ class DeliveryRepository {
         console.log(textStatus);
       }
     });
+  }
+
+  getMapInfoOfOrder(orderId) {
+    return $.ajax({
+      method: 'Get',
+      url: `orders/${orderId}/map`,
+      success: (orders) => {
+        //TODO:
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(this.STORAGE_ID, JSON.stringify(this.selectedOrders));
+  }
+
+  getFromLocalStorage() {
+    this.selectedOrders = JSON.parse(localStorage.getItem(this.STORAGE_ID) || '[]');
   }
 }
 

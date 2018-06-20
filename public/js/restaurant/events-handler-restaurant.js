@@ -121,7 +121,6 @@ class EventsHandler {
           console.log('location response', response);
           // update new order location
           newOrder.location = {
-
             // Geomatry
             latitude: response.results[0].geometry.location.lat,
             longitude: response.results[0].geometry.location.lng,

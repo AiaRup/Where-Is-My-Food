@@ -60,7 +60,7 @@ class RestaurantRepository {
         ordersNumber: numOrders
       },
       success: (restaurantDetails) => {
-        console.log('Number of orders updated in DB', restaurantDetails);
+        console.log('Number of orders updated in DB');
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);

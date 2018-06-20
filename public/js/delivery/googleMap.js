@@ -1,12 +1,13 @@
 class GoogleMap {
-  constructor() {}
+  constructor() {
+    this.routeOrders = [];
+  }
 
   getCoords(location) {
     let apiKey = 'AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM';
     return $.ajax({
       method: 'GET',
-      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`,
-
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&language=en&key=${apiKey}`,
       success: (response) => {
         // Log full response
         console.log(response);
@@ -28,12 +29,12 @@ class GoogleMap {
 
     // calaulate route
     this.calculateAndDisplayRoute(directionsService, directionsDisplay, restaurantLocation, destination, waypoints);
-
   }
 
-  // calculateAndDisplayRoute(directionsService,
-  calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination, waypoints) {
-    var waypts = [];
+  calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination, waypoints, optimize = true) {
+    let waypts = [];
+    // initizialize order route array
+    this.routeOrder = [];
 
     for (var i = 0; i < waypoints.length; i++) {
       waypts.push({
@@ -41,35 +42,41 @@ class GoogleMap {
         stopover: true
       });
     }
-
-
-
     directionsService.route({
       origin: start,
       destination: destination,
       waypoints: waypts,
-      optimizeWaypoints: true,
+      optimizeWaypoints: optimize,
       travelMode: 'DRIVING'
-    }, function (response, status) {
+    }, (response, status) => {
       if (status === 'OK') {
         console.log(response);
-
         directionsDisplay.setDirections(response);
         let route = response.routes[0];
         let summaryPanel = $('#directions-panel');
-        // summaryPanel.innerHTML = '';
-        // For each route, display summary information.
+        var durationTime = 0;
+
         for (let i = 0; i < route.legs.length; i++) {
+          // get duration time as number from the string
+          let durNum = Number(route.legs[i].duration.text
+            .substr(0, route.legs[i].duration.text.indexOf(' ')));
+          durationTime += durNum;
+          // push the address and duration to local array
+          if (!i) {
+            this.routeOrders.push({
+              address: route.legs[i].start_address,
+              duration: 0
+            });
+          }
+          this.routeOrders.push({
+            address: route.legs[i].end_address,
+            duration: durationTime
+          });
+
           let routeSegment = i + 1;
-          let routeDiv = $('<div></div>');
-          // summaryPanel.innerHTML += `<div class="route-${routeSegment}>`;
-          // summaryPanel.innerHTML += '<div><b>Route Segment: ' + routeSegment +
-          //   '</b><br>';
-          // summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-          // summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-          // summaryPanel.innerHTML += route.legs[i].distance.text + '<br>';
-          // summaryPanel.innerHTML += route.legs[i].duration.text + '<br><br>';
-          routeDiv.append('<b>Route Segment: ' + routeSegment +            '</b><br>');
+          let routeDiv = $(`<div data-route="${route.legs[i].end_address}"></div>`);
+
+          routeDiv.append('<b>Route Segment: ' + routeSegment + '</b><br>');
           routeDiv.append(route.legs[i].start_address + ' to ');
           routeDiv.append(route.legs[i].end_address + '<br>');
           routeDiv.append(route.legs[i].distance.text + '<br>');
@@ -83,10 +90,17 @@ class GoogleMap {
           routeDiv.addClass(`route-${routeSegment}>`);
           summaryPanel.append(routeDiv);
         }
+        console.log('duration address:', this.routeOrders);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
     });
+  }
+
+  updateMapInfoToOrderId() {
+    for (var i = 0; i < this.routeOrders.length; i++) {
+
+    }
   }
 }
 

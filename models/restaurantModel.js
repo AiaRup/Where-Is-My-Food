@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-// let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 let locationSchema = new mongoose.Schema({
   latitude: Number,
@@ -20,29 +20,18 @@ let orderSchema = new mongoose.Schema({
   status: String,
   paymentMethod: String,
   // location: locationSchema,
-  location: {
-    latitude: Number,
-    longitude: Number,
-    address: String
-  },
+  location: { type: Schema.Types.Mixed, default: {} },
+  // location: {
+  //   latitude: Number,
+  //   longitude: Number,
+  //   address: String
+  // },
   dishes: [dishSchema],
-
-  // dishes: [{
-  //   name: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   price: {
-  //     type: Number,
-  //     required: true
-  //   },
-  //   amount: Number
-  // }],
+  mapInfo: { type: Schema.Types.Mixed, default: {} },
   orderId: Number,
   isTaken: Boolean,
-
-  phoneNumber: Number,
-});
+  phoneNumber: Number
+}, { minimize: false });
 
 let employeeSchema = new mongoose.Schema({
   name: String,
@@ -55,7 +44,7 @@ let restaurantSchema = new mongoose.Schema({
   menu: [dishSchema],
   address: locationSchema,
   orders: [orderSchema],
-  employees: [employeeSchema],
+  employees: [employeeSchema]
 });
 
 let Restaurant = mongoose.model('restaurant', restaurantSchema);

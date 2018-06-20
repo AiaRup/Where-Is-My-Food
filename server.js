@@ -71,12 +71,21 @@ app.route('/restaurant/restauranNumOrders')
 // 5) update order property
 app.put('/orders/:id', (req, res) => {
   let id = req.params.id;
-  console.log(id);
 
   let $update = { $set: {} };
   $update.$set[`orders.$.${req.body.property}`] = req.body.value;
 
   Restaurant.findOneAndUpdate({ 'orders.orderId': id },  $update, { new: true }, (err, updatedRestaurant) => {
+    if (err) throw err;
+    res.send(updatedRestaurant.orders);
+  });
+});
+
+// 6) update map info to specific order
+app.put('/orders/:id/map', (req, res) => {
+  let id = req.params.id;
+
+  Restaurant.findOneAndUpdate({ 'orders.orderId': id }, { mapInfo : req.body }, { new: true }, (err, updatedRestaurant) => {
     if (err) throw err;
     res.send(updatedRestaurant.orders);
   });
