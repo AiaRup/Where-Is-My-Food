@@ -128,7 +128,7 @@
         </form>
       </div>
     </div>
-  </div>
+</div>
   <!-- END OF EDIT ORDER MODAL -->
   <!-- ORDER TEMPLETE -->
   <script id="order-template" type="text/x-handlebars-template">
@@ -142,11 +142,11 @@
       <td class="border border-dark">{{orderId}}</td>   
       <td class="border border-dark table-warning text-center">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-link text-center" data-toggle="modal" data-target="#changeStatusModal">
+        <button type="button" class="btn btn-link text-center button-status"  data-target="#changeStatusModal">
           {{status}}
         </button>    
       </td>       
-      <td class="border border-dark "><button type="button" class="btn btn-link" data-toggle="modal" data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>   
+      <td class="border border-dark "><button type="button" class="btn btn-link button-edit"  data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>   
 
     </tr>
   </script>

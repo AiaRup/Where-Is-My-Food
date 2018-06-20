@@ -2,7 +2,19 @@ class EventsHandler {
     constructor(ordersRepository, ordersRenderer) {
         this.ordersRepository = ordersRepository;
         this.ordersRenderer = ordersRenderer;
-        this.$ordersContainer = $(".orders-container");
+        this.$table = $("table");
+    }
+    registerEditButtonClicks() {
+        this.$table.on('click','.button-edit',function (event) {
+            $("#editOrderModal").modal();
+        })
+
+    }
+    registerStatusButtonClicks() {
+        this.$table.on('click','.button-status',function (event) {
+            $("#changeStatusModal").modal();
+        })
+
     }
     loadPage() {
         let rootThis= this;
