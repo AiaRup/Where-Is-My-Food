@@ -5,3 +5,7 @@ body {
 table, th, td {
     border: 1px solid black;
 }
+
+.search-order {
+    border-radius: 20px;
+}
