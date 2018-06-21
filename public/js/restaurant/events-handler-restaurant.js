@@ -87,16 +87,19 @@ class EventsHandler {
         // get information from the page form
 
         // get all order's dishes //TODO:
-        let dishSelection = [];
-        $('.dish-list li').each(function() {
-          let dishSelected = {
-            name: $(this).data('dish'),
-            price:  $(this).data('cost'),
-            amount: $(this).data('amount')
-          };
-          dishSelection.push(dishSelected);
-        });
-        console.log('dish array', dishSelection);
+        // let dishSelection;
+        // .each(function() {
+        let dishSelection = $('.dish-list li').data('dish');
+
+
+        // let dishSelected = {
+        //   name: $(this).data('dish'),
+        //   price:  $(this).data('cost'),
+        //   amount: $(this).data('amount')
+        // };
+        // dishSelection.push(dishSelected);
+        // });
+        // console.log('dish array', dishSelection);
 
 
         // get order time as string
@@ -116,18 +119,29 @@ class EventsHandler {
           orderId: idOrder
         };
 
+        console.log('order', newOrder);
+
         // get location data from google api
         let location = $('#address').val();
         this.googleMaps.getCoords(location).then((response) => {
           console.log('location response', response);
           // update new order location
-          newOrder.location = {
-            // Geomatry
-            latitude: response.results[0].geometry.location.lat,
-            longitude: response.results[0].geometry.location.lng,
-            // Formatted Address
-            address: response.results[0].formatted_address
-          };
+          newOrder.location = response.results[0].formatted_address;
+          // newOrder.location = {
+          //   // Geomatry
+          //   latitude: response.results[0].geometry.location.lat,
+          //   longitude: response.results[0].geometry.location.lng,
+          //   // Formatted Address
+          //   address: response.results[0].formatted_address
+          // };
+          // newOrder.location = {
+          //   // Geomatry
+          //   latitude: response.results[0].geometry.location.lat,
+          //   longitude: response.results[0].geometry.location.lng,
+          //   // Formatted Address
+          //   address: response.results[0].formatted_address
+          // };
+          // });
           console.log('order sent to server', newOrder);
 
           // send new order to DB
@@ -147,7 +161,7 @@ class EventsHandler {
     $(document.body).on('click', '#toOrderPage', (e)=>{
       window.location='orders';
     });
-  };
+  }
 
   closePopUp() {
     $('.closeBtn').click(() => {

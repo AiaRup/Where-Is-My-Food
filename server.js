@@ -39,7 +39,8 @@ app.route('/orders')
   })
   .put((req, res) => {
     console.log(req.body);
-    Restaurant.findOneAndUpdate({}, { $push:{ orders:req.body } }, { new:true }, (err, updatedRes) => {
+
+    Restaurant.findOneAndUpdate({}, { $push:{ orders: req.body } }, { new:true }, (err, updatedRes) => {
       res.send(updatedRes);
     }
     );
@@ -140,10 +141,10 @@ app.get('/customer/:id', (req, res) => {
 
 // orders (add by Kobi for orders page)
 app.route('/ord')
- .put((req, res) => {
-    console.log(req.body)
+  .put((req, res) => {
+    console.log(req.body);
     // Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
     //   console.log(updatedRes)
     //   res.send(updatedRes);
-    }
-  )
+  }
+  );
