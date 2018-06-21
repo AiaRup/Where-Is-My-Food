@@ -37,13 +37,12 @@
       </p>
       <button type="button" id="select-Destination">Go</button>
     </div>
+    <!-- </div> choose route -->
     <div class="msg-select-destination"></div>
     <div id="directions-panel"></div>
-
-
-
     <div id="map"></div>
   </div>
+  <!-- </div> on-delivery -->
 
   <script id="delivery-template" type="text/x-handlebars-template">
     <li class="employee" data-id="{{employeeId}}" data-name="{{name}}">
@@ -58,18 +57,18 @@
         <button type="button" class="icon-selected btn btn-outline-dark btn-sm">
           <i class="fas fa-check"></i>
         </button>
-        <button type="button" id="select-to-deliver" class="btn btn-outline-dark btn-sm">
+        <button type="button" class="select-to-deliver" class="btn btn-outline-dark btn-sm">
           <i class="fas fa-plus"></i>
         </button>
         <h5 class="order-name">{{name}} - Order Number {{orderId}}</h5>
       </div>
       <p class="address">{{location.address}}</p>
-      <p class="phone">Phone: {{phoneNumber}}</p>
+      <p class="phone">Phone: 0{{phoneNumber}}</p>
       <ul class="dishes"> {{#dishes}}
         <li>{{name}} - amount: {{amount}}</li>
         {{/dishes}}
       </ul>
-      <p class="total-price">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
+      <p class="total-price">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
 
       </div>
     </li>
@@ -77,15 +76,15 @@
 
   <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">
     <li class="order-selected" data-id="{{orderId}}">
-      <h5>{{name}} - {{phoneNumber}}</h5>
+      <h5>{{name}} - 0{{phoneNumber}}</h5>
       <div class="selected-order-content">
         <p class="address">{{location.address}}</p>
-        <ul class="dishes">dishes: {{#dishes}}
+        <ul class="dishes">{{#dishes}}
           <li>{{name}} - amount: {{amount}}</li>
           {{/dishes}}
         </ul>
-        <p class="price-payment">Total: {{totalPrice}}$, Paid in: {{paymentMethod}}</p>
-        <button type="button" id="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
+        <p class="price-payment">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
+        <button type="button" class="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
         </button>
       </div>
     </li>

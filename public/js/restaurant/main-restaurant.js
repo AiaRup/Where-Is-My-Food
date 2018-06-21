@@ -1,7 +1,7 @@
 import restaurantRender from './restaurant-renderer.js';
 import RestaurantRepository from './restaurant-repository.js';
 import EventsHandler from './events-handler-restaurant.js';
-import GoogleMap from '../delivery/googleMap.js'
+import GoogleMap from '../delivery/googleMap.js';
 
 
 let restaurantRenders = new restaurantRender();
@@ -13,5 +13,9 @@ eventsHandlers.fillNewForm();
 eventsHandlers.submitNewOrder();
 eventsHandlers.addNewDish();
 eventsHandlers.deleteBtn();
-eventsHandlers.toOrderPage();
+
 eventsHandlers.closePopUp();
+eventsHandlers.getRestaurandData();
+
+eventsHandlers.toOrderPage();
+

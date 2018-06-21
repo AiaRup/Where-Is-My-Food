@@ -14,7 +14,7 @@
   <header class="logo" />
   <img class="res-logo" src="https://cdn.dribbble.com/users/60266/screenshots/1926787/ricos-quesos-pizza.jpg" alt="logo-pic">
   </div>
-  <h1 class="headline">Resaurant Name</h1>
+  <h1 class="restaurant-name"></h1>
 
   <!-- div of new order & update order -->
   <section class="order-cubes">
@@ -52,12 +52,12 @@
           <div class="dish">
             Choose Dish:
             <br>
-            <select id="dishOptions" required/>
-            <option value="pizza">Pizza</option>
-            <option value="Burger">Burger</option>
-            <option value="Pasta">Pasta</option>
+            <select id="dishOptions" required>
+                <option value="0" selected="selected">Select from Menu</option>
+
             </select>
           </div>
+          <div class="msg-select-dish"></div>
 
           <div class="amount">
             Amount:
@@ -78,13 +78,14 @@
         <!-- clear choice or submit form -->
         <br>
         <input type="submit" name="Submit Order" class="btn submitOrder" value="Submit Order">
-        <input type="reset" class="btn reset" value="Reset" />
+        <input type="reset" class="btn reset" value="Reset">
       </form>
 
-    
-    <!-- end of new order --------------------------------------->
+
+    <!-- end of new order -->
 
     <!-- update order -->
+
     <div class="update-order btn btn-update" id="update-order-btn" onClick="window.location='orders'">Update Order</div>
   </section>
 
@@ -93,7 +94,7 @@
     <div id="simpleModal" class="modal">
       <div class="modal-content">
         <input type="button" class="closeBtn" value=&times;>
-        <p>Your Order Number is:</p>
+        <p>New Order Number is: <span class="orderId"></span></p>
         <input type="button" value="To Order Page" id="toOrderPage">
       </div>
     </div>
