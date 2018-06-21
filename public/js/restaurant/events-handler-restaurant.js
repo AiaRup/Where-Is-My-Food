@@ -21,6 +21,7 @@ class EventsHandler {
     });
   }
 
+
   fillNewForm() {
     $('.btnNewOrder').click((event) => {
       event.stopPropagation();
@@ -142,13 +143,19 @@ class EventsHandler {
     });
   }
 
+  toOrderPage() {
+    $(document.body).on('click', '#toOrderPage', (e)=>{
+      window.location='orders';
+    });
+  };
+
   closePopUp() {
     $('.closeBtn').click(() => {
       $('.modal').hide();
     });
   }
-
 }
+
 
 
 export default EventsHandler;

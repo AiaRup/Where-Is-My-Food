@@ -1,0 +1,70 @@
+/* CUSTOMER ENTRY PAGE */
+.wrapper {
+  margin: 0 auto;
+  width: 300px;
+  background-color: rgba(218, 223, 253, 0.486);
+  height: 200px;
+  margin-top: 100px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#id-code {
+  margin-top: 20px;
+}
+
+.submit-button {
+  margin-top: 25px;
+}
+
+
+
+/* CUSTOMER TIME PAGE */
+
+.logo {
+  float: left;
+  margin-left: 15px;
+  margin-top: -40px;
+}
+
+.time-left, .order-details, .map-section, .map  {
+  border: solid 1px rgb(192, 192, 192);
+  margin-bottom: 15px;
+}
+
+.customerTime-wrapper {
+  margin: 0 auto;
+  margin-top: 45px;
+  text-align: center;
+  width: 800px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+.time-left {
+  display: inline-block;
+}
+
+.customerTime-Headline {
+  display: inline-block;
+  width: 500px;
+}
+
+
+.order-details {
+  height: 150px;
+}
+
+.map-section {
+  height: 320px;
+}
+
+.map {
+  height: 250px;
+  width: 300px;
+  margin: auto;
+  margin-bottom: 15px;
+}
