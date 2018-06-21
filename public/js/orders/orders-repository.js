@@ -3,7 +3,12 @@ class OrdersRepository {
       this.employeesList = [];
       this.ordersList = [];
     }
-    
+    getOrderById(orderId) {
+      for (var i in this.ordersList) {
+          if(this.ordersList[i]['orderId'] == orderId)
+            return this.ordersList[i];
+        }
+    }
     // request all the employees from the DB
     getEmployeesList() {
       return $.ajax({
@@ -32,7 +37,7 @@ class OrdersRepository {
             order['dishes'] = this.stringfyDishes(order);
             this.ordersList.push(order);
           });
-          console.log(this.ordersList);
+          //console.log(this.ordersList);
         },
         error: function(jqXHR, textStatus, errorThrown) {
           console.log(textStatus);

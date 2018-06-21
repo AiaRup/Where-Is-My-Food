@@ -32,7 +32,7 @@
     </tbody>
   </table>
 
-  
+<div class="modal-container"></div>  
 <!-- CHANGE STATUS MODAL -->
 <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -63,74 +63,76 @@
 </div>
 <!-- END OF STATUS MODAL -->
 
-<!-- EDIT ORDER MODAL -->
-<div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content ">
-        <form class="needs-validation" novalidate>
+<!-- EDIT ORDER MODAL TEMPLETE -->
+<script id="edit-order-modal-template" type="text/x-handlebars-template">
+    <div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+        <div class="modal-content ">
+            <form class="needs-validation" novalidate>
 
-          <div class="modal-header">
-            <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="validationCustom01">Name</label>
-                  <input type="text" class="form-control" id="validationCustom01" placeholder="Name" required>
-                  <div class="valid-feedback">
-                      &#10003;
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="validationCustom02">Phone Number</label>
-                  <input type="tel" class="form-control" id="validationCustom02" placeholder="Phone Number" required>
-                  <div class="valid-feedback">
-                      &#10003;
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="validationCustom03">Dish</label>
-                  <input type="text" class="form-control" id="validationCustom03" placeholder="Dish" disabled >
-                  <div class="valid-feedback">
-                      &#10003;
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="validationCustom04">Total</label>
-                  <input type="tel" class="form-control" id="validationCustom04" placeholder="Total" disabled >
-                  <div class="valid-feedback">
-                      &#10003;
-                  </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                    <label for="validationCustom01">Name</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{name}}" required>
+                    <div class="valid-feedback">
+                        &#10003;
+                    </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <label for="validationCustom02">Phone Number</label>
+                    <input type="tel" class="form-control" id="validationCustom02" placeholder="Phone Number" required>
+                    <div class="valid-feedback">
+                        &#10003;
+                    </div>
+                    </div>
                 </div>
                 <div class="form-row">
-                  <div class="col-md-12 mb-3">
-                    <label for="validationCustom05">Status</label>
-                    <select class="form-control" id="validationCustom05">
-                        <option>Received</option>
-                        <option>Ready</option>
-                        <option>Out for delivery</option>
-                        <option>Delivered</option>
-                        <option>Canceled</option>
-                      </select>
-                    
-                  </div>
-                </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-      </div>
+                    <div class="col-md-6 mb-3">
+                    <label for="validationCustom03">Dish</label>
+                    <input type="text" class="form-control" id="validationCustom03" placeholder="Dish" disabled >
+                    <div class="valid-feedback">
+                        &#10003;
+                    </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <label for="validationCustom04">Total</label>
+                    <input type="tel" class="form-control" id="validationCustom04" placeholder="Total" disabled >
+                    <div class="valid-feedback">
+                        &#10003;
+                    </div>
+                    </div>
+                    <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom05">Status</label>
+                        <select class="form-control" id="validationCustom05">
+                            <option>Received</option>
+                            <option>Ready</option>
+                            <option>Out for delivery</option>
+                            <option>Delivered</option>
+                            <option>Canceled</option>
+                        </select>
+                        
+                    </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+        </div>
     </div>
-</div>
-  <!-- END OF EDIT ORDER MODAL -->
+</script>
+  <!-- END OF EDIT ORDER MODAL TEMPLE -->
   <!-- ORDER TEMPLETE -->
   <script id="order-template" type="text/x-handlebars-template">
     <tr class="text-light">
@@ -141,7 +143,7 @@
       <td class="border border-dark">{{name}}</td>
       <td class="border border-dark">{{phoneNumber}}</td>
       <td class="border border-dark" >{{totalPrice}} &#x20aa;</td>
-      <td class="border border-dark">{{orderId}}</td>   
+      <td class="border border-dark order-id">{{orderId}}</td>   
       <td class="border border-dark text-center" style="background-color: rgb(36, 63, 18)">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-link text-center button-status"  data-target="#changeStatusModal">

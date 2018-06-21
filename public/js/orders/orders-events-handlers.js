@@ -1,3 +1,4 @@
+
 class EventsHandler {
     constructor(ordersRepository, ordersRenderer) {
         this.ordersRepository = ordersRepository;
@@ -5,13 +6,22 @@ class EventsHandler {
         this.$table = $("table");
     }
     registerEditButtonClicks() {
+        let rootThis= this;
         this.$table.on('click','.button-edit',function (event) {
+            let orderId = $(this).closest('tr').find('.order-id').html();
+            console.log(orderId);
+            let order = rootThis.ordersRepository.getOrderById(orderId);
+            console.log(order);
+            rootThis.ordersRenderer.renderEditOrderModal(order);
+
+            
             $("#editOrderModal").modal();
         })
 
     }
     registerStatusButtonClicks() {
         this.$table.on('click','.button-status',function (event) {
+            
             $("#changeStatusModal").modal();
         })
 
