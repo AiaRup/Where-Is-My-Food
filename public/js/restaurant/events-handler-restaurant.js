@@ -4,7 +4,7 @@ class EventsHandler {
     this.restaurantRenders = restaurantRenders;
     this.googleMaps = googleMaps;
     this.counter = 0;
-  }
+  };
 
   fillNewForm() {
     $(".btnNewOrder").click((event) => {
@@ -41,9 +41,13 @@ class EventsHandler {
       let dishCost = $(e.currentTarget).parent("li").data("cost");
       let totalCost =  $(e.currentTarget).closest(".dish-list").siblings(".total-price").data("total");
       
-      // $(e.currentTarget).parent().remove();s
-    })
-  }
+      totalCost = totalCost - dishCost;
+
+      $('.total-price').text(`Total Price: ` + totalCost)
+    
+      $(e.currentTarget).parent().remove();
+    });
+  };
 
 
   submitNewOrder() {
@@ -84,19 +88,27 @@ class EventsHandler {
       
       //Get AJAX response from server of new order
       this.restaurantRepositories.addNewOrder(newOrder).then(() => {
+       
       })
 
       $('.modal').show();
     })
-  }
+  };
+
+  toOrderPage() {
+    $(document.body).on('click', '#toOrderPage', (e)=>{
+      window.location='orders';
+    });
+  };
+
 
   closePopUp() {
     $('.closeBtn').click(() => {
       $('.modal').hide();
-    })
-  }
+    });
+  };
 
-}
+};
 
 
 export default EventsHandler;

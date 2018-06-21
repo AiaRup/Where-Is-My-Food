@@ -13,4 +13,5 @@ eventsHandlers.fillNewForm();
 eventsHandlers.submitNewOrder();
 eventsHandlers.addNewDish();
 eventsHandlers.deleteBtn();
+eventsHandlers.toOrderPage();
 eventsHandlers.closePopUp();
