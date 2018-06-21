@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+let mapSchema = new mongoose.Schema({
+  duration: String,
+  queue: String
+});
+
 let locationSchema = new mongoose.Schema({
-  latitude: Number,
-  longitude: Number,
+  latitude: String,
+  longitude: String,
   address: String
 });
 
 let dishSchema = new mongoose.Schema({
   name: String,
-  price: Number,
-  amount: Number
+  price: String,
+  amount: String
 });
 
 let orderSchema = new mongoose.Schema({
@@ -19,15 +24,10 @@ let orderSchema = new mongoose.Schema({
   time: String,
   status: String,
   paymentMethod: String,
-  // location: locationSchema,
-  location: { type: Schema.Types.Mixed, default: {} },
-  // location: {
-  //   latitude: Number,
-  //   longitude: Number,
-  //   address: String
-  // },
+  location: locationSchema,
   dishes: [dishSchema],
-  mapInfo: { type: Schema.Types.Mixed, default: {} },
+  mapInfo: mapSchema,
+  mapRoute: [String],
   orderId: Number,
   isTaken: Boolean,
   phoneNumber: Number

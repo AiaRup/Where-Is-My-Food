@@ -46,6 +46,8 @@ class DeliveryRepository {
   }
 
   updateOrderProperty(orderId, objectToUpdate, index) {
+    console.log('ajax update', objectToUpdate);
+
     return $.ajax({
       method: 'Put',
       url: `/orders/${orderId}`,
@@ -98,12 +100,15 @@ class DeliveryRepository {
     });
   }
 
-  getMapInfoOfOrder(orderId) {
+  updateMapInfoOfOrder(orderId, mapInfo) {
     return $.ajax({
-      method: 'Get',
+      method: 'Put',
       url: `orders/${orderId}/map`,
+      data: mapInfo,
       success: (orders) => {
         //TODO:
+        console.log('orders');
+
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
