@@ -22,6 +22,8 @@ class EventsHandlerDelivery {
         // check if there is any order to deliver
         if (this.deliveryRepository.ordersReadyList.length) {
           $('.orders-section').show();
+          console.log('orders ready', this.deliveryRepository.ordersReadyList);
+
           this.deliveryRenderer.renderOrders(this.deliveryRepository.ordersReadyList);
         } else {
           $('.msg').text('No orders are ready to deliver.').show().fadeOut(5000);
@@ -100,7 +102,7 @@ class EventsHandlerDelivery {
         $('#destination').empty();
         let orderAddress;
         this.deliveryRepository.selectedOrders.forEach((order) => {
-          orderAddress += `<option value="${order.orderId}">${order.location.address}</option>`;
+          orderAddress += `<option value="${order.orderId}">${order.location}</option>`;
         });
         $('#destination').append(orderAddress);
         // save selected array to local storage
@@ -114,8 +116,8 @@ class EventsHandlerDelivery {
       let thisClass = this;
       let destinationSelect;
       let wayPoints = [];
-      $('#destination option').each(function() {
-        if($(this).is(':selected')) {
+      $('#destination option').each(function () {
+        if ($(this).is(':selected')) {
           // if nothing was selected (first option)
           if (($(this)).val() == 0) {
             $('.msg-select-destination').text('Please select your destination').show().fadeOut(5000);
@@ -133,68 +135,88 @@ class EventsHandlerDelivery {
             $('.deliverd-complete').attr('disabled', false);
             // check for the address of the order selected for the destination and wayPoints
             thisClass.deliveryRepository.selectedOrders.forEach((order) => {
+              // get destination address
               if (order.orderId == $(this).val()) {
-                destinationSelect = order.location.address;
+                destinationSelect = order.location;
+                // get points to stop on the way
               } else {
-                wayPoints.push(order.location.address);
+                wayPoints.push(order.location);
               }
             });
-            // get the route from the google map and display it
+            // show map on page
             $('#map').show();
             // hide the option to choose route
             $('.choose-route').hide();
+            /*=============================================
+            get the route from the google map and display it
+            ==============================================*/
             // get restaurant coords
             let restaurantCoords = {
               lat: thisClass.deliveryRepository.restaurantLocation.latitude,
               lng: thisClass.deliveryRepository.restaurantLocation.longitude
             };
+            // initialize map on the page
             let directionService = thisClass.googleMap.initMap(restaurantCoords);
-            thisClass.googleMap.calculateAndDisplayRoute(directionService, restaurantCoords, destinationSelect, wayPoints).then((routeArray)=> {
-
-              // update route data on the order DB
+            // get route
+            thisClass.googleMap.calculateAndDisplayRoute(directionService, restaurantCoords, destinationSelect, wayPoints).then((routeArray) => {
+              console.log('array arrived from google promise', routeArray);
+              /*==================================
+               update route data on the order DB
+              ===================================*/
               let promiseArray = [];
+              let arraySorted = [];
+
               // get selected orders array from local storage
               thisClass.deliveryRepository.getFromLocalStorage();
+              console.log('array selected orders from local storage', thisClass.deliveryRepository);
 
-              let arraySorted = [];
-              for (var i = 0; i < routeArray.length; i++) {
-                thisClass.deliveryRepository.selectedOrders.forEach((order)=> {
+
+              for (let i = 0; i < routeArray.length; i++) {
+                thisClass.deliveryRepository.selectedOrders.forEach((order) => {
 
                   // thisClass.deliveryRepository.selectedOrders.forEach((order)=> {
                   //   for (var i = 0; i < routeArray.length; i++) {
-                  if (order.location.address == routeArray[i].address) {
+                  if (order.location == routeArray[i].address) {
                     // add to the sorted array
                     arraySorted.push(order);
-                    console.log('order to sorted array', order);
+                    console.log('one order added to sorted array', order);
 
                     // add orderID to the route order array from google module
                     routeArray[i].orderId = order.orderId;
                     routeArray[i].queue = i;
-                    let orderData = {
+                    var orderData = {
                       orderId: order.orderId,
                       data: {
-                        property: 'mapInfo',
-                        value: {
-                          duration: routeArray[i].duration,
-                          queue: i
-                        }
+                        property: 'queue',
+                        value: i
                       }
                     };
-                    // update orders properties in DB
-                    let promise = thisClass.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
-                    promiseArray.push(promise);
+                    var orderData2 = {
+                      orderId: order.orderId,
+                      data: {
+                        property: 'duration',
+                        value: routeArray[i].duration
+                      }
+                    };
                   }
+                  // update orders properties in DB
+                  let promise = thisClass.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
+                  let promise2 = thisClass.deliveryRepository.updateOrderProperty(orderData2.orderId, orderData.data);
+                  promiseArray.push(promise);
+                  promiseArray.push(promise2);
                 });
               }
-              // re-order orders to deliver on page by route
-              console.log('array sorted', arraySorted);
-
-              thisClass.deliveryRepository.selectedOrders = arraySorted;
-              thisClass.deliveryRepository.saveToLocalStorage();
-              thisClass.deliveryRenderer.renderOrdersToDeliver(thisClass.deliveryRepository.selectedOrders);
-              Promise.all(promiseArray).then(function(values) {
+              // update queue and duration on all orders
+              Promise.all(promiseArray).then(function (values) {
                 console.log('orders map updated', values);
               });
+              // re-order orders to deliver on page by route
+              console.log('array sorted ready', arraySorted);
+              // update array on repository as the sorted array
+              thisClass.deliveryRepository.selectedOrders = arraySorted;
+              thisClass.deliveryRepository.saveToLocalStorage();
+              // render the orders by route on the page
+              thisClass.deliveryRenderer.renderOrdersToDeliver(thisClass.deliveryRepository.selectedOrders);
             });
           }
         }
@@ -208,7 +230,7 @@ class EventsHandlerDelivery {
       this.deliveryRepository.getFromLocalStorage();
       // get the order that was delivered
       let orderID = $(event.currentTarget).closest('.order-selected').data('id');
-      let $order =  $(event.currentTarget).closest('.order-selected');
+      let $order = $(event.currentTarget).closest('.order-selected');
 
       // update status of the order to "delivered"
       this.deliveryRepository.selectedOrders.forEach((order) => {
@@ -230,42 +252,60 @@ class EventsHandlerDelivery {
 
       for (let i = 0; i < this.googleMap.routeOrders.length; i++) {
         let order = this.googleMap.routeOrders[i];
-        console.log('order in delivered', order);
-
-        if(order.orderId == orderID) {
+        console.log('order that was clicked- delivered', order);
+        // get the time that passed until the deliver
+        if (order.orderId == orderID) {
           timeToSubtract = order.duration;
-        }
-        else {
+          console.log('time to subtruct', order.duration);
+        } else {
           order.duration -= timeToSubtract;
           order.queue--;
+          console.log('new time after sub', order.duration);
+          console.log('new queueu', order.queue);
           // add to promise array
-          let orderData = {
+          var orderData = {
             orderId: order.orderId,
             data: {
-              property: 'mapInfo',
-              value: {
-                duration: order.duration,
-                queue: order.queue
-              }
+              property: 'duration',
+              value: order.duration
             }
           };
-          console.log('orderData', orderData);
+          var orderData2 = {
+            orderId: order.orderId,
+            data: {
+              property: 'queue',
+              value: order.queue
+            }
+          };
+          // let orderData = {
+          //   orderId: order.orderId,
+          //   data: {
+          //     property: 'mapInfo',
+          //     value: {
+          //       duration: order.duration,
+          //       queue: order.queue
+          //     }
+          //   }
+          // };
+          // console.log('orderData', orderData);
 
           let promise = this.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
+          let promise2 = this.deliveryRepository.updateOrderProperty(orderData2.orderId, orderData2.data);
           promiseArray.push(promise);
+          promiseArray.push(promise2);
         }
       }
       // update duration and queque on order in DB
-      Promise.all(promiseArray).then(function(values) {
-        console.log('orders map updated', values);
+      Promise.all(promiseArray).then(function (values) {
+        console.log('all orders after update duration and queue', values);
       });
 
-      // update google array - slice the order that was delivered
+      // update google array - splice the order that was delivered
       this.googleMap.routeOrders.splice(0, 1);
-      console.log('google map after update', this.googleMap.routeOrders);
+      console.log('google map array after splice one order', this.googleMap.routeOrders);
 
 
-      // hide all the order's details
+      // hide all the delivered order's details
       $(event.currentTarget).closest('.selected-order-content').hide();
 
       // add icon to delivered order
@@ -274,19 +314,18 @@ class EventsHandlerDelivery {
       for (let i = 0; i < this.deliveryRepository.selectedOrders.length; i++) {
         if (this.deliveryRepository.selectedOrders[i].orderId == orderID) {
           this.deliveryRepository.selectedOrders.splice(i, 1);
+          // save array to local storage
+          this.deliveryRepository.saveToLocalStorage();
           // hide segment instructions
-          $('#directions-panel > div').each(function() {
+          $('#directions-panel > div').each(function () {
             if ($(this).data('route') == $(event.currentTarget).siblings('.address').text()) {
               $(this).hide();
             }
           });
-
-          // save array to local storage
-          this.deliveryRepository.saveToLocalStorage();
         }
-        // finish deliver all orders
+        // if finished deliver all orders
         if (!this.deliveryRepository.selectedOrders.length) {
-        // go back to select an employee
+          // go back to select an employee
           $('.on-delivery').hide();
           $('.before-delivery').show();
           $('.section-employees').show();

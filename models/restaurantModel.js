@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-let mapSchema = new mongoose.Schema({
-  duration: String,
-  queue: String
-});
-
 let locationSchema = new mongoose.Schema({
-  latitude: String,
-  longitude: String,
+  latitude: Number,
+  longitude: Number,
   address: String
 });
 
@@ -24,10 +19,10 @@ let orderSchema = new mongoose.Schema({
   time: String,
   status: String,
   paymentMethod: String,
-  location: locationSchema,
-  dishes: [dishSchema],
-  mapInfo: mapSchema,
-  mapRoute: [String],
+  location: String,
+  dishes: String,
+  queue: Number,
+  duration: Number,
   orderId: Number,
   isTaken: Boolean,
   phoneNumber: Number

@@ -46,7 +46,7 @@ class DeliveryRepository {
   }
 
   updateOrderProperty(orderId, objectToUpdate, index) {
-    console.log('ajax update', objectToUpdate);
+    console.log('ajax property to update', objectToUpdate);
 
     return $.ajax({
       method: 'Put',
@@ -62,7 +62,6 @@ class DeliveryRepository {
           orders.forEach((order) => {
             if (order.orderId == orderId) {
               this.ordersReadyList[index] = order;
-              console.log('order in local array updated');
               return;
             }
           });

@@ -66,7 +66,7 @@ class GoogleMap {
         let summaryPanel = $('#directions-panel');
         var durationTime = 0;
 
-        for (let i = 0; i < route.legs.length; i++) {
+        for (var i = 0; i < route.legs.length; i++) {
           // get duration time as number from the string
           let durNum = Number(route.legs[i].duration.text
             .substr(0, route.legs[i].duration.text.indexOf(' ')));
@@ -101,7 +101,7 @@ class GoogleMap {
           summaryPanel.append(routeDiv);
         }
         // resolve
-        console.log('google rout array', this.routeOrders);
+        console.log('google route array from googleMap module', this.routeOrders);
         deferred.resolve(this.routeOrders);
 
       } else {
