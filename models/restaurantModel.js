@@ -1,116 +1,50 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+let mapSchema = new mongoose.Schema({
+  duration: String,
+  queue: String
+});
 
 let locationSchema = new mongoose.Schema({
-  latitude: {
-    type: Number,
-    required: true
-  },
-  longitude: {
-    type: Number,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  }
+  latitude: String,
+  longitude: String,
+  address: String
 });
 
 let dishSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  }
+  name: String,
+  price: String,
+  amount: String
 });
 
 let orderSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  totalPrice: {
-    type: Number,
-    required: true
-  },
-  time: {
-    type: String,
-    required: true
-  },
-  status: {
-    type: String,
-    required: true,
-    default: 'received'
-  },
-  paymentMethod: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: locationSchema,
-    required: true
-  },
-  dishes: {
-    type: [dishSchema],
-    required: true
-  },
-  orderId: {
-    type: Number,
-    required: true,
-    unique: true
-  },
-  isTaken: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
-  phoneNumber: {
-    type: Number,
-    min : 1000000000,
-    max : 9999999999
-  }
-});
+  name: String,
+  totalPrice: Number,
+  time: String,
+  status: String,
+  paymentMethod: String,
+  location: locationSchema,
+  dishes: [dishSchema],
+  mapInfo: mapSchema,
+  mapRoute: [String],
+  orderId: Number,
+  isTaken: Boolean,
+  phoneNumber: Number
+}, { minimize: false });
 
 let employeeSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  employeeId: {
-    type: Number,
-    required: true,
-    unique: true
-  }
+  name: String,
+  employeeId: Number
 });
 
 let restaurantSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  numOrders: {
-    type: Number,
-    required: true,
-    default: 0
-  },
-  menu: {
-    type: [dishSchema],
-    required: true
-  },
-  address: {
-    type: locationSchema,
-    required: true
-  },
-  orders: {
-    type: [orderSchema],
-    required: true
-  },
-  employees: {
-    type: [employeeSchema],
-    required: true
-  }
+  name: String,
+  numOrders: Number,
+  menu: [dishSchema],
+  address: locationSchema,
+  orders: [orderSchema],
+  employees: [employeeSchema]
 });
 
 let Restaurant = mongoose.model('restaurant', restaurantSchema);

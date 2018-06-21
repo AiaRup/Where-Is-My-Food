@@ -13,7 +13,6 @@ mongoose.connect(connection, { useMongoClient: true })
   .then(() => {console.log('Successfully connected to mongoDB');})
   .catch((error) => console.error(error));
 
-
 let app = express();
 
 // Middlewares
@@ -22,41 +21,76 @@ app.use(express.static('node_modules'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-
 // PORT
 const SERVER_PORT = process.env.PORT || 8000;
 app.listen(SERVER_PORT, () => console.log(`Server up and running on port ${SERVER_PORT}...`));
 
 
 // restaurant
-app.get('/', (req, res) => { // homepage restaurant
+// 1) get the restaurant homepage
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/restaurant.html'));
 });
 
+// 2) get the orders homepage and post new order
 app.route('/orders')
   .get((req, res) => {
     res.sendFile(path.join(__dirname + '/public/html/orders.html'));
   })
-
- .put((req, res) => {
-    console.log(req.body)
-    Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
-      console.log(updatedRes)
+  .put((req, res) => {
+    console.log(req.body);
+    Restaurant.findOneAndUpdate({}, { $push:{ orders:req.body } }, { new:true }, (err, updatedRes) => {
       res.send(updatedRes);
     }
-  )
-})
+    );
+  });
 
-// 3) update order property
+// 3) get the restaurant's name and menu
+app.get('/restaurant/restauranNameMenu', (req, res) => {
+  Restaurant.find({}, (err, restaurantResult) => {
+    if (err) throw err;
+    res.send(restaurantResult);
+  });
+});
+
+// 4) get the restaurant's number of orders and update the number
+app.route('/restaurant/restauranNumOrders')
+  .get((req, res) => {
+    Restaurant.find({}, (err, restaurantResult) => {
+      if (err) throw err;
+      res.send(restaurantResult);
+    });
+  })
+  .put((req, res) => {
+    console.log(req.body.ordersNumber);
+    Restaurant.findOneAndUpdate({}, { numOrders : req.body.ordersNumber }, { new:true }, (err, updatedRes) => {
+      res.send(updatedRes);
+    });
+  });
+
+// 5) update order property
 app.put('/orders/:id', (req, res) => {
   let id = req.params.id;
-  console.log(id);
+  console.log('property', req.body.property);
+  console.log('value', req.body.value);
+
 
   let $update = { $set: {} };
   $update.$set[`orders.$.${req.body.property}`] = req.body.value;
 
   Restaurant.findOneAndUpdate({ 'orders.orderId': id },  $update, { new: true }, (err, updatedRestaurant) => {
+    if (err) throw err;
+    res.send(updatedRestaurant.orders);
+  });
+});
+
+// 6) update map info to specific order
+app.put('/orders/:id/map', (req, res) => {
+  let id = req.params.id;
+  console.log('body data', req.body);
+
+
+  Restaurant.findOneAndUpdate({ 'orders.orderId': id }, { mapInfo: req.body }, { new: true }, (err, updatedRestaurant) => {
     if (err) throw err;
     res.send(updatedRestaurant.orders);
   });
@@ -84,7 +118,7 @@ app.get('/delivery/ordersReady', (req, res) => {
   });
 });
 
-// 4) get restaurant location
+// 5) get restaurant location
 app.get('/delivery/restauranLocation', (req, res) => {
   Restaurant.find({}).exec((err, restaurantResult) => {
     if (err) throw err;

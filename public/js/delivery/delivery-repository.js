@@ -7,6 +7,7 @@ class DeliveryRepository {
     this.ordersReadyList = [];
     this.selectedOrders = [];
     this.restaurantLocation = {};
+    this.STORAGE_ID = 'selectedOrders';
   }
 
   // request all the employees from the DB
@@ -37,7 +38,6 @@ class DeliveryRepository {
             this.ordersReadyList.push(order);
           }
         });
-        console.log(this.ordersReadyList);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -45,25 +45,28 @@ class DeliveryRepository {
     });
   }
 
-  updateOrderTaken(orderId, status, index) {
+  updateOrderProperty(orderId, objectToUpdate, index) {
+    console.log('ajax update', objectToUpdate);
+
     return $.ajax({
       method: 'Put',
       url: `/orders/${orderId}`,
-      data: {
-        property: 'isTaken',
-        value: status
-      },
+      // data: {
+      //   property: objectToUpdate.property,
+      //   value: objectToUpdate.value
+      // },
+      data: objectToUpdate,
       success: (orders) => {
+        if (objectToUpdate.property == 'isTaken') {
         // update order's property "isTaken" in the local array
-        orders.forEach((order) => {
-          if (order.orderId == orderId) {
-            this.ordersReadyList[index] = order;
-            console.log(order);
-
-            console.log('order in local array updated');
-            return;
-          }
-        });
+          orders.forEach((order) => {
+            if (order.orderId == orderId) {
+              this.ordersReadyList[index] = order;
+              console.log('order in local array updated');
+              return;
+            }
+          });
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -76,12 +79,10 @@ class DeliveryRepository {
     this.selectedOrders = [];
     // go through the array of orders and check if an order was selected to delivery
     this.ordersReadyList.forEach((order) => {
-      console.log(order);
       if (order.isTaken) {
         // add the selected ones to the array
         this.selectedOrders.push(order);
       }
-      console.log(this.selectedOrders);
     });
   }
 
@@ -97,6 +98,31 @@ class DeliveryRepository {
         console.log(textStatus);
       }
     });
+  }
+
+  updateMapInfoOfOrder(orderId, mapInfo) {
+    return $.ajax({
+      method: 'Put',
+      url: `orders/${orderId}/map`,
+      data: mapInfo,
+      success: (orders) => {
+        //TODO:
+        console.log('orders');
+
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+      }
+    });
+
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(this.STORAGE_ID, JSON.stringify(this.selectedOrders));
+  }
+
+  getFromLocalStorage() {
+    this.selectedOrders = JSON.parse(localStorage.getItem(this.STORAGE_ID) || '[]');
   }
 }
 

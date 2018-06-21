@@ -16,7 +16,6 @@ class DeliveryRenderer {
     let template = Handlebars.compile(this.$deliveryTemplate);
     for (let i = 0; i < employees.length; i++) {
       let newHTML = template(employees[i]);
-      console.log(newHTML);
       this.$deliveryList.append(newHTML);
     }
   }
@@ -25,9 +24,7 @@ class DeliveryRenderer {
     this.$ordersList.empty();
     let template = Handlebars.compile(this.$orderTemplate);
     for (let i = 0; i < orders.length; i++) {
-      console.log(orders[i]);
       let newHTML = template(orders[i]);
-      console.log(newHTML);
       this.$ordersList.append(newHTML);
     }
   }
@@ -36,9 +33,7 @@ class DeliveryRenderer {
     this.$ordersToDeliverList.empty();
     let template = Handlebars.compile(this.$orderToDeliverTemplate);
     for (let i = 0; i < orders.length; i++) {
-      console.log(orders[i]);
       let newHTML = template(orders[i]);
-      console.log(newHTML);
       this.$ordersToDeliverList.append(newHTML);
     }
   }
