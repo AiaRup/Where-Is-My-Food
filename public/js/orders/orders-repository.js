@@ -23,7 +23,9 @@ class OrdersRepository {
         }
       });
     }
-  
+    editOrder(order) {
+    
+    }
     getOrdersList() {
       return $.ajax({
         method: 'Get',

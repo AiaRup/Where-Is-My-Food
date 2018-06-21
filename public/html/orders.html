@@ -46,11 +46,11 @@
       <div class="modal-body">
         <form>
           <select class="form-control" id="status-select">
-              <option>Received</option>
-              <option>Ready</option>
-              <option>Out for delivery</option>
-              <option>Delivered</option>
-              <option>Canceled</option>
+                <option value="received">Received</option>
+                <option value="ready">Ready</option>
+                <option value="out for delivery">Out for delivery</option>
+                <option value="delivered">Delivered</option>
+                <option value="canceled">Canceled</option>
             </select>
         </form>
       </div>
@@ -66,9 +66,9 @@
 <!-- EDIT ORDER MODAL TEMPLETE -->
 <script id="edit-order-modal-template" type="text/x-handlebars-template">
     <div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog modal-md" role="document">
         <div class="modal-content ">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation  edit-order-form" novalidate>
 
             <div class="modal-header">
                 <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
@@ -80,52 +80,62 @@
                 
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                    <label for="validationCustom01">Name</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{name}}" required>
-                    <div class="valid-feedback">
-                        &#10003;
-                    </div>
+                        <label for="validationCustom01">Name</label>
+                        <input type="text" class="form-control" id="validationCustom01" value="{{name}}" required>
+                        <div class="valid-feedback">
+                            &#10003;
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <label for="validationCustom02">Phone Number</label>
-                    <input type="tel" class="form-control" id="validationCustom02" placeholder="Phone Number" required>
-                    <div class="valid-feedback">
-                        &#10003;
-                    </div>
+                        <label for="validationCustom02">Phone Number</label>
+                        <input type="tel" class="form-control" id="validationCustom02" value="{{phoneNumber}}" required>
+                        <div class="valid-feedback">
+                            &#10003;
+                        </div>
                     </div>
                 </div>
+
                 <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                    <label for="validationCustom03">Dish</label>
-                    <input type="text" class="form-control" id="validationCustom03" placeholder="Dish" disabled >
-                    <div class="valid-feedback">
-                        &#10003;
-                    </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                    <label for="validationCustom04">Total</label>
-                    <input type="tel" class="form-control" id="validationCustom04" placeholder="Total" disabled >
-                    <div class="valid-feedback">
-                        &#10003;
-                    </div>
-                    </div>
-                    <div class="form-row">
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-5 mb-3">
                         <label for="validationCustom05">Status</label>
-                        <select class="form-control" id="validationCustom05">
-                            <option>Received</option>
-                            <option>Ready</option>
-                            <option>Out for delivery</option>
-                            <option>Delivered</option>
-                            <option>Canceled</option>
+                        <select class="form-control"  id="validationCustom05">
+                            <option value="received">Received</option>
+                            <option value="ready">Ready</option>
+                            <option value="out for delivery">Out for delivery</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="canceled">Canceled</option>
                         </select>
-                        
+                    
                     </div>
+                    <div class="col-md-7 mb-3">
+                        <label for="validationCustom06">Destination</label>
+                        <input type="text" class="form-control" id="validationCustom03" value="{{location}}" required >
+                        <div class="valid-feedback">
+                            &#10003;
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                        <div class="col-md-10 mb-3">
+                            <label for="validationCustom03">Dishes</label>
+                            <input type="text" class="form-control" id="validationCustom03" value="{{dishes}}" disabled >
+                            <div class="valid-feedback">
+                                &#10003;
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationCustom04">Total</label>
+                            <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} &#8362;" disabled >
+                            <div class="valid-feedback">
+                                &#10003;
+                            </div>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary ">Save changes</button>
             </div>
             </form>
         </div>
@@ -155,7 +165,7 @@
     </tr>
   </script>
   <!-- END OF ORDER TEMPLETE -->
-  <script>
+  <!-- <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
@@ -174,7 +184,7 @@
           });
         }, false);
       })();
-      </script>
+      </script> -->
   <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>

@@ -11,3 +11,4 @@ let eventsHandler = new EventsHandler(ordersRepository, ordersRenderer);
 eventsHandler.loadPage();
 eventsHandler.registerEditButtonClicks();
 eventsHandler.registerStatusButtonClicks();
+eventsHandler.registerSaveEditedOrderButtonClicks();

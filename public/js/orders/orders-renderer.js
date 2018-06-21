@@ -12,6 +12,7 @@ class OrdersRenderer {
         let template = Handlebars.compile(this.$editOrderModalTemplate);
         let newHTML = template(order);
         this.$modalContainer.append(newHTML);
+        this.$modalContainer.find("select").val(order.status);
     }
     renderOrders(orders) {
         this.$ordersContainer.empty();

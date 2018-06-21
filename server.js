@@ -101,3 +101,15 @@ app.get('/customer', (req, res) => {
 app.get('/customer/:id', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/customerTime.html'));
 });
+
+
+
+// orders (add by Kobi for orders page)
+app.route('/ord')
+ .put((req, res) => {
+    console.log(req.body)
+    // Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
+    //   console.log(updatedRes)
+    //   res.send(updatedRes);
+    }
+  )
