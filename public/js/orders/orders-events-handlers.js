@@ -6,6 +6,20 @@ class EventsHandler {
         this.$table = $("table");
         this.$modalContainer = $(".modal-container");
     }
+    registerDeliveryButton() {
+        $(".delivery-button").on('click',function(event) {
+            event.preventDefault();
+            window.location.href = "/delivery";       
+             
+        })
+    }
+    registerNewOrderPageButton() {
+        $(".new-order-button").on('click',function(event) {
+            event.preventDefault();
+            window.location.href = "/";       
+             
+        })
+    }
     registerSaveEditedOrderButtonClicks () {
         let rootThis = this;
         this.$modalContainer.on('submit','.edit-order-form', function (event) { 
@@ -55,6 +69,7 @@ class EventsHandler {
         })
 
     }
+    
     registerStatusButtonClicks() {
         this.$table.on('click','.button-status',function (event) {
             
