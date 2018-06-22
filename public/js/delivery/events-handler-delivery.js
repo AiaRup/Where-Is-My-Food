@@ -216,8 +216,6 @@ class EventsHandlerDelivery {
               Promise.all(promiseArray).then(function (values) {
                 console.log('orders map updated', values);
               });
-              // re-order orders to deliver on page by route
-              console.log('array sorted ready', arraySorted);
               // update array on repository as the sorted array
               thisClass.deliveryRepository.selectedOrders = arraySorted;
               thisClass.deliveryRepository.saveToLocalStorage();
@@ -258,16 +256,12 @@ class EventsHandlerDelivery {
 
       for (let i = 0; i < this.googleMap.routeOrders.length; i++) {
         let order = this.googleMap.routeOrders[i];
-        console.log('order that was clicked- delivered', order);
         // get the time that passed until the deliver
         if (order.orderId == orderID) {
           timeToSubtract = order.duration;
-          console.log('time to subtruct', order.duration);
         } else {
           order.duration -= timeToSubtract;
           order.queue--;
-          console.log('new time after sub', order.duration);
-          console.log('new queueu', order.queue);
           // add to promise array
           var orderData = {
             orderId: order.orderId,
@@ -283,18 +277,6 @@ class EventsHandlerDelivery {
               value: order.queue
             }
           };
-          // let orderData = {
-          //   orderId: order.orderId,
-          //   data: {
-          //     property: 'mapInfo',
-          //     value: {
-          //       duration: order.duration,
-          //       queue: order.queue
-          //     }
-          //   }
-          // };
-          // console.log('orderData', orderData);
-
           let promise = this.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
           let promise2 = this.deliveryRepository.updateOrderProperty(orderData2.orderId, orderData2.data);
           promiseArray.push(promise);
@@ -308,12 +290,9 @@ class EventsHandlerDelivery {
 
       // update google array - splice the order that was delivered
       this.googleMap.routeOrders.splice(0, 1);
-      console.log('google map array after splice one order', this.googleMap.routeOrders);
-
 
       // hide all the delivered order's details
       $(event.currentTarget).closest('.selected-order-content').hide();
-
       // add icon to delivered order
       $order.find('h5').append('<i class="fas fa-check-square"></i>');
       // splice order from selected orders array
