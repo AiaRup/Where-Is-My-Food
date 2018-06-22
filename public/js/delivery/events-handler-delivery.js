@@ -159,7 +159,6 @@ class EventsHandlerDelivery {
             let directionService = thisClass.googleMap.initMap(restaurantCoords);
             // get route
             thisClass.googleMap.calculateAndDisplayRoute(directionService, restaurantCoords, destinationSelect, wayPoints).then((routeArray) => {
-              console.log('array arrived from google promise', routeArray);
               /*==================================
                update route data on the order DB
               ===================================*/
@@ -168,20 +167,15 @@ class EventsHandlerDelivery {
 
               // get selected orders array from local storage
               thisClass.deliveryRepository.getFromLocalStorage();
-              console.log('array selected orders from local storage', thisClass.deliveryRepository);
-
 
               for (let i = 0; i < routeArray.length; i++) {
                 thisClass.deliveryRepository.selectedOrders.forEach((order) => {
 
-                  // thisClass.deliveryRepository.selectedOrders.forEach((order)=> {
-                  //   for (var i = 0; i < routeArray.length; i++) {
                   if (order.location == routeArray[i].address) {
                     // add to the sorted array
                     arraySorted.push(order);
-                    console.log('one order added to sorted array', order);
 
-                    // add orderID to the route order array from google module
+                    // add orderID and queue to the route order array from google module
                     routeArray[i].orderId = order.orderId;
                     routeArray[i].queue = i;
                     var orderData = {
@@ -198,12 +192,24 @@ class EventsHandlerDelivery {
                         value: routeArray[i].duration
                       }
                     };
+
+                    // update orders properties in DB
+                    let promise = thisClass.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
+                    let promise2 = thisClass.deliveryRepository.updateOrderProperty(orderData2.orderId, orderData2.data);
+
+                    promiseArray.push(promise);
+                    promiseArray.push(promise2);
+
+                    // add array routes to each order
+                    routeArray.forEach((orderAddress) => {
+                      var orderMapRoute = {
+                        orderId: order.orderId,
+                        addressValue: orderAddress.address
+                      };
+                      let promise3 = thisClass.deliveryRepository.updateMapInfoOfOrder(orderMapRoute.orderId, orderMapRoute.addressValue);
+                      promiseArray.push(promise3);
+                    });
                   }
-                  // update orders properties in DB
-                  let promise = thisClass.deliveryRepository.updateOrderProperty(orderData.orderId, orderData.data);
-                  let promise2 = thisClass.deliveryRepository.updateOrderProperty(orderData2.orderId, orderData.data);
-                  promiseArray.push(promise);
-                  promiseArray.push(promise2);
                 });
               }
               // update queue and duration on all orders
