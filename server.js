@@ -141,7 +141,6 @@ app.get('/customer/:id', (req, res) => {
 
 // orders (add by Kobi for orders page)
 app.route('/ord')
-<<<<<<< HEAD
  .put((req, res) => {
     // console.log(req.body)
     Restaurant.findOne({orders: {$elemMatch:{orderId: req.body.orderId}}},function(err,restaurant) {
@@ -162,12 +161,3 @@ app.route('/ord')
     //   console.log(updatedRes)
     //   res.send(updatedRes);
 
-=======
-  .put((req, res) => {
-    console.log(req.body);
-    // Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
-    //   console.log(updatedRes)
-    //   res.send(updatedRes);
-  }
-  );
->>>>>>> master
