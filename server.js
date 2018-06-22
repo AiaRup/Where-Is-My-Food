@@ -141,9 +141,22 @@ app.get('/customer/:id', (req, res) => {
 // orders (add by Kobi for orders page)
 app.route('/ord')
  .put((req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
+    Restaurant.findOne({orders: {$elemMatch:{orderId: req.body.orderId}}},function(err,restaurant) {
+      // console.log(restaurant);
+      
+      for(var i=0; i< restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
+      console.log(i);
+      restaurant.orders[i].name =req.body.name;
+      restaurant.orders[i].phoneNumber =req.body.phoneNumber;
+      restaurant.orders[i].status =req.body.status;
+      restaurant.save(function(err) {
+        if (err) console.log(err);
+        else res.send('order successfully updated!');
+      })
+    })
+  });
     // Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
     //   console.log(updatedRes)
     //   res.send(updatedRes);
-    }
-  )
+

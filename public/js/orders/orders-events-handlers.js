@@ -8,7 +8,6 @@ class EventsHandler {
     }
     registerSaveEditedOrderButtonClicks () {
         let rootThis = this;
-      
         this.$modalContainer.on('submit','.edit-order-form', function (event) { 
             
             event.preventDefault();
@@ -26,13 +25,15 @@ class EventsHandler {
             data.phoneNumber = $(this).find("#validationCustom02").val();
             data.status = $(this).find("#validationCustom05").val();
             data.totalPrice = $(this).find("#validationCustom04").val();
-            //data.orderId = $(this).find("#")
+            data.orderId = $(this).find("#validationCustom07").val();
             $.ajax({
                 url: `ord`,
                 type: 'Put',
                 data: data,
                 success: function(msg) {
-                    alert('Email Sent');
+                    rootThis.$modalContainer.find('.modal').modal('hide');
+                    rootThis.loadPage.call(rootThis);
+
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown);
