@@ -136,6 +136,17 @@ app.get('/customer/:id', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/customerTime.html'));
 });
 
+// NEW - get the object from server
+// app.get('/customer/:id/info', (req,res) => {
+//   let id = req.params.id;
+//   Restaurant.find({}, {"totalprice": id}).exec((err, results)=> { 
+//     if(err) throw err;
+//     res.send(results)
+//     console.log(results)
+
+// })
+// })
+
 
 
 // orders (add by Kobi for orders page)

@@ -3,16 +3,6 @@ class RenderCustomer {
     
   }
 
-  // AJAX COSTUMER NAME
-
-  // AJAX TIME
-
-  // AJAX QUEUE
-
-  // AJAX ORDERS
-
-  // AJAX MAP
-
 
   
 }

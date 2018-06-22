@@ -10,6 +10,8 @@ let eventHandlersCustomer = new EventHandlerCustomer(customerRepositories, rende
 
 
 eventHandlersCustomer.submitCode();
+eventHandlersCustomer.getOrderInfo();
+
 
 
 
