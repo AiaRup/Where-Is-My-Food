@@ -8,7 +8,8 @@ class RestaurantRepository {
     return $.ajax({
       method: 'Put',
       url: '/orders',
-      data: newOrder,
+      // dataType: 'json',
+      data:newOrder,
       success: (orders) => {
         // this.orders.push(newOrder);
         console.log('response from db new order', orders);

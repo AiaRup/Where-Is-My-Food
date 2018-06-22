@@ -80,10 +80,12 @@ class OrdersRepository {
         answer += order['dishes'][i]['name'] + ' , '
       }
       answer += order['dishes'][i]['name'];
+      //let answer= order['dishes'];
       return answer;
     }
     stringfyAddress(order) {
-      return  order['location']['address'];  
+      return  order['location']['address']; 
+      //return order['location']; 
     }
 
   }

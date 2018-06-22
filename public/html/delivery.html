@@ -62,12 +62,9 @@
         </button>
         <h5 class="order-name">{{name}} - Order Number {{orderId}}</h5>
       </div>
-      <p class="address">{{location.address}}</p>
+      <p class="address">{{location}}</p>
       <p class="phone">Phone: 0{{phoneNumber}}</p>
-      <ul class="dishes"> {{#dishes}}
-        <li>{{name}} - amount: {{amount}}</li>
-        {{/dishes}}
-      </ul>
+      <p class="dishes">Dish: {{dishes}}</p>
       <p class="total-price">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
 
       </div>
@@ -78,11 +75,8 @@
     <li class="order-selected" data-id="{{orderId}}">
       <h5>{{name}} - 0{{phoneNumber}}</h5>
       <div class="selected-order-content">
-        <p class="address">{{location.address}}</p>
-        <ul class="dishes">{{#dishes}}
-          <li>{{name}} - amount: {{amount}}</li>
-          {{/dishes}}
-        </ul>
+        <p class="address">{{location}}</p>
+        <p class="dishes">Dish: {{dishes}}</p>
         <p class="price-payment">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
         <button type="button" class="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
         </button>
@@ -94,7 +88,8 @@
 
   <script src="jquery/dist/jquery.js"></script>
   <script src="handlebars/dist/handlebars.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&language=en" async defer></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&language=en" async defer></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewucBzhp4DIePd6P0JHbpkQ4JtPzCShE&language=en" async defer></script>
   <script src="../js/delivery/main-delivery.js" type="module"></script>
 
 
