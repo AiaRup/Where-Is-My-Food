@@ -25,8 +25,9 @@ let orderSchema = new mongoose.Schema({
   duration: Number,
   orderId: Number,
   isTaken: Boolean,
-  phoneNumber: Number
-}, { minimize: false });
+  phoneNumber: Number,
+  mapRoute: { type:[String], default: [] }
+}, { minimize: false }, { usePushEach: true });
 
 let employeeSchema = new mongoose.Schema({
   name: String,
@@ -40,7 +41,7 @@ let restaurantSchema = new mongoose.Schema({
   address: locationSchema,
   orders: [orderSchema],
   employees: [employeeSchema]
-});
+}, { usePushEach: true });
 
 let Restaurant = mongoose.model('restaurant', restaurantSchema);
 

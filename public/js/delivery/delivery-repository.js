@@ -103,10 +103,17 @@ class DeliveryRepository {
     return $.ajax({
       method: 'Put',
       url: `orders/${orderId}/map`,
-      data: mapInfo,
+      dataType: 'json',
+      data: {
+        address: mapInfo
+      },
       success: (orders) => {
         //TODO:
-        console.log('orders');
+        orders.forEach((order) => {
+          if(order.orderId == orderId) {
+            console.log('order updated with route array', order);
+          }
+        });
 
       },
       error: function(jqXHR, textStatus, errorThrown) {
