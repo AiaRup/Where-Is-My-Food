@@ -37,9 +37,17 @@ table, th, td {
 }
 .search-order {
     border-radius: 20px;
-    background-color: rgba(235, 145, 27, 0.9);
+    
+    /* background-color: rgba(235, 145, 27, 0.9); */
 }
-
+.delivery-button {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.new-order-button {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 .modal-content {
     border-radius: 20px;
     /* background-color: burlywood; */
