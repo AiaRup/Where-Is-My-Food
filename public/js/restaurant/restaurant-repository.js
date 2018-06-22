@@ -8,11 +8,9 @@ class RestaurantRepository {
     return $.ajax({
       method: 'Put',
       url: '/orders',
-      // dataType: 'json',
       data:newOrder,
       success: (orders) => {
-        // this.orders.push(newOrder);
-        console.log('response from db new order', orders);
+        console.log('order added to DB');
 
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -43,7 +41,7 @@ class RestaurantRepository {
       method: 'Get',
       url: 'restaurant/restauranNumOrders',
       success: (restaurantDetails) => {
-        // add name and menu to object
+        // add number of orders to object
         this.restaurant.numOrders = restaurantDetails[0].numOrders;
 
       },

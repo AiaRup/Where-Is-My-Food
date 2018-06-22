@@ -22,16 +22,15 @@
     <div class="new-order btn btnNewOrder">New Order</div>
 
       <!-- new order form -->
-      <form class="order-form">
-        Name:
+      <form class="order-form">Name:
         <br>
         <input type="text" placeholder="Enter Name" name="Name" id="name" required>
         <br>
-        <br> Address:
+        <br>Address:
         <br>
         <input type="text" placeholder="Enter Address" name="Address" id="address" required>
         <br>
-        <br> Phone Number:
+        <br>Phone Number:
         <br>
         <input type="number" placeholder="Enter Phone" name="Phone Number" id="phone" required>
         <br>
@@ -49,30 +48,25 @@
 
         <!-- choose dish & amounts -->
         <div class="order-menu">
-          <div class="dish">
-            Choose Dish:
+          <div class="dish">Choose Dish:
             <br>
             <select id="dishOptions" required>
-                <option value="0" selected="selected">Select from Menu</option>
-
+              <option value="0" selected="selected">Select from Menu</option>
             </select>
           </div>
           <div class="msg-select-dish"></div>
-
           <div class="amount">
             Amount:
             <br>
             <input type="text" placeholder="Quantity" name="Quantity" class="quantity">
           </div>
-
           <input type="button" name="Choose Dish" class="btn choose-dish" value="O.K">
         </div>
 
         <!-- dish list div -->
         <div class="order-list">
-          <ul class="dish-list">
-          </ul>
-          <p class="total-price"></p>
+          <ul class="dish-list"></ul>
+          <p class="total-price" data-total="0"></p>
         </div>
 
         <!-- clear choice or submit form -->
@@ -80,12 +74,9 @@
         <input type="submit" name="Submit Order" class="btn submitOrder" value="Submit Order">
         <input type="reset" class="btn reset" value="Reset">
       </form>
-
-
     <!-- end of new order -->
 
     <!-- update order -->
-
     <div class="update-order btn btn-update" id="update-order-btn" onClick="window.location='orders'">Update Order</div>
   </section>
 

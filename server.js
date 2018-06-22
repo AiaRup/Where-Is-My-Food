@@ -142,11 +142,29 @@ app.get('/customer', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/customer.html'));
 });
 
-app.get('/customer/:id', (req, res) => {
+app.get('/customerTime', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/customerTime.html'));
 });
 
+app.get('/customer/:id', (req, res) => {
+  let id = req.params.id;
+  console.log('id in server', id);
 
+  Restaurant.findOne({ 'orders.orderId': id }, (err, restaResult) => {
+    if (err) throw err;
+    // order doesn't exist
+    if (!restaResult) {
+      res.send('Order Not Found');
+    } else {
+    // order exist
+      for(let i=0; i< restaResult.orders.length; i++) {
+        if (restaResult.orders[i].orderId == id) {
+          res.send(restaResult.orders[i]);
+        }
+      }
+    }
+  });
+});
 
 // orders (add by Kobi for orders page)
 app.route('/ord')

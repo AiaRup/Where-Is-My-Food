@@ -1,6 +1,7 @@
 class GoogleMap {
   constructor() {
     this.routeOrders = [];
+    this.restaurantCoords = {};
   }
 
   getCoords(location) {
@@ -19,8 +20,6 @@ class GoogleMap {
   }
 
   initMap(restaurantLocation) {
-  // initMap(restaurantLocation, destination, waypoints) {
-    // var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
@@ -29,17 +28,13 @@ class GoogleMap {
     directionsDisplay.setMap(map);
 
     return directionsDisplay;
-
-
-    // calaulate route
-    // this.calculateAndDisplayRoute(directionsService, directionsDisplay, restaurantLocation, destination, waypoints);
   }
 
   calculateAndDisplayRoute(directionsDisplay, start, destination, waypoints, optimize = true) {
     var directionsService = new google.maps.DirectionsService;
 
     // new promise
-    let deferred = $.Deferred(); // promise
+    let deferred = $.Deferred();
 
     let waypts = [];
     // initizialize order route array
@@ -59,7 +54,7 @@ class GoogleMap {
       travelMode: 'DRIVING'
     }, (response, status) => {
       if (status === 'OK') {
-        console.log(response);
+        console.log('google route response', response);
 
         directionsDisplay.setDirections(response);
         let route = response.routes[0];
@@ -82,7 +77,7 @@ class GoogleMap {
             address: route.legs[i].end_address,
             duration: durationTime
           });
-
+          // update directions on the page
           let routeSegment = i + 1;
           let routeDiv = $(`<div data-route="${route.legs[i].end_address}"></div>`);
 

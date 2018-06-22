@@ -62,7 +62,7 @@ h2 {
   height: 320px;
 }
 
-.map {
+#map {
   height: 250px;
   width: 300px;
   margin: auto;

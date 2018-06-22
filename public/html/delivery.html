@@ -14,16 +14,21 @@
 <body>
   <div class="before-delivery show-employees">
     <div class="employee-login"></div>
+    <!-- employee section -->
     <section class="section-employees">
       <h1>Delivery Employees</h1>
       <ul class="delivery-guys"></ul>
     </section>
+    <!-- orders section -->
     <section class="orders-section">
-    <ul class="orders-list"></ul>
-    <button type="button" id="ready-to-deliver" class="btn btn-outline-dark btn-sm">Ready to Go</button>
-  </section>
+      <ul class="orders-list"></ul>
+      <button type="button" id="ready-to-deliver" class="btn btn-outline-dark btn-sm">Ready to Go</button>
+    </section>
+
     <div class="msg"></div>
   </div>
+  <!-- END before-delivery -->
+
   <div class="on-delivery">
     <ul class="orders-to-deliver"></ul>
     <div class="choose-route">
@@ -37,12 +42,13 @@
       </p>
       <button type="button" id="select-Destination">Go</button>
     </div>
-    <!-- </div> choose route -->
+    <!-- END choose route -->
     <div class="msg-select-destination"></div>
+
     <div id="directions-panel"></div>
     <div id="map"></div>
   </div>
-  <!-- </div> on-delivery -->
+  <!-- END on-delivery -->
 
   <script id="delivery-template" type="text/x-handlebars-template">
     <li class="employee" data-id="{{employeeId}}" data-name="{{name}}">
@@ -60,14 +66,17 @@
         <button type="button" class="select-to-deliver" class="btn btn-outline-dark btn-sm">
           <i class="fas fa-plus"></i>
         </button>
-        <h5 class="order-name">{{name}} - Order Number {{orderId}}</h5>
       </div>
+      <!-- END order-header -->
+
+      <h5 class="order-name">{{name}} - Order Number {{orderId}}</h5>
       <p class="address">{{location}}</p>
       <p class="phone">Phone: 0{{phoneNumber}}</p>
       <p class="dishes">Dish: {{dishes}}</p>
-      <p class="total-price">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
-
-      </div>
+      <p class="total-price">Total:
+        <b>{{totalPrice}}$</b>, Paid in:
+        <b>{{paymentMethod}}</b>
+      </p>
     </li>
   </script>
 
@@ -77,21 +86,21 @@
       <div class="selected-order-content">
         <p class="address">{{location}}</p>
         <p class="dishes">Dish: {{dishes}}</p>
-        <p class="price-payment">Total: <b>{{totalPrice}}$</b>, Paid in: <b>{{paymentMethod}}</b></p>
+        <p class="price-payment">Total:
+          <b>{{totalPrice}}$</b>, Paid in:
+          <b>{{paymentMethod}}</b>
+        </p>
         <button type="button" class="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
         </button>
       </div>
+      <!-- END selected-order-content -->
     </li>
   </script>
 
-
-
   <script src="jquery/dist/jquery.js"></script>
   <script src="handlebars/dist/handlebars.js"></script>
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&language=en" async defer></script> -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewucBzhp4DIePd6P0JHbpkQ4JtPzCShE&language=en" async defer></script>
   <script src="../js/delivery/main-delivery.js" type="module"></script>
-
 
 </body>
 
