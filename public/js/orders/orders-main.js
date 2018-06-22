@@ -12,3 +12,5 @@ eventsHandler.loadPage();
 eventsHandler.registerEditButtonClicks();
 eventsHandler.registerStatusButtonClicks();
 eventsHandler.registerSaveEditedOrderButtonClicks();
+eventsHandler.registerDeliveryButton();
+eventsHandler.registerNewOrderPageButton();

@@ -39,7 +39,8 @@ app.route('/orders')
   })
   .put((req, res) => {
     console.log(req.body);
-    Restaurant.findOneAndUpdate({}, { $push:{ orders:req.body } }, { new:true }, (err, updatedRes) => {
+
+    Restaurant.findOneAndUpdate({}, { $push:{ orders: req.body } }, { new:true }, (err, updatedRes) => {
       res.send(updatedRes);
     }
     );
@@ -87,12 +88,21 @@ app.put('/orders/:id', (req, res) => {
 // 6) update map info to specific order
 app.put('/orders/:id/map', (req, res) => {
   let id = req.params.id;
-  console.log('body data', req.body);
+  console.log('body data adrees string', req.body);
 
 
-  Restaurant.findOneAndUpdate({ 'orders.orderId': id }, { mapInfo: req.body }, { new: true }, (err, updatedRestaurant) => {
+  Restaurant.findOne({ 'orders.orderId': id }, (err, updatedRestaurant) => {
     if (err) throw err;
-    res.send(updatedRestaurant.orders);
+
+    for(let i=0; i< updatedRestaurant.orders.length; i++) {
+      if (updatedRestaurant.orders[i].orderId == id) {
+        updatedRestaurant.orders[i].mapRoute.push(req.body.address);
+      }
+    }
+    updatedRestaurant.save((error, restaUpdate) => {
+      if (error) throw error;
+      res.send(restaUpdate.orders);
+    });
   });
 });
 
@@ -151,10 +161,23 @@ app.get('/customer/:id', (req, res) => {
 
 // orders (add by Kobi for orders page)
 app.route('/ord')
- .put((req, res) => {
-    console.log(req.body)
-    // Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
-    //   console.log(updatedRes)
-    //   res.send(updatedRes);
-    }
-  )
+  .put((req, res) => {
+    // console.log(req.body)
+    Restaurant.findOne({ orders: { $elemMatch:{ orderId: req.body.orderId } } }, function(err, restaurant) {
+      // console.log(restaurant);
+
+      for(var i=0; i< restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
+      console.log(i);
+      restaurant.orders[i].name =req.body.name;
+      restaurant.orders[i].phoneNumber =req.body.phoneNumber;
+      restaurant.orders[i].status =req.body.status;
+      restaurant.save(function(err) {
+        if (err) console.log(err);
+        else res.send('order successfully updated!');
+      });
+    });
+  });
+// Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
+//   console.log(updatedRes)
+//   res.send(updatedRes);
+

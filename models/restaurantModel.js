@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-let mapSchema = new mongoose.Schema({
-  duration: String,
-  queue: String
-});
-
 let locationSchema = new mongoose.Schema({
-  latitude: String,
-  longitude: String,
+  latitude: Number,
+  longitude: Number,
   address: String
 });
 
@@ -24,14 +19,15 @@ let orderSchema = new mongoose.Schema({
   time: String,
   status: String,
   paymentMethod: String,
-  location: locationSchema,
-  dishes: [dishSchema],
-  mapInfo: mapSchema,
-  mapRoute: [String],
+  location: String,
+  dishes: String,
+  queue: Number,
+  duration: Number,
   orderId: Number,
   isTaken: Boolean,
-  phoneNumber: Number
-}, { minimize: false });
+  phoneNumber: Number,
+  mapRoute: { type:[String], default: [] }
+}, { minimize: false }, { usePushEach: true });
 
 let employeeSchema = new mongoose.Schema({
   name: String,
@@ -45,7 +41,7 @@ let restaurantSchema = new mongoose.Schema({
   address: locationSchema,
   orders: [orderSchema],
   employees: [employeeSchema]
-});
+}, { usePushEach: true });
 
 let Restaurant = mongoose.model('restaurant', restaurantSchema);
 
