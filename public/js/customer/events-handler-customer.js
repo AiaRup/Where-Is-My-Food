@@ -17,12 +17,21 @@ class EventHandlerCustomer {
     })
   }
 
-  getOrderInfo(){
-    let id = $('#id-code').val();
-    this.customerRepositories.orderInfo(id).then(() => {
-      console.log('working')
+  // getOrderInfo(){
+  //   let id = $('#id-code').val();
+  //   this.customerRepositories.orderInfo(id).then(() => {
+  //     console.log('working')
+  //   })
+  // }
+
+  showOrderDetails() {
+    $('.order-details').click(()=> {
+      console.log('div toggle')
+      $('.order-info-div').toggle();
     })
   }
+
+
 }
 
 export default EventHandlerCustomer;

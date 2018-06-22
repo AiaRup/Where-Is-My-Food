@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="../css/costumerTime.css">
+  <link rel="stylesheet" type="text/css" href="../css/customerTime.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Where's My Food - costumer</title>
 </head>
@@ -15,46 +15,62 @@
   <section>
 
     <div class="logo">
-      <h3>LOGO</h3>
+      <img src="../img/orders/logores.png" alt="resta-logo">
     </div>
+
+
 
     <div class="customerTime-wrapper">
 
       <!-- TOP SECTION -->
       <div class="headlines">
         <div class="user-name">
-          <h1>John Snow</h1>
+          <h1 class="name-headline">JOHN SNOW</h1>
         </div>
-        <div class="time-left">
-          <div class="eta-box">
-            <h1 class="customerTime-Headline">ETA</h1>
-          </div>
-          <div class="timer">
-            <h1>34:56</h1>
-          </div>
-          <div class="queue">
-            <h2>Your'e in {{queue}} stops</h2>
-          </div>
-        </div>
-      </div>
 
-      <!-- Dishes ordered -->
-      <div class="order-details">
-        <h2>Order Details</h2>
-        <ul class="order-list">
-        </ul>
-        <p class="total-check"></p>
-      </div>
+        <div class="time-left">
+          <div class="timer">
+            <h3>Food Arrives In:</h3>
+            </div>
+            <!-- <div class="queue">
+              <h3>3 Stop Before You</h3>
+            </div> -->
+            <h1 class="eta">34:56</h1>
+        </div>
+      
 
       <!-- Map -->
       <div class="map-section">
         <h2>Live Tracking</h2>
         <div class="map">
         </div>
+        <!-- <div class="queue">
+            <h3>3 Stops Remains</h3>
+          </div> -->
+      </div>
+
+      <!-- Dishes ordered -->
+      <div class="order-details">
+        <div class="order-details-headline">
+          <h2>
+            <span>Order Details </span>
+          </h2>
+        </div>
+        <div class="order-info-div">
+          <ul class="order-list">
+            <li>Pizza with paparoniX2</li>
+            <li>Burger with FriesX3</li>
+            <li>Pasta with Mushrooms</li>
+          </ul>
+          <hr/>
+          <p class="total-check">TOTAL</p>
+        </div>
       </div>
 
     </div>
   </section>
+
+
 
   <script type="module" src="../js/customer/main-costumer.js"></script>
 

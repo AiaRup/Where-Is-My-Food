@@ -1,4 +1,148 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Poiret One', cursive;
 }
+
+/* body {
+  background-color: rgba(255, 254, 247, 0.884);
+} */
+
+/* SEPERATION LINE */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+  width: 100px;
+  margin-left: 30px;
+}
+
+/* LOGO */
+
+.logo {
+  float: left;
+  margin-left: 15px;
+  margin-top: -70px;
+}
+
+.logo img {
+  margin-top: 15px;
+  margin-left: 15px;
+  height: 50px;
+  width: 40px;
+}
+
+/* Main Sections */
+
+.time-left,
+/* .customerTime-Headline, */
+.map,
+.timer,
+.order-details-headline {
+  border: solid 1px rgb(192, 192, 192);
+  margin-bottom: 15px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  -moz-box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.user-name {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.name-headline {
+  font-size: 25px;
+  letter-spacing: 1.5px;
+}
+
+/* Time Section */
+
+.customerTime-wrapper {
+  margin: 0 auto;
+  margin-top: 70px;
+  text-align: center;
+  width: 800px;
+}
+
+.timer {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #ffffff;
+  background-color: #DD3A36;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.queue {
+  display: inline-block;
+}
+
+.eta {
+  font-size: 50px;
+  letter-spacing: 2.5px;
+}
+
+.customerTime-Headline {
+  display: inline-block;
+  text-align: left;
+  width: 500px;
+  font-size: 25px;
+  padding-left: 5px;
+}
+
+/* Order details */
+.order-details {
+  height: auto;
+  text-align: left;
+  overflow: auto;
+}
+
+.order-list {
+  list-style-type: none;
+  padding-left: 30px;
+}
+
+.total-check {
+  padding-left: 30px;
+  padding-bottom: 15px;
+}
+
+.order-details-headline {
+  color: #ffffff;
+  background-color: #DD3A36;
+  border-radius: 5px;
+  padding-left: 10px;
+  background-image: linear-gradient(#DD3A36,rgb(248, 76, 73));
+}
+
+.order-details-headline:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgb(250, 250, 250);
+  background-color: rgb(253, 61, 57);
+  transition: 0.5s;
+}
+
+.order-details-headline:hover span:before {
+  content: 'Show ';
+}
+
+/* Map */
+.map-section {
+  height: 320px;
+}
+
+.map {
+  height: 250px;
+  width: 300px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
