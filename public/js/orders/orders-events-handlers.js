@@ -20,6 +20,44 @@ class EventsHandler {
              
         })
     }
+    registerSaveStatusChangesButtonClicks () {
+        let rootThis = this;
+        this.$modalContainer.on('submit','.edit-status-form', function (event) { 
+            
+            event.preventDefault();
+            //let data = $(this).serialize();
+            let data = {
+                            name:"",
+                            // location:"",
+                            // phoneNumber:"",
+                            // totalPrice:"",
+                            orderId:"",
+                            status:""
+                        }; 
+
+            data.name = $(this).find("#validationCustom11").val();
+            // data.location = $(this).find("#validationCustom03").val();
+            // data.phoneNumber = $(this).find("#validationCustom02").val();
+            data.status = $(this).find("#status-select").val();
+            // data.totalPrice = $(this).find("#validationCustom04").val();
+            data.orderId = $(this).find("#validationCustom10").val();
+            // console.log("gggggggggggggggggg"+data);
+            $.ajax({
+                url: `ord2`,
+                type: 'Put',
+                data: data,
+                success: function(msg) {
+                    rootThis.$modalContainer.find('.modal').modal('hide');
+                    rootThis.loadPage.call(rootThis);
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }            
+            });
+        })
+    }
+
     registerSaveEditedOrderButtonClicks () {
         let rootThis = this;
         this.$modalContainer.on('submit','.edit-order-form', function (event) { 
@@ -71,8 +109,15 @@ class EventsHandler {
     }
     
     registerStatusButtonClicks() {
+        let rootThis= this;
         this.$table.on('click','.button-status',function (event) {
-            
+            let orderId = $(this).closest('tr').find('.order-id').html();
+            console.log(orderId);
+            let order = rootThis.ordersRepository.getOrderById(orderId);
+            console.log(order);
+            rootThis.ordersRenderer.renderStatusModal(order);
+
+                     
             $("#changeStatusModal").modal();
         })
 
