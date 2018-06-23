@@ -25,7 +25,7 @@ let orderSchema = new mongoose.Schema({
   duration: Number,
   orderId: Number,
   isTaken: Boolean,
-  phoneNumber: Number,
+  phoneNumber: String,
   mapRoute: { type:[String], default: [] }
 }, { minimize: false }, { usePushEach: true });
 

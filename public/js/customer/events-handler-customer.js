@@ -47,8 +47,17 @@ class EventHandlerCustomer {
         $('.orderStatus').text('order status: ' + this.customerRepositories.userOrder.status);
         $('.order-list').text('Dish: ' + this.customerRepositories.userOrder.dishes);
         $('.total-check').text('Total: ' + this.customerRepositories.userOrder.totalPrice + '$');
+        if (this.customerRepositories.userOrder.status == 'ready') {
+          $('.ready').addClass('active');
+        } else if (this.customerRepositories.userOrder.status == 'delivered') {
+          $('.ready').addClass('active');
+          $('.delivered').addClass('active');
+          $('.out-for-delivery').addClass('active');
+        }
         // if order is 'on the way'
         if (this.customerRepositories.userOrder.status == 'out for delivery') {
+          $('.ready').addClass('active');
+          $('.out-for-delivery').addClass('active');
           $('.time-left').show();
           $('.map-section').show();
           $('.duration').text(this.customerRepositories.userOrder.duration + ' minutes');

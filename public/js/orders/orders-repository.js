@@ -2,6 +2,7 @@ class OrdersRepository {
     constructor() {
       this.employeesList = [];
       this.ordersList = [];
+      this.restaurant = {};
     }
     getOrderById(orderId) {
       for (var i in this.ordersList) {
@@ -24,7 +25,7 @@ class OrdersRepository {
       });
     }
     editOrder(order) {
-    
+
     }
     getOrdersList() {
       return $.ajax({
@@ -35,7 +36,7 @@ class OrdersRepository {
           this.ordersList = [];
           // check for the orders that are ready and not selected for delivery
           orders.forEach((order) => {
-            // order['location'] = this.stringfyAddress(order);  
+            // order['location'] = this.stringfyAddress(order);
             // order['dishes'] = this.stringfyDishes(order);
             this.ordersList.push(order);
           });
@@ -46,7 +47,7 @@ class OrdersRepository {
         }
       });
     }
-  
+
     updateOrderTaken(orderId, status, index) {
       return $.ajax({
         method: 'Put',
@@ -61,7 +62,7 @@ class OrdersRepository {
             if (order.orderId == orderId) {
               this.ordersList[index] = order;
               console.log(order);
-  
+
               console.log('order in local array updated');
               return;
             }
@@ -84,11 +85,26 @@ class OrdersRepository {
       return answer;
     }
     stringfyAddress(order) {
-      // return  order['location']['address']; 
-      return order['location']; 
+      // return  order['location']['address'];
+      return order['location'];
+    }
+
+    getRestaurantNameAndMenu() {
+      return $.ajax({
+        method: 'Get',
+        url: 'restaurant/restauranNameMenu',
+        success: (restaurantDetails) => {
+          console.log(restaurantDetails);
+          // add name and menu to object
+          this.restaurant.menu = restaurantDetails[0].menu;
+          },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus);
+        }
+      });
     }
 
   }
-  
-  
+
+
   export default OrdersRepository;
