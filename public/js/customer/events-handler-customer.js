@@ -45,7 +45,7 @@ class EventHandlerCustomer {
         $('.map-section').hide();
         $('.customerName').text(this.customerRepositories.userOrder.name);
         $('.orderStatus').text('order status: ' + this.customerRepositories.userOrder.status);
-        $('.order-list').text('Dish: ' + this.customerRepositories.userOrder.dishes);
+        $('.order-list').text(this.customerRepositories.userOrder.dishes);
         $('.total-check').text('Total: ' + this.customerRepositories.userOrder.totalPrice + '$');
         if (this.customerRepositories.userOrder.status == 'ready') {
           $('.ready').addClass('active');
@@ -100,6 +100,14 @@ class EventHandlerCustomer {
     $('#refresh').on('click', ()=> {
       window.location.reload(true);
     });
+  }
+
+
+  showOrderDetails() {
+    $('.order-details').click(()=> {
+      console.log('div toggle')
+      $('.order-info-div').toggle();
+    })
   }
 
   saveToLocalStorage() {
