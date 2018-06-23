@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <meta http-equiv="refresh" content="300" > -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+
   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/customerTime.css">
   <title>Where's My Food - customer</title>
 </head>
+
 <body>
   <section>
     <div class="logo">
@@ -25,6 +28,12 @@
         </div>
 
         <div class="orderStatus"></div>
+        <ul class="status-bar">
+          <li class="active">Received</li>
+          <li class="ready">Ready</li>
+          <li class="out-for-delivery">Out for delivery</li>
+          <li class="delivered">Delivered</li>
+        </ul>
 
         <div class="time-left">
           <div class="eta-box">
@@ -35,10 +44,13 @@
             <h1 class="duration"></h1>
           </div>
           <div class="queue">
-            <h2>Your'e in <span class="queue-span"></span> stops</h2>
+            <h2>Your'e in
+              <span class="queue-span"></span> stops</h2>
           </div>
-        </div> <!-- End time-left -->
-      </div> <!-- End headlines -->
+        </div>
+        <!-- End time-left -->
+      </div>
+      <!-- End headlines -->
 
       <!-- Dishes ordered -->
       <div class="order-details">
@@ -70,4 +82,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewucBzhp4DIePd6P0JHbpkQ4JtPzCShE&language=en" async defer></script>
 
 </body>
+
 </html>

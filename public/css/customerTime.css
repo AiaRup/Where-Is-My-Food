@@ -55,6 +55,71 @@ hr {
   letter-spacing: 1.5px;
 }
 
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
+.status-bar li {
+  list-style: none;
+  float: left;
+  width: 25%;
+  position: relative;
+  text-align: center;
+}
+
+.status-bar li::before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.status-bar li::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+
+.status-bar li:first-child::after {
+  content: none;
+}
+
+.status-bar li.active {
+  color: green;
+}
+
+
+.status-bar li.active::before {
+  border-color: green;
+  font-family: FontAwesome;
+  content: "\f00c";
+}
+
+.status-bar li.active + li:after {
+  background-color: green;
+  content:'';
+}
+
+/*to prevent the marging of different sections from collapsing*/
+.status-bar:before,
+.status-bar:after {
+  display: table;
+  content: "";
+}
+
+.status-bar:after {
+  clear: both;
+}
+
 /* Time Section */
 
 .customerTime-wrapper {
@@ -75,9 +140,6 @@ hr {
   height: auto;
 }
 
-/* .queue {
-  display: inline-block;
-} */
 
 .eta {
   font-size: 50px;
@@ -91,11 +153,7 @@ hr {
   font-size: 25px;
   padding-left: 5px;
 }
-/* 
-h1,
-h2 {
-  text-align: center;
-} */
+
 
 /* Order details */
 .order-details {
@@ -134,13 +192,6 @@ h2 {
   content: 'Show ';
 }
 
-#map {
-  height: 250px;
-  width: 300px;
-  margin: auto;
-  margin-bottom: 15px;
-} 
-
 /* Map */
 .map-section {
   height: 320px;
@@ -159,3 +210,6 @@ h2 {
     margin: auto;
     margin-bottom: 15px;
   }
+
+
+  

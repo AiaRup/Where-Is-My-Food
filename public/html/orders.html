@@ -1,57 +1,59 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/orders.css">
-  <title>Orders</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/orders.css">
+    <title>Orders</title>
 </head>
+
 <body>
-  
-  <form class="form-horizontal">
-    <div class="form-group">
-        
-        <button class="btn btn-outline-warning delivery-button float-sm-left mb-3 mt-1" type="button">  Take deliveries </button>
-        <button class="btn btn-outline-warning new-order-button float-sm-right mb-3 mt-1" type="button">Take new orders </button>
-        <input class="form-control form-control-lg search-order mb-4 mt-1 bg-warning" type="text"   placeholder="Search order">
-    </div>
-</form>
-<table class="table  table-bordered table-hover table-striped table-sm ">
-    <thead class="thead-dark">
-      <tr >
-          <th scope="col" width="0.5%" class="border border-dark text-center">Edit</th>
-        <th scope="col" width="9%" class="border border-dark text-center">Dish</th>
-        <th scope="col" width="10%" class="border border-dark text-center">Hour received</th>
-        <th scope="col" width="30%" class="border border-dark text-center">Destination</th>
-        <th scope="col" width="15%" class="border border-dark text-center">Name</th>
-        <th scope="col" width="10%" class="border border-dark text-center">Phone</th>
-        <th scope="col" width="5%" class="border border-dark text-center">Total</th>
-        <th scope="col" width="5%" class="border border-dark text-center">Order ID</th>
-        <th scope="col" width="15%" class="border border-dark text-center">Status</th>
-        
 
-      </tr>
-    </thead>
-    <tbody class="orders-container">
-    </tbody>
-  </table>
+    <form class="form-horizontal">
+        <div class="form-group">
 
-<div class="modal-container"></div>  
-<!-- CHANGE STATUS MODAL TEMPLETE -->
-<script id="edit-status-modal-template" type="text/x-handlebars-template">
-    <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content ">
-                <form class="edit-status-form" novalidate>
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="changeStatusModalLabel">Change Status</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+            <button class="btn btn-outline-warning delivery-button float-sm-left mb-3 mt-1" type="button"> Take deliveries </button>
+            <button class="btn btn-outline-warning new-order-button float-sm-right mb-3 mt-1" type="button">Take new orders </button>
+            <input class="form-control form-control-lg search-order mb-4 mt-1 bg-warning" type="text" placeholder="Search order">
+        </div>
+    </form>
+    <table class="table  table-bordered table-hover table-striped table-sm ">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" width="0.5%" class="border border-dark text-center">Edit</th>
+                <th scope="col" width="9%" class="border border-dark text-center">Dish</th>
+                <th scope="col" width="10%" class="border border-dark text-center">Hour received</th>
+                <th scope="col" width="30%" class="border border-dark text-center">Destination</th>
+                <th scope="col" width="15%" class="border border-dark text-center">Name</th>
+                <th scope="col" width="10%" class="border border-dark text-center">Phone</th>
+                <th scope="col" width="5%" class="border border-dark text-center">Total</th>
+                <th scope="col" width="5%" class="border border-dark text-center">Order ID</th>
+                <th scope="col" width="15%" class="border border-dark text-center">Status</th>
+
+
+            </tr>
+        </thead>
+        <tbody class="orders-container">
+        </tbody>
+    </table>
+
+    <div class="modal-container"></div>
+    <!-- CHANGE STATUS MODAL TEMPLETE -->
+    <script id="edit-status-modal-template" type="text/x-handlebars-template">
+        <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content ">
+                    <form class="edit-status-form" novalidate>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changeStatusModalLabel">Change Status</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <div class="form-row">
                                 <div class="col-md-5 mb-3">
                                     <label for="validationCustom11">Name</label>
@@ -69,129 +71,138 @@
                                 <option value="delivered">Delivered</option>
                                 <option value="canceled">Canceled</option>
                             </select>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary save-status-changes-button ">Save changes</button>
-                    </div>
-                </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary save-status-changes-button ">Save changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</script>
-<!-- END OF STATUS MODAL TEMPLETE -->
+    </script>
+    <!-- END OF STATUS MODAL TEMPLETE -->
 
-<!-- EDIT ORDER MODAL TEMPLETE -->
-<script id="edit-order-modal-template" type="text/x-handlebars-template">
-    <div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content ">
-            <form class="needs-validation  edit-order-form" novalidate>
+    <!-- EDIT ORDER MODAL TEMPLETE -->
+    <script id="edit-order-modal-template" type="text/x-handlebars-template">
+        <div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content ">
+                    <form class="needs-validation  edit-order-form" novalidate>
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="validationCustom01">Name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="{{name}}" required>
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label for="validationCustom02">Phone Number</label>
+                                    <input type="tel" class="form-control" id="validationCustom02" value="{{phoneNumber}}" required>
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label for="validationCustom07">Order ID</label>
+                                    <input type="text" class="form-control" id="validationCustom07" value="{{orderId}}" disabled>
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="validationCustom05">Status</label>
+                                    <select class="form-control" id="validationCustom05">
+                                        <option value="received">Received</option>
+                                        <option value="ready">Ready</option>
+                                        <option value="out for delivery">Out for delivery</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="canceled">Canceled</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-7 mb-3">
+                                    <label for="validationCustom06">Destination</label>
+                                    <input type="text" class="form-control" id="validationCustom06" value="{{location}}">
+                                    <!-- <input type="text" class="form-control" id="validationCustom03" value="{{location}}" disabled> -->
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-10 mb-3">
+                                    <label for="validationCustom03">Dishes</label>
+                                    <!-- <input type="text" class="form-control" id="validationCustom03" value="{{dishes}}" disabled> -->
+                                    <select class="form-control" id="validationCustom03">
+                                    </select>
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label for="validationCustom04">Total</label>
+                                    <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} $" disabled>
+                                    <!-- <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} &#8362;" disabled> -->
+                                    <div class="valid-feedback">
+                                        &#10003;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary ">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- END OF EDIT ORDER MODAL TEMPLE -->
+    <!-- ORDER TEMPLETE -->
+    <script id="order-template" type="text/x-handlebars-template">
+        <tr class="text-light">
+            <td class="border border-dark ">
+                <button type="button" class="btn btn-link button-edit" data-target="#editOrderModal">
+                    <i class="far fa-edit"></i>
                 </button>
-            </div>
-            <div class="modal-body">
-                
-                <div class="form-row">
-                    <div class="col-md-5 mb-3">
-                        <label for="validationCustom01">Name</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="{{name}}" required>
-                        <div class="valid-feedback">
-                            &#10003;
-                        </div>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <label for="validationCustom02">Phone Number</label>
-                        <input type="tel" class="form-control" id="validationCustom02" value="{{phoneNumber}}" required>
-                        <div class="valid-feedback">
-                            &#10003;
-                        </div>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="validationCustom07">Order ID</label>
-                        <input type="text" class="form-control" id="validationCustom07" value="{{orderId}}" disabled>
-                        <div class="valid-feedback">
-                            &#10003;
-                        </div>
-                    </div>
-                </div>
+            </td>
+            <td class="border border-dark">{{dishes}}</td>
+            <td class="border border-dark">{{time}}</td>
+            <td class="border border-dark">{{location}}</td>
+            <td class="border border-dark">{{name}}</td>
+            <td class="border border-dark">{{phoneNumber}}</td>
+            <td class="border border-dark">{{totalPrice}} $</td>
+            <!-- <td class="border border-dark">{{totalPrice}} &#x20aa;</td> -->
+            <td class="border border-dark order-id">{{orderId}}</td>
+            <td class="border border-dark text-center " data-status="{{status}}">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-link text-center button-status" data-target="#changeStatusModal">
+                    {{status}}
+                </button>
+            </td>
 
-                <div class="form-row">
-                    <div class="col-md-5 mb-3">
-                        <label for="validationCustom05">Status</label>
-                        <select class="form-control"  id="validationCustom05">
-                            <option value="received">Received</option>
-                            <option value="ready">Ready</option>
-                            <option value="out for delivery">Out for delivery</option>
-                            <option value="delivered">Delivered</option>
-                            <option value="canceled">Canceled</option>
-                        </select>
-                    
-                    </div>
-                    <div class="col-md-7 mb-3">
-                        <label for="validationCustom06">Destination</label>
-                        <input type="text" class="form-control" id="validationCustom03" value="{{location}}" disabled >
-                        <div class="valid-feedback">
-                            &#10003;
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="form-row">
-                        <div class="col-md-10 mb-3">
-                            <label for="validationCustom03">Dishes</label>
-                            <input type="text" class="form-control" id="validationCustom03" value="{{dishes}}" disabled >
-                            <div class="valid-feedback">
-                                &#10003;
-                            </div>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="validationCustom04">Total</label>
-                            <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} &#8362;" disabled >
-                            <div class="valid-feedback">
-                                &#10003;
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary ">Save changes</button>
-            </div>
-            </form>
-        </div>
-        </div>
-    </div>
-</script>
-  <!-- END OF EDIT ORDER MODAL TEMPLE -->
-  <!-- ORDER TEMPLETE -->
-  <script id="order-template" type="text/x-handlebars-template">
-    <tr class="text-light">
-      <td class="border border-dark "><button type="button" class="btn btn-link button-edit"  data-target="#editOrderModal"><i class="far fa-edit"></i></button></td>
-      <td class="border border-dark">{{dishes}}</td>
-      <td class="border border-dark">{{time}}</td>
-      <td class="border border-dark" >{{location}}</td>
-      <td class="border border-dark">{{name}}</td>
-      <td class="border border-dark">{{phoneNumber}}</td>
-      <td class="border border-dark" >{{totalPrice}} &#x20aa;</td>
-      <td class="border border-dark order-id">{{orderId}}</td>   
-      <td class="border border-dark text-center " data-status="{{status}}" >
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-link text-center button-status"  data-target="#changeStatusModal">
-          {{status}}
-        </button>    
-      </td>       
-   
 
-    </tr>
-  </script>
-  <!-- END OF ORDER TEMPLETE -->
-  <!-- <script>
+        </tr>
+    </script>
+    <!-- END OF ORDER TEMPLETE -->
+    <!-- <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
@@ -211,10 +222,17 @@
         }, false);
       })();
       </script> -->
-  <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
-  <script type="module" src="../js/orders/orders-main.js"></script>
+
+
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&libraries=places"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiWunZ9dpyU3leuY_TMU_t81A53irRnTM&libraries=places&callback=activatePlacesSearch"></script> -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
+    <script type="module" src="../js/orders/orders-main.js"></script>
 </body>
+
 </html>
