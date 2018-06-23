@@ -14,6 +14,6 @@ let eventHandlersCustomer = new EventHandlerCustomer(customerRepositories, rende
 eventHandlersCustomer.findOrder();
 eventHandlersCustomer.renderOrderDetails();
 eventHandlersCustomer.refreshPage();
-
+eventHandlersCustomer.showOrderDetails();
 
 
