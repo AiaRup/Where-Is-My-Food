@@ -28,8 +28,8 @@
         <th scope="col" width="15%" class="border border-dark text-center">Name</th>
         <th scope="col" width="10%" class="border border-dark text-center">Phone</th>
         <th scope="col" width="5%" class="border border-dark text-center">Total</th>
-        <th scope="col" width="8%" class="border border-dark text-center">Order ID</th>
-        <th scope="col" width="12.5%" class="border border-dark text-center">Status</th>
+        <th scope="col" width="5%" class="border border-dark text-center">Order ID</th>
+        <th scope="col" width="15%" class="border border-dark text-center">Status</th>
         
 
       </tr>
@@ -180,7 +180,7 @@
       <td class="border border-dark">{{phoneNumber}}</td>
       <td class="border border-dark" >{{totalPrice}} &#x20aa;</td>
       <td class="border border-dark order-id">{{orderId}}</td>   
-      <td class="border border-dark text-center" style="background-color: rgb(36, 63, 18)">
+      <td class="border border-dark text-center " data-status="{{status}}" >
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-link text-center button-status"  data-target="#changeStatusModal">
           {{status}}
