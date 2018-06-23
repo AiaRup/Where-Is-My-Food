@@ -46,15 +46,9 @@ class DeliveryRepository {
   }
 
   updateOrderProperty(orderId, objectToUpdate, index) {
-    console.log('ajax property to update', objectToUpdate);
-
     return $.ajax({
       method: 'Put',
       url: `/orders/${orderId}`,
-      // data: {
-      //   property: objectToUpdate.property,
-      //   value: objectToUpdate.value
-      // },
       data: objectToUpdate,
       success: (orders) => {
         if (objectToUpdate.property == 'isTaken') {
@@ -103,17 +97,21 @@ class DeliveryRepository {
     return $.ajax({
       method: 'Put',
       url: `orders/${orderId}/map`,
-      data: mapInfo,
+      dataType: 'json',
+      data: {
+        address: mapInfo
+      },
       success: (orders) => {
-        //TODO:
-        console.log('orders');
-
+        orders.forEach((order) => {
+          if(order.orderId == orderId) {
+            console.log('order updated with route array', order);
+          }
+        });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
       }
     });
-
   }
 
   saveToLocalStorage() {
@@ -124,6 +122,5 @@ class DeliveryRepository {
     this.selectedOrders = JSON.parse(localStorage.getItem(this.STORAGE_ID) || '[]');
   }
 }
-
 
 export default DeliveryRepository;

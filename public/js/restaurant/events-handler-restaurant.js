@@ -31,7 +31,6 @@ class EventsHandler {
   }
 
   addNewDish() {
-    let totalPrice = 0;
     $('.choose-dish').click((event) => {
       //get the dish that was chosen
       $('#dishOptions option').each(function() {
@@ -40,6 +39,7 @@ class EventsHandler {
           if (($(this)).val() == 0) {
             $('.msg-select-dish').text('Please select a dish').show().fadeOut(5000);
           } else {
+            let totalPrice = $('.total-price').data('total');
             let dish = $(this).val();
             let quantity = $('.quantity').val();
             let cost = 0;
@@ -83,25 +83,7 @@ class EventsHandler {
       // get total orders from DB
       this.restaurantRepositories.getRestaurantNumOrders().then(()=> {
         let idOrder = (this.restaurantRepositories.restaurant.numOrders) + 1;
-
         // get information from the page form
-
-        // get all order's dishes //TODO:
-        // let dishSelection;
-        // .each(function() {
-        let dishSelection = $('.dish-list li').data('dish');
-
-
-        // let dishSelected = {
-        //   name: $(this).data('dish'),
-        //   price:  $(this).data('cost'),
-        //   amount: $(this).data('amount')
-        // };
-        // dishSelection.push(dishSelected);
-        // });
-        // console.log('dish array', dishSelection);
-
-
         // get order time as string
         let timeInMs = new Date(Date.now());
         let orderTime = timeInMs.toLocaleTimeString().substring(0, 5) + ' on ' + timeInMs.toLocaleDateString().replace(/\./g, '/');
@@ -111,7 +93,7 @@ class EventsHandler {
           name: $('#name').val(),
           phoneNumber: $('#phone').val(),
           paymentMethod: $('#paymentSelection').val(),
-          dishes: dishSelection,
+          dishes: $('.dish-list li').data('dish'),
           totalPrice: $('.total-price').data('total'),
           status: 'received',
           isTaken: false,
@@ -119,31 +101,11 @@ class EventsHandler {
           orderId: idOrder
         };
 
-        console.log('order', newOrder);
-
         // get location data from google api
         let location = $('#address').val();
         this.googleMaps.getCoords(location).then((response) => {
-          console.log('location response', response);
           // update new order location
           newOrder.location = response.results[0].formatted_address;
-          // newOrder.location = {
-          //   // Geomatry
-          //   latitude: response.results[0].geometry.location.lat,
-          //   longitude: response.results[0].geometry.location.lng,
-          //   // Formatted Address
-          //   address: response.results[0].formatted_address
-          // };
-          // newOrder.location = {
-          //   // Geomatry
-          //   latitude: response.results[0].geometry.location.lat,
-          //   longitude: response.results[0].geometry.location.lng,
-          //   // Formatted Address
-          //   address: response.results[0].formatted_address
-          // };
-          // });
-          console.log('order sent to server', newOrder);
-
           // send new order to DB
           this.restaurantRepositories.addNewOrder(newOrder).then(() => {
           // get orderId and display on page
@@ -164,8 +126,13 @@ class EventsHandler {
   }
 
   closePopUp() {
-    $('.closeBtn').click(() => {
+    $('.closeBtn, .reset').click(() => {
       $('.modal').hide();
+      // reset form
+      $('.order-form')[0].reset();
+      $('.dish-list').empty();
+      $('.total-price').empty();
+      $('.total-price').attr('data-total', '0');
     });
   }
 }
