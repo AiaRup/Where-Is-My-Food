@@ -13,7 +13,7 @@ table, th, td {
     /* For IE 8*/
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
     border: 1px solid black;
-    
+
 }
 [data-status="received"] {
     background-color: rgba(18, 28, 250, 0.6) !important;
@@ -103,7 +103,7 @@ table, th, td {
 }
 .search-order {
     border-radius: 20px;
-    
+
     /* background-color: rgba(235, 145, 27, 0.9); */
 }
 .delivery-button {
@@ -118,4 +118,7 @@ table, th, td {
     border-radius: 20px;
     /* background-color: burlywood; */
     background-color: rgba(235, 145, 27, 0.9);
+}
+.pac-container {
+    z-index: 1051 !important;
 }
