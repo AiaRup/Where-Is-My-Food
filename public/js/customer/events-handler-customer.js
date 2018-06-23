@@ -41,8 +41,8 @@ class EventHandlerCustomer {
       this.getFromLocalStorage();
       this.customerRepositories.getOrderDetailes(this.userId).then(() => {
         // render data on the page
-        // $('.time-left').hide();
-        // $('.map-section').hide();
+        $('.time-left').hide();
+        $('.map-section').hide();
         $('.customerName').text(this.customerRepositories.userOrder.name);
         $('.orderStatus').text('order status: ' + this.customerRepositories.userOrder.status);
         $('.order-list').text(this.customerRepositories.userOrder.dishes);
