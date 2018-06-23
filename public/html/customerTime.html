@@ -9,82 +9,16 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 
   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../css/costumer.css">
-  <style>
-    @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-
-    .status-bar li {
-      list-style: none;
-      float: left;
-      width: 25%;
-      position: relative;
-      text-align: center;
-    }
-
-    .status-bar li::before {
-      content: '';
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      border: 1px solid #ddd;
-      display: block;
-      text-align: center;
-      margin: 0 auto 10px auto;
-      border-radius: 50%;
-      background-color: white;
-    }
-
-    .status-bar li::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background-color: #ddd;
-      top: 15px;
-      left: -50%;
-      z-index: -1;
-    }
-
-    .status-bar li:first-child::after {
-      content: none;
-    }
-
-    .status-bar li.active {
-      color: green;
-    }
-
-
-    .status-bar li.active::before {
-      border-color: green;
-      font-family: FontAwesome;
-      content: "\f00c";
-    }
-
-    .status-bar li.active + li:after {
-      background-color: green;
-      content:'';
-    }
-
-    /*to prevent the marging of different sections from collapsing*/
-    .status-bar:before,
-    .status-bar:after {
-      display: table;
-      content: "";
-    }
-
-    .status-bar:after {
-      clear: both;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="../css/customerTime.css">
   <title>Where's My Food - customer</title>
 </head>
 
 <body>
   <section>
     <div class="logo">
-      <h3>LOGO</h3>
+        <img src="../img/orders/logores.png" alt="resta-logo" id="refresh">
     </div>
-    <button type="button" id="refresh">Refresf</button>
+ 
 
     <div class="customerTime-wrapper">
       <!-- TOP SECTION -->
@@ -106,6 +40,7 @@
             <h1 class="customerTime-Headline">ETA</h1>
           </div>
           <div class="timer">
+
             <h1 class="duration"></h1>
           </div>
           <div class="queue">
@@ -119,15 +54,22 @@
 
       <!-- Dishes ordered -->
       <div class="order-details">
-        <h2>Order Details</h2>
+          <div class="order-details-headline">
+        <h2><span>Order Details </span></h2>
+        </div>
+        <div class="order-info-div">
         <p class="order-list"></p>
+        <hr/>
         <p class="total-check"></p>
       </div>
+    </div>
 
       <!-- Map -->
       <div class="map-section">
         <h2>Live Tracking</h2>
+        <div class="map">>
         <div id="map"></div>
+        </div
       </div>
 
     </div>
