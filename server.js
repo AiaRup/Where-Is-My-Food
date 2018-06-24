@@ -59,6 +59,7 @@ app.route('/restaurant/restauranNumOrders')
   .get((req, res) => {
     Restaurant.find({}, (err, restaurantResult) => {
       if (err) throw err;
+      console.log("FFFFFFFF"+restaurantResult);
       res.send(restaurantResult);
     });
   })

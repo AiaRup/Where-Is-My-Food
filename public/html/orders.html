@@ -87,7 +87,7 @@
     <div class="modal fade " id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
         <div class="modal-content ">
-            <form class="needs-validation  edit-order-form" novalidate>
+            <form class="needs-validation  edit-order-form" novalidate >
 
             <div class="modal-header">
                 <h5 class="modal-title" id="editOrderModalLabel">Edit order details</h5>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="col-md-7 mb-3">
                         <label for="validationCustom06">Destination</label>
-                        <input type="text" class="form-control" id="validationCustom03" value="{{location}}" disabled >
+                        <input type="text" class="form-control" id="validationCustom06" value="{{location}}" disabled >
                         <div class="valid-feedback">
                             &#10003;
                         </div>
@@ -191,30 +191,32 @@
     </tr>
   </script>
   <!-- END OF ORDER TEMPLETE -->
-  <!-- <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-      </script> -->
+ 
   <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+  <!-- <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      $(".modal-container").on('submit','' function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
   <script type="module" src="../js/orders/orders-main.js"></script>
+   
 </body>
 </html>

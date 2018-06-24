@@ -24,7 +24,7 @@ class EventsHandler {
 
   fillNewForm() {
     $('.btnNewOrder').click((event) => {
-      event.stopPropagation();
+     event.stopPropagation();
       $('.order-form').toggle();
 
     });
