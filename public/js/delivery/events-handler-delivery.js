@@ -321,6 +321,22 @@ class EventsHandlerDelivery {
       }
     });
   }
+
+  //open each order seperatly
+  openOrderDelivery() {
+    $('.toggle-order').hide();
+    $(document).on('click', '.order' ,(e)=> { 
+    $(e.currentTarget).find('.toggle-order').toggle()
+  })
+  }
+
 }
 
 export default EventsHandlerDelivery;
+
+// 1
+// 2
+// 3
+// $( "#foo" ).bind( "mouseenter mouseleave", function() {
+//   $( this ).toggleClass( "entered" );
+// });
