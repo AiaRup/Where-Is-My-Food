@@ -21,7 +21,9 @@
     <div class="container">
         <div class="row align-items-end justify-content-md-center ">
           <div class="col col-lg-2">
-
+            <button type="button" class="btn btn-link button-edit" data-toggle="modal" data-target="#newOrderModal">
+              <i class="far fa-edit"></i>
+            </button>
           </div>
           <div class="col-md-auto">
               <div class="card bg-light mb-3" style="max-width: 25rem;">
@@ -36,7 +38,7 @@
           <div class="col-md-auto">
               <div class="card bg-light mb-3" style="max-width: 25rem;">
                   <div class="card-body">
-                      <button type="button" class="btn btn-warning btn-lg">Warning</button>
+                      <button type="button" class="btn btn-warning btn-block btn-lg">Warning</button>
                   </div>
                 </div>      
           </div>
@@ -124,6 +126,103 @@
   </section>
 
 
+    <!-- NEW ORDER MODAL TEMPLETE -->
+    <!-- <script id="new-order-modal-template" type="text/x-handlebars-template"> -->
+      <div class="modal fade " id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="newOrderModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content ">
+                  <form class="needs-validation  new-order-form" novalidate>
+
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="newOrderModalLabel">New order</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <div class="form-row">
+                              <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Name</label>
+                                  <input type="text" class="form-control" id="validationCustom01" pattern="[A-Z]{1}[A-Za-z\s]{1,}" value="{{name}}" required>
+                                  <div class="valid-feedback">
+                                      &#10003;
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      Please write a valid name, in the form "Jane" or "John Doe"
+                                    </div>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  <label for="validationCustom02">Phone Number</label>
+                                  <input type="tel" class="form-control" id="validationCustom02" pattern="[0-9]{2,3}-[0-9]{7}"
+                                      value="{{phoneNumber}}" required>
+                                  <div class="valid-feedback">
+                                      &#10003;
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      Phone neeed to be in following format: xxx-xxxxxxx OR yy-yyyyyyy
+                                    </div>
+                              </div>
+
+                          </div>
+
+                          <div class="form-row">
+                              <div class="col-md-5 mb-3">
+                                  <label for="validationCustom05">Choose Dish</label>
+                                  <select class="form-control" id="validationCustom05">
+                                      <option value="received">Received</option>
+                                      <option value="ready">Ready</option>
+                                      <option value="out for delivery">Out for delivery</option>
+                                      <option value="delivered">Delivered</option>
+                                      <option value="canceled">Canceled</option>
+                                  </select>
+
+                              </div>
+                              <div class="col-md-7 mb-3">
+                                  <label for="validationCustom06">Destination</label>
+                                  <input type="text" class="form-control" id="validationCustom06"  value="{{location}}" required>
+                                  <!-- <input type="text" class="form-control" id="validationCustom03" value="{{location}}" disabled> -->
+                                  <div class="valid-feedback">
+                                      &#10003;
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      please enter valid address
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="form-row">
+                              <div class="col-md-5 mb-3">
+                                  <label for="validationCustom04">Total</label>
+                                  <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} $" disabled>
+                                  <!-- <input type="tel" class="form-control" id="validationCustom04" value="{{totalPrice}} &#8362;" disabled> -->
+                                  <div class="valid-feedback">
+                                      &#10003;
+                                  </div>
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <div class="form-check form-check-inline">
+                                  <label class="form-check-label" for="creditCardRadio">Credit Card</label>
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="creditCardRadio" value="option1">
+       
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <label class="form-check-label" for="cashRadio">Cash</label>
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cashRadio" value="cash">
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-warning ">Order</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  <!-- </script> -->
+  <!-- END OF EDIT ORDER MODAL TEMPLE -->
   <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
