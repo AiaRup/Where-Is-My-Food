@@ -73,7 +73,13 @@ class EventsHandler {
   registerSaveEditedOrderButtonClicks() {
     let rootThis = this;
     this.$modalContainer.on('submit', '.edit-order-form', function (event) {
-
+      if (this.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.classList.add('was-validated');
+        return;
+      }
+      
       event.preventDefault();
       //let data = $(this).serialize();
       let data = {
