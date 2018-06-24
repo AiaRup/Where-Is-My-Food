@@ -15,6 +15,8 @@ class EventsHandlerDelivery {
       $('.employee-login').show().text(`Employee: ${employeeName}`)
         .append('<button type="button" id="change-employee" class="btn btn-outline-dark btn-sm">Change</button>');
       // hide the list of employees
+      $('hr').hide();
+      $('.employee-section').hide();
       $('.section-employees').hide();
       $('.before-delivery').toggleClass('show-employees');
       // ask the server for all the orders that are ready to deliver and show them on th page
@@ -34,6 +36,9 @@ class EventsHandlerDelivery {
 
   registerChangeEmployee() {
     $('.employee-login').on('click', '#change-employee', (event) => {
+
+      $('hr').show();
+      $('.employee-section').show();
       $('.employee-login').hide();
       $('.section-employees').show();
       $('.before-delivery').toggleClass('show-employees');
@@ -90,7 +95,8 @@ class EventsHandlerDelivery {
         return;
       }
       // show on-delivery section
-      $('.on-delivery').show();
+      $('.on-delivery').css('display', 'flex');
+      $('.on-delivery').addClass('order-on-the-go');
       $('.before-delivery').hide();
       // show selected orders
       this.deliveryRenderer.renderOrdersToDeliver(this.deliveryRepository.selectedOrders);
