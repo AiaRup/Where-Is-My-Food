@@ -16,7 +16,7 @@
   <div class="before-delivery show-employees">
     <div class="employee-login"></div>
     <!-- employee section -->
-    <h1 class="employee-login">Delivery Employees</h1>
+    <h1 class="employee-section">Delivery Employees</h1>
     <hr/>
     <section class="section-employees">
       <ul class="delivery-guys"></ul>
@@ -31,9 +31,13 @@
     <div class="msg"></div>
   </div>
   <!-- END before-delivery -->
-
+  <div class="direction-style">
+  <div id="directions-panel"></div>
+  <div id="map"></div>
+</div>
   <div class="on-delivery">
     <ul class="orders-to-deliver"></ul>
+    <br><br>
     <div class="choose-route">
       <p>Start:
         <span class="restaurant-location"></span>
@@ -48,8 +52,8 @@
     <!-- END choose route -->
     <div class="msg-select-destination"></div>
   </div>
-  <div id="directions-panel"></div>
-  <div id="map"></div>
+  <!-- <div id="directions-panel"></div>
+  <div id="map"></div> -->
   <!-- END on-delivery -->
 
   <script id="delivery-template" type="text/x-handlebars-template">
