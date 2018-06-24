@@ -22,8 +22,10 @@ class GoogleMap {
   initMap(restaurantLocation) {
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: restaurantLocation
+      zoom: 13,
+      center: restaurantLocation,
+      mapTypeControl: false,
+      streetViewControl: false
     });
     directionsDisplay.setMap(map);
 

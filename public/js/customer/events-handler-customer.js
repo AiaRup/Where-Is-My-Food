@@ -41,10 +41,10 @@ class EventHandlerCustomer {
       this.getFromLocalStorage();
       this.customerRepositories.getOrderDetailes(this.userId).then(() => {
         // render data on the page
-        $('.time-left').hide();
-        $('.map-section').hide();
+        $('.on-delivery').hide();
+        // $('.map-section').hide();
         $('.customerName').text(this.customerRepositories.userOrder.name);
-        $('.orderStatus').text('order status: ' + this.customerRepositories.userOrder.status);
+        // $('.orderStatus').html('Status: <span id="orderStatus">' + this.customerRepositories.userOrder.status + '</span>');
         $('.order-list').text(this.customerRepositories.userOrder.dishes);
         $('.total-check').text('Total: ' + this.customerRepositories.userOrder.totalPrice + '$');
         if (this.customerRepositories.userOrder.status == 'ready') {
@@ -58,9 +58,9 @@ class EventHandlerCustomer {
         if (this.customerRepositories.userOrder.status == 'out for delivery') {
           $('.ready').addClass('active');
           $('.out-for-delivery').addClass('active');
-          $('.time-left').show();
-          $('.map-section').show();
-          $('.duration').text(this.customerRepositories.userOrder.duration + ' minutes');
+          $('.on-delivery').show();
+          // $('.map-section').show();
+          $('.duration').html('<span id="minute">' + this.customerRepositories.userOrder.duration + '</span> minutes');
           $('.queue-span').text(this.customerRepositories.userOrder.queue);
           // initialize map on the page
           let start = {};
