@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/delivery.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
   <title>Choose Delivery</title>
 </head>
 
@@ -15,10 +16,12 @@
   <div class="before-delivery show-employees">
     <div class="employee-login"></div>
     <!-- employee section -->
+    <h1 class="employee-login">Delivery Employees</h1>
+    <hr/>
     <section class="section-employees">
-      <h1>Delivery Employees</h1>
       <ul class="delivery-guys"></ul>
     </section>
+  
     <!-- orders section -->
     <section class="orders-section">
       <ul class="orders-list"></ul>
@@ -44,10 +47,9 @@
     </div>
     <!-- END choose route -->
     <div class="msg-select-destination"></div>
-
-    <div id="directions-panel"></div>
-    <div id="map"></div>
   </div>
+  <div id="directions-panel"></div>
+  <div id="map"></div>
   <!-- END on-delivery -->
 
   <script id="delivery-template" type="text/x-handlebars-template">
@@ -69,8 +71,11 @@
       </div>
       <!-- END order-header -->
 
-      <h5 class="order-name">{{name}} - Order Number {{orderId}}</h5>
+      <h4 class="order-number">{{orderId}}
+      </h4>
       <p class="address">{{location}}</p>
+      <div class="toggle-order" style="display:none;">
+      <h5 class="order-name">{{name}}</h5> 
       <p class="phone">Phone: 0{{phoneNumber}}</p>
       <p class="dishes">Dish: {{dishes}}</p>
       <p class="total-price">Total:
@@ -78,6 +83,7 @@
         <b>{{paymentMethod}}</b>
       </p>
     </li>
+  </div>
   </script>
 
   <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">

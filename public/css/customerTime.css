@@ -55,8 +55,7 @@ hr {
   letter-spacing: 1.5px;
 }
 
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-
+/* status bar */
 .status-bar li {
   list-style: none;
   float: left;

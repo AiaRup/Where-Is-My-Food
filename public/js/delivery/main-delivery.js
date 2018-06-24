@@ -15,6 +15,7 @@ eventsHandler.registerReadyToGo();
 eventsHandler.registerChangeEmployee();
 eventsHandler.registerSelectDestination();
 eventsHandler.registerOrderDeliverd();
+eventsHandler.openOrderDelivery();
 
 // Get all employees as soon as the page loads
 deliveryRepository.getEmployeesList().then(() => {
