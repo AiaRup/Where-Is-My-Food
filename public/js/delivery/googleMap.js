@@ -83,11 +83,11 @@ class GoogleMap {
           let routeSegment = i + 1;
           let routeDiv = $(`<div data-route="${route.legs[i].end_address}"></div>`);
 
-          routeDiv.append('<b>Route Segment: ' + routeSegment + '</b><br>');
-          routeDiv.append(route.legs[i].start_address + ' to ');
+          routeDiv.append('<span class="headline-segment">Route Segment: ' + routeSegment + '</span><br>');
+          routeDiv.append(route.legs[i].start_address + '<b> to </b>');
           routeDiv.append(route.legs[i].end_address + '<br>');
-          routeDiv.append(route.legs[i].distance.text + '<br>');
-          routeDiv.append(route.legs[i].duration.text + '<br><br>');
+          routeDiv.append(route.legs[i].distance.text + '- <b>' + route.legs[i].duration.text + '<b/><br><br>');
+          // routeDiv.append(route.legs[i].duration.text + '<br><br>');
           for (let j = 0; j < route.legs[i].steps.length; j++) {
             if (route.legs[i].steps[j].maneuver) {
               routeDiv.append(`<img src="../img/maneuvers/${route.legs[i].steps[j].maneuver}.png">`);
