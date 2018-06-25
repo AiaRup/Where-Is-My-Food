@@ -15,10 +15,14 @@ class EventsHandlerDelivery {
       $('.employee-login').show().html(`<h2>Employee: ${employeeName}</h2>`)
         .append('<button type="button" id="change-employee" class="btn btn-outline-dark btn-sm">Change</button>');
       // hide the list of employees
-      $('hr').hide();
-      $('.employee-section').hide();
-      $('.section-employees').hide();
+      // $('hr').hide();
+      // $('.employee-section').hide();
+      // $('.section-employees').hide();
+      $('hr').css('display', 'none');
+      $('.employee-section').css('display', 'none');
+      $('.section-employees').css('display', 'none');
       $('.before-delivery').toggleClass('show-employees');
+      $('#directions-panel').css('display', 'none');
       // ask the server for all the orders that are ready to deliver and show them on th page
       this.deliveryRepository.getOrdersReadyList().then(() => {
         // check if there is any order to deliver
@@ -39,10 +43,12 @@ class EventsHandlerDelivery {
 
       $('hr').show();
       $('.employee-section').show();
-      $('.employee-login').hide();
+      // $('.employee-login').hide();
+      $('.employee-login').css('display', 'none');
       $('.section-employees').show();
       $('.before-delivery').toggleClass('show-employees');
-      $('.orders-section').hide();
+      // $('.orders-section').hide();
+      $('.orders-section').css('display', 'none');
       // Get all employees as soon as the page loads
       this.deliveryRepository.getEmployeesList().then(() => {
         // render all employees on the page
@@ -88,9 +94,12 @@ class EventsHandlerDelivery {
 
   registerReadyToGo() {
     $('.orders-section').on('click', '#ready-to-deliver', (event) => {
-      $('.direction-style').show();
-      $('.choose-route').show();
-      $('#map').hide();
+      // $('.direction-style').show();
+      // $('.choose-route').show();
+      // $('#map').hide();
+      $('.direction-style').css('display', 'flex');
+      $('.choose-route').css('display', 'block');
+      $('#map').css('display', 'none');
       this.deliveryRepository.makeNewDelivery();
       // if no order was selected to delivery
       if (!this.deliveryRepository.selectedOrders.length) {
@@ -101,8 +110,10 @@ class EventsHandlerDelivery {
       $('.on-delivery').css('display', 'flex');
       $('.on-delivery').addClass('order-on-the-go');
 
-      $('.before-delivery').hide();
-      $('.on-delivery h1').show();
+      // $('.before-delivery').hide();
+      // $('.on-delivery h1').show();
+      $('.before-delivery').css('display', 'none');
+      $('.on-delivery h1').css('display', 'block');
       // show selected orders
       this.deliveryRenderer.renderOrdersToDeliver(this.deliveryRepository.selectedOrders);
       $('.deliverd-complete').hide();
@@ -128,6 +139,7 @@ class EventsHandlerDelivery {
       let thisClass = this;
       let destinationSelect;
       let wayPoints = [];
+      $('#directions-panel').css('display', 'block');
       $('#destination option').each(function () {
         if ($(this).is(':selected')) {
           // if nothing was selected (first option)
@@ -144,7 +156,9 @@ class EventsHandlerDelivery {
             thisClass.deliveryRepository.updateOrderProperty(order.orderId, objectToUpdate, i);
           }
           // enable delivered button
-          $('.deliverd-complete').show();
+          // $('.deliverd-complete').show();
+          $('.deliverd-complete').css('display', 'block');
+
           // $('.deliverd-complete').attr('disabled', false);
           // check for the address of the order selected for the destination and wayPoints
           thisClass.deliveryRepository.selectedOrders.forEach((order) => {
@@ -157,9 +171,14 @@ class EventsHandlerDelivery {
             }
           });
           // show map on page
-          $('#map').show();
+          // $('#map').show();
+          $('#map').css('display', 'block');
           // hide the option to choose route
-          $('.choose-route').hide();
+          // $('.choose-route').hide();
+          $('.choose-route').css('display', 'none');
+          $('.order-on-the-go h1').css('padding', '0');
+          $('.order-on-the-go h1').css('text-align', 'left');
+          $('.orders-to-deliver').css('flex', '3');
           /*=============================================
           get the route from the google map and display it
           ==============================================*/
@@ -305,7 +324,13 @@ class EventsHandlerDelivery {
       this.googleMap.routeOrders.splice(0, 1);
 
       // hide all the delivered order's details
-      $(event.currentTarget).closest('.selected-order-content').hide();
+      // $(event.currentTarget).closest('.selected-order-content').hide();
+      // $(event.currentTarget).closest('.selected-order-content').css('display', 'none');
+      $(event.currentTarget).closest('.order-selected').css({
+        'background': '-webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa))',
+        'color': 'black'
+      });
+      $(event.currentTarget).hide();
       // add icon to delivered order
       $order.find('h5').append('<i class="fas fa-check-square"></i>');
       // splice order from selected orders array
@@ -324,14 +349,23 @@ class EventsHandlerDelivery {
         // if finished deliver all orders
         if (!this.deliveryRepository.selectedOrders.length) {
           // go back to select an employee
-          $('.on-delivery').hide();
-          $('.direction-style').hide();
-          $('.before-delivery').show();
-          $('.section-employees').show();
-          $('.employee-login').hide();
-          $('.employee-section').show();
-          $('hr').show();
+          $('.on-delivery').css('display', 'none');
+          $('.direction-style').css('display', 'none');
+          $('#directions-panel').css('display', 'none');
+          $('.before-delivery').css('display', 'block');
+          $('.section-employees').css('display', 'block');
+          $('.employee-login').css('display', 'none');
+          $('.employee-section').css('display', 'block');
+          $('hr').css('display', 'block');
           $('.orders-section').hide();
+          // $('.on-delivery').hide();
+          // $('.direction-style').hide();
+          // $('.before-delivery').show();
+          // $('.section-employees').show();
+          // $('.employee-login').hide();
+          // $('.employee-section').show();
+          // $('hr').show();
+          // $('.orders-section').hide();
           $('.before-delivery').toggleClass('show-employees');
         }
       }
