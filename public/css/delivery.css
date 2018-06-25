@@ -99,7 +99,8 @@ input::placeholder {
 .on-delivery h1,
 .orders-section,
 .choose-route,
-.direction-style {
+.direction-style,
+.directions-panel {
   display: none
 }
 
@@ -242,7 +243,7 @@ flex-basis: calc(25% - 10px);
    /* justify-content: flex-end; */
 }
 .order-on-the-go h1 {
-  padding: 0 40px 0 70px;
+  padding-right: 40px;
   flex: 1;
   text-align: right;
 }
@@ -254,7 +255,7 @@ flex-basis: calc(25% - 10px);
   flex-shrink: 0;
   flex-basis: calc(25% - 10px);
   flex-direction: row !important;
-  /* justify-content: space-between; */
+  justify-content: space-around;
 }
 
 .choose-route {
@@ -266,11 +267,15 @@ flex-basis: calc(25% - 10px);
   /* max-width: 350px; */
   padding: 15px;
   margin-bottom: 10px;
-  max-height: 300px;
+  max-height: 280px;
+  min-height: 230px;
 }
 
 .order-selected h5 {
   font-weight: bold;
+}
+.order-selected h5 i {
+margin-left: 5px;
 }
 
 .employee:hover,
@@ -359,16 +364,16 @@ height: 40px;
 }
 
 #map {
-  height: 400px;
-  width: 400px;
-  float: right;
-  margin-right: 50px;
+  height: 700px;
+  width: 700px;
+  /* float: right; */
+  /* margin-right: 50px; */
 }
 
 #directions-panel {
   /* float: left; */
   margin-left: 50px;
-  /* flex: 1; */
+  flex: 1;
 }
 #directions-panel > div{
   margin-bottom: 15px;
@@ -377,8 +382,10 @@ height: 40px;
 .direction-style {
   margin-top: 50px;
   /* padding: 0 50px; */
-  display: flex;
+  /* display: flex; */
   /* justify-content: space-between; */
+  /* display: grid; */
+  /* grid-template-columns: auto auto; */
 }
 
 /* .right-side {
@@ -387,4 +394,14 @@ height: 40px;
 
 .msg {
   color: red;
+}
+.right-side {
+  display: flex;
+  padding-left: 30px;
+  flex-direction: column;
+  /* margin: 0 auto; */
+  flex: 2;
+  align-items: center;
+   justify-content: center;
+
 }
