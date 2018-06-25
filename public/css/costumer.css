@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -6,24 +5,34 @@
 }
 
 body {
-  background-image: url('../img/orders/logoicon.png') ;background-repeat: no-repeat;
+  /* background-image: url('../img/orders/logoicon.png'); */
+  background: #fff url('../img/orders/motor-pizza.png');
+  background-repeat: no-repeat;
   background-position: 0px 250px;
-  background-size: 800px 400px;
+  background-size: 600px 400px;
+  /* background-size: 300px 100px; */
 }
 
 .logo-name {
-  margin: 0 auto;
   margin-top: 100px;
+  color: #DD3A36;
+  text-align: center;
 }
 
-.logo-name-img {
+.logo-name h1 {
+  letter-spacing: 4px;
+  font-size: 50px;
+  font-family: 'Chewy', cursive;
+}
+
+/* .logo-name-img {
   text-align: center;
   width: 100%;
   display: block;
   margin: auto;
   width: 380px;
   height: 80px;
-}
+} */
 
 .wrapper {
   margin: 0 auto;
@@ -63,7 +72,6 @@ h2 {
   font-weight: 600;
   color: red;
   letter-spacing: 1px;
-
 }
 
 /* BUTTON */
@@ -80,7 +88,6 @@ h2 {
   color: white;
   box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
   padding-left: 13px;
-
 }
 
 .submit-button:focus {
@@ -104,7 +111,6 @@ h2 {
   opacity: 1;
   right: 0;
 }
-
 
 .submit-button:hover {
   cursor: pointer;

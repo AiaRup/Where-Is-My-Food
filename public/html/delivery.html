@@ -21,7 +21,7 @@
     <section class="section-employees">
       <ul class="delivery-guys"></ul>
     </section>
-  
+
     <!-- orders section -->
     <section class="orders-section">
       <ul class="orders-list"></ul>
@@ -32,26 +32,39 @@
   </div>
   <!-- END before-delivery -->
   <div class="direction-style">
-  <div id="directions-panel"></div>
-  <div id="map"></div>
-</div>
-  <div class="on-delivery">
-    <ul class="orders-to-deliver"></ul>
-    <br><br>
-    <div class="choose-route">
-      <p>Start:
-        <span class="restaurant-location"></span>
-      </p>
-      <p>Destination:
-        <select id="destination" name="destination">
-          <option value="0" selected="selected">Select Destination</option>
-        </select>
-      </p>
-      <button type="button" id="select-Destination">Go</button>
+    <div id="directions-panel"></div>
+    <div class="right-side">
+      <div id="map"></div>
+      <!-- </div> -->
+      <div class="on-delivery">
+        <div class="choose-route">
+          <h2>Select Your Destination</h2>
+          <p>
+            <b>Start:</b>
+            <span class="restaurant-location"></span>
+          </p>
+          <p>
+            <b>Destination:</b>
+            <select id="destination" name="destination">
+              <!-- <option value="0" selected="selected">Select Destination</option> -->
+            </select>
+          </p>
+          <button type="button" id="select-Destination" class="btn">Go</button>
+        </div>
+        <h1>Orders:</h1>
+        <ul class="orders-to-deliver"></ul>
+        <br>
+        <br>
+      </div>
+      <!-- END on delivery -->
     </div>
-    <!-- END choose route -->
-    <div class="msg-select-destination"></div>
+    <!-- END right-side -->
   </div>
+  <!-- END direction-style -->
+
+  <!-- END choose route -->
+  <!-- <div class="msg-select-destination"></div>
+  </div> -->
   <!-- <div id="directions-panel"></div>
   <div id="map"></div> -->
   <!-- END on-delivery -->
@@ -66,10 +79,11 @@
   <script id="orders-template" type="text/x-handlebars-template">
     <li class="order" data-id="{{orderId}}">
       <div class="order-header">
-        <button type="button" class="icon-selected btn btn-outline-dark btn-sm">
+        <button type="button" class="icon-selected">
           <i class="fas fa-check"></i>
         </button>
-        <button type="button" class="select-to-deliver" class="btn btn-outline-dark btn-sm">
+        <button type="button" class="select-to-deliver">
+          <!-- <button type="button" class="select-to-deliver" class="btn btn-outline-dark btn-sm"> -->
           <i class="fas fa-plus"></i>
         </button>
       </div>
@@ -79,20 +93,20 @@
       </h4>
       <p class="address">{{location}}</p>
       <div class="toggle-order" style="display:none;">
-      <h5 class="order-name">{{name}}</h5> 
-      <p class="phone">Phone: 0{{phoneNumber}}</p>
-      <p class="dishes">Dish: {{dishes}}</p>
-      <p class="total-price">Total:
-        <b>{{totalPrice}}$</b>, Paid in:
-        <b>{{paymentMethod}}</b>
-      </p>
+        <h5 class="order-name">{{name}}</h5>
+        <p class="phone">Phone: {{phoneNumber}}</p>
+        <p class="dishes">Dish: {{dishes}}</p>
+        <p class="total-price">Total:
+          <b>{{totalPrice}}$</b>, Paid in:
+          <b>{{paymentMethod}}</b>
+        </p>
     </li>
-  </div>
+    </div>
   </script>
 
   <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">
     <li class="order-selected" data-id="{{orderId}}">
-      <h5>{{name}} - 0{{phoneNumber}}</h5>
+      <h5>{{name}} - {{phoneNumber}}</h5>
       <div class="selected-order-content">
         <p class="address">{{location}}</p>
         <p class="dishes">Dish: {{dishes}}</p>
@@ -100,7 +114,7 @@
           <b>{{totalPrice}}$</b>, Paid in:
           <b>{{paymentMethod}}</b>
         </p>
-        <button type="button" class="deliverd-complete" class="btn btn-outline-dark btn-sm">Delivered
+        <button type="button" class="deliverd-complete btn">Delivered
         </button>
       </div>
       <!-- END selected-order-content -->
