@@ -9,3 +9,7 @@ body {
     position: absolute;
     left: 3%;
 }
+
+.pac-container {
+    z-index: 1051 !important;
+}

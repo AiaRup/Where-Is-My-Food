@@ -11,8 +11,8 @@ class EventsHandler {
     $(".button-new-modal").on('click',function(event) {
       rootThis.restRenderer.renderNewOrderModal(rootThis.restRepository.menu);
   
-      // let input = document.getElementById('validationCustom06');
-      // let autocomplete = new google.maps.places.Autocomplete(input);
+      let input = document.getElementById('validationCustom06');
+      let autocomplete = new google.maps.places.Autocomplete(input);
       $("#newOrderModal").modal('show');
       // AUTO COMPLETE ADDRESS
 
