@@ -10,6 +10,15 @@ class RestRenderer {
         this.$newOrderModalTemplate = $('#new-order-modal-template').html();
 
     }
+
+    renderIdModal(newOrder) {
+        this.$orderIdModalContainer.empty();
+        let template = Handlebars.compile(this.$orderIdModalTemplate);
+        let newHTML = template(newOrder);
+        this.$orderIdModalContainer.append(newHTML);
+        
+    }
+
     renderNewOrderModal ( menu ) {
         this.$newOrderModalContainer.empty();
         let template = Handlebars.compile(this.$newOrderModalTemplate);

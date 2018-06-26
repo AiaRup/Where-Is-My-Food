@@ -88,8 +88,10 @@ class EventsHandler {
           console.log(newOrder);
           rootThis.restRepository.addNewOrder(newOrder).then(() => {
           // get orderId and display on page
+            $('#newOrderModal').modal('hide');
             $('.orderId').text(newOrder.orderId);
-            $('.modal').show();
+            rootThis.restRenderer.renderIdModal(newOrder);
+            $('#orderIdModal').modal('show');
           });
           // update restaurant number of orders on the server
           rootThis.restRepository.updateRestaurantNumOrders(idOrder);
