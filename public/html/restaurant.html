@@ -121,82 +121,7 @@
         </script>
             
         <div id="order-id-modal-container"></div>
-        <!-- <h1 class="restaurant-name"></h1> -->
 
-  <!-- div of new order & update order -->
-  <!-- <section class="order-cubes"> -->
-
-   
-
-      <!-- new order form -->
-      <!-- <form class="order-form">Name:
-        <br>
-        <input type="text" placeholder="Enter Name" name="Name" id="name" required>
-        <br>
-        <br>Address:
-        <br>
-        <input type="text" placeholder="Enter Address" name="Address" id="address" required>
-        <br>
-        <br>Phone Number:
-        <br>
-        <input type="number" placeholder="Enter Phone" name="Phone Number" id="phone" required>
-        <br>
-        <br> -->
-
-        <!-- payement choice -->
-        <!-- <div class="option-menu">Payment Method:
-          <br>
-          <select id="paymentSelection" required>
-          <option value="Cash">Cash</option>
-          <option value="Credit Card"> Credit Card</option>
-          </select>
-        </div>
-        <br> -->
-
-        <!-- choose dish & amounts -->
-        <!-- <div class="order-menu">
-          <div class="dish">Choose Dish:
-            <br>
-            <select id="dishOptions" required>
-              <option value="0" selected="selected">Select from Menu</option>
-            </select>
-          </div>
-          <div class="msg-select-dish"></div>
-          <div class="amount">
-            Amount:
-            <br>
-            <input type="text" placeholder="Quantity" name="Quantity" class="quantity">
-          </div>
-          <input type="button" name="Choose Dish" class="btn choose-dish" value="O.K">
-        </div> -->
-
-        <!-- dish list div -->
-        <!-- <div class="order-list">
-          <ul class="dish-list"></ul>
-          <p class="total-price" data-total="0"></p>
-        </div> -->
-
-        <!-- clear choice or submit form
-         <br>
-        <input type="submit" name="Submit Order" class="btn submitOrder" value="Submit Order">
-        <input type="reset" class="btn reset" value="Reset"> -->
-      <!-- </form> -->
-    <!-- end of new order -->
-
-    <!-- update order -->
-    <!-- <div class="update-order btn btn-update" id="update-order-btn" onClick="window.location='orders'">Update Order</div>
-  </section> -->
-
-  <!-- pop-up -->
-  <!-- <section>
-    <div id="simpleModal" class="modal">
-      <div class="modal-content">
-        <input type="button" class="closeBtn" value=&times;>
-        <p>New Order Number is: <span class="orderId"></span></p>
-        <input type="button" value="To Order Page" id="toOrderPage">
-      </div>
-    </div>
-  </section> -->
 
   
     <!-- ORDER ID MODAL TEMPLETE -->
@@ -211,7 +136,7 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        A new order of <i class="cDish"> {{dish}}</i> has been received on <i class="cDish">{{time}}</i> and will be delivered to <i class="cDish">{{name}}</i> at <i class="cDish">{{location}}</i> .  Payment total is <i class="cDish">{{totalPrice}}</i> and payment option chosen was <i class="cDish"> {{paymentMethod}}</i>.  Order ID is <i class="cDish">{{orderId}}</i>.
+                        A new order of <i class="cDish"> {{dishes}}</i> has been received on <i class="cDish">{{time}}</i> and will be delivered to <i class="cDish">{{name}}</i> at <i class="cDish">{{location}}</i> .  Payment total is <i class="cDish">{{totalPrice}} $</i> and payment option chosen was <i class="cDish"> {{paymentMethod}}</i>. <br><h4> <i class="cDish">Order ID is {{orderId}}</i></h4>.
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
