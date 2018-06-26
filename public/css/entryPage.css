@@ -1,0 +1,268 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poiret One';
+}
+
+button:active,
+button:focus,
+button:hover,
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover {
+  outline: none;
+  cursor: pointer
+}
+
+li,
+ol,
+ul {
+  list-style: none
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border: 0
+}
+
+input:placholder {
+  padding-left: 3px;
+  height: 20px;
+}
+
+input[type=text],
+input[type=number] {
+  font-size: 18px
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 25px 0;
+  padding: 0;
+  width: 280px;
+  margin-left: 20px;
+}
+
+
+body {
+  background-color: #ffffff;
+  color: #33b3a6;
+  height: 100vh;
+  width: 100%
+}
+
+.restaurant-name {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 58px;
+}
+
+.order-cubes {
+  display: flex;
+  border: 1px solid black;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 400px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.new-order,
+.update-order {
+  /* location */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Styling */
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 30px;
+  width: 300px;
+  height: 200px;
+  box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  transition: transform .5s;
+}
+
+.new-order:hover,
+.update-order:hover {
+  cursor: pointer;
+  transform: scale(1.020);
+  transition: 0.5s;
+  box-shadow: 0px 3px 10px 0px rgba(155, 155, 163, 1);
+}
+
+.new-order:active,
+.update-order:active {
+  box-shadow: 0px 1px 10px 0px rgb(185, 185, 194);
+  transform: translateY(3px)
+}
+
+.new-order {
+  background-image: linear-gradient(#fd9c28, #f7b15d);
+}
+
+.new-order:hover {
+  background-image: linear-gradient(#ff8c00, #ff9e28);
+}
+
+.update-order {
+  background-image: linear-gradient(#DD3A36, rgb(248, 76, 73));
+}
+
+.update-order:hover {
+  background-image: linear-gradient(rgb(236, 37, 33), rgb(250, 60, 57));
+}
+
+.container {
+  border: solid 1px black;
+  }
+
+
+.order-form {
+  /* display: flex; */
+  position: absolute;
+  background-color: #fff;
+  border: solid 1px #bdbdbd;
+  width: 60%;
+  border-radius: 5px;
+  top: 54%;
+  left: 190px;
+  padding: 25px;
+  font-size: 18px;
+  line-height: 22px;
+  color: #313333;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-info-design:placeholder-shown {
+  height: 25px;
+  border: solid 1px black;
+}
+
+placholder:focus {
+  background-color: red;
+}
+
+.form-info-design {
+ padding-left: 3px;
+}
+
+.quantity {
+  width: 50px;
+}
+
+.quantity-div {
+  flex-flow: row wrap;
+
+}
+
+.order-menu ,
+.order-flex {
+  width: 650px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#address {
+  width: 150px;
+}
+
+.order-form:before {
+  content: ' ';
+  width: 0px;
+  height: 0px;
+  border-bottom: 20px solid #fff;
+  border-left: 20px solid transparent;
+  border-top: 20px solid transparent;
+  border-right: 20px solid transparent;
+  position: absolute;
+  top: -40px;
+  left: 120px
+}
+
+
+.modal,
+.order-form {
+  display: none
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3)
+}
+
+.modal-content {
+  color: #fd9c28;
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #f8f8f8;
+  margin: 20% auto;
+  padding: 20px;
+  width: 40%;
+  height: 40%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.order-num {
+  text-align: center;
+  padding-top: 35px;
+}
+
+.submitOrder,
+.reset,
+.choose-dish,
+#toOrderPage { 
+   background-color: rgb(95, 179, 247);
+   color: white;
+   font-weight: bold;
+   border: 1px solid black;
+   height: 30px;
+   margin: 3px;
+   border-radius: 3px;
+   font-size: 16px;
+   width: auto;
+}
+
+.submitOrder {
+  width: 105px;
+}
+
+.reset {
+  width: 55px;
+}
+
+.choose-dish {
+  width: 45px;
+}
+
+#toOrderPage {
+  width: 140px;
+  margin-top: 105px;
+}
+
+
+.btn:hover {
+  background-color: rgb(95, 179, 247, 0.6);
+  box-shadow: 0px 0px 10px 4px rgba(191,187,191,1);
+}

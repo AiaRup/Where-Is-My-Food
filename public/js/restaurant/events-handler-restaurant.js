@@ -23,11 +23,12 @@ class EventsHandler {
 
 
   fillNewForm() {
+    // let orderForm = $('.order-form');
     $('.btnNewOrder').click((event) => {
       event.stopPropagation();
       $('.order-form').toggle();
-
     });
+
   }
 
   addNewDish() {
