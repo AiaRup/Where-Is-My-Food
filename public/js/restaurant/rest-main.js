@@ -18,3 +18,4 @@ eventsHandler.loadPage();
 eventsHandler.registerButtonNewModal();
 eventsHandler.registerSelectDishOption();
 eventsHandler.registerSubmitOrderButton();
+eventsHandler.registerResetButton();

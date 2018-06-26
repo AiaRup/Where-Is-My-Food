@@ -19,7 +19,6 @@
 <body>
         <button type="button" class="btn btn-warning button-new-modal"  data-target="#newOrderModal">New Order</button>        
 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-warning button-order-id" data-toggle="modal" data-target="#orderIdModal">Order Id</button>
         <button type="button" class="btn btn-secondary button-order-page">Orders Page</button>
         
         
@@ -212,7 +211,7 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        A new order of {{dish}} has been received on {{time}} and will be delivered to {{name}} at {{location}} address.  Payment of {{totalPrice}} {{paymentMethod}}.  Order ID is {{orderId}}.
+                        A new order of <i class="cDish"> {{dish}}</i> has been received on <i class="cDish">{{time}}</i> and will be delivered to <i class="cDish">{{name}}</i> at <i class="cDish">{{location}}</i> .  Payment total is <i class="cDish">{{totalPrice}}</i> and payment option chosen was <i class="cDish"> {{paymentMethod}}</i>.  Order ID is <i class="cDish">{{orderId}}</i>.
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>

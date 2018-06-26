@@ -99,6 +99,15 @@ class EventsHandler {
       });
     });
   }
+  registerResetButton() {
+    let rootThis= this;
+    this.$newOrderModalContainer.on('click','.reset-button',(event) => {
+      rootThis.restRenderer.renderNewOrderModal(rootThis.restRepository.menu);
+      $('#newOrderModal').modal('show');
+      let input = document.getElementById('validationCustom06');
+      let autocomplete = new google.maps.places.Autocomplete(input);
+    })
+  }
   loadPage() {
     let rootThis = this;
     this.restRepository.getMenu().then(function () { //we already handled the success scenario inside the callback
