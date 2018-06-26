@@ -165,7 +165,18 @@ app.get('/customer/:id', (req, res) => {
     }
   });
 });
-
+app.route('/ord/menu') // need to add that it will get restuarnt name as parameter
+  .get((req,res) => {
+    Restaurant.findOne({name: "Bar & Mazi" }, function(err, restaurant) {
+      if(err){
+        res.send(err);
+      }
+      else {
+        res.send(restaurant.menu);
+      }
+       
+  });
+})
 // orders (add by Kobi for orders page)
 app.route('/ord')
   .put((req, res) => {
@@ -187,6 +198,7 @@ app.route('/ord')
       });
     });
   });
+  
 app.route('/ord2')
   .put((req, res) => {
     // console.log(req.body)
