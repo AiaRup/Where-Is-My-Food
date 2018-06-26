@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Chewy%7CPoiret+One" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
       crossorigin="anonymous">
@@ -17,10 +17,12 @@
 
 
 <body>
-        <button type="button" class="btn btn-warning button-new-modal"  data-target="#newOrderModal">New Order</button>        
-<!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary button-order-page">Orders Page</button>
-        
+        <h1 class="restaurant-name">Bar & Mazi</h1>
+        <section class="order-cubes">
+            <button type="button" class="btn btn-warning button-new-modal new-order"  data-target="#newOrderModal">NEW ORDER</button>        
+    <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary button-order-page update-order" onClick="window.location='orders'">UPDATE ORDER</button>
+        </section>
         
         
         <div id="new-order-modal-container">
@@ -136,7 +138,8 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        A new order of <i class="cDish"> {{dishes}}</i> has been received on <i class="cDish">{{time}}</i> and will be delivered to <i class="cDish">{{name}}</i> at <i class="cDish">{{location}}</i> .  Payment total is <i class="cDish">{{totalPrice}} $</i> and payment option chosen was <i class="cDish"> {{paymentMethod}}</i>. <br><h4> <i class="cDish">Order ID is {{orderId}}</i></h4>.
+                        <!-- A new order of <i class="cDish"> {{dishes}}</i> has been received on <i class="cDish">{{time}}</i> and will be delivered to <i class="cDish">{{name}}</i> at <i class="cDish">{{location}}</i> .  Payment total is <i class="cDish">{{totalPrice}} $</i> and payment option chosen was <i class="cDish"> {{paymentMethod}}</i>. <br><h4> <i class="cDish">Order ID is {{orderId}}</i></h4>. -->
+                        <h4> <i class="cDish">Order ID is: <span class="aa">{{orderId}}</span></i></h4>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
