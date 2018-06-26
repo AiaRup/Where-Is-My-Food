@@ -1,6 +1,6 @@
 import restaurantRender from './restaurant-renderer.js';
 import RestaurantRepository from './restaurant-repository.js';
-import EventsHandler from './events-handler-restaurant.js';
+import EventsHandler from './backup/events-handler-restaurant2';
 import GoogleMap from '../delivery/googleMap.js';
 
 
