@@ -62,7 +62,8 @@ class EventsHandler {
         if( $('#creditCardRadio').is(':checked')) {
           paymentSelection = "credit";
         }
-
+        var total = $('#validationCustom04').val();
+        total = total.substring(0, total.length - 1);
         // create new order object
         let newOrder = {
           name: $('#validationCustom01').val(),
@@ -71,7 +72,7 @@ class EventsHandler {
 
           // dishes: $('.dish-list li').data('dish'),
           dishes: $('#validationCustom05').val(),
-          totalPrice: $('#validationCustom04').val(),
+          totalPrice: total,
           status: 'received',
           isTaken: false,
           time: orderTime,
@@ -84,6 +85,7 @@ class EventsHandler {
           // update new order location
           newOrder.location = response.results[0].formatted_address;
           // send new order to DB
+          console.log(newOrder);
           rootThis.restRepository.addNewOrder(newOrder).then(() => {
           // get orderId and display on page
             $('.orderId').text(newOrder.orderId);
