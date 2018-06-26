@@ -4,6 +4,7 @@ class EventsHandler {
     this.restRenderer = restRenderer;
     this.googleMaps = googleMaps;
     this.$newOrderModalContainer = $('#new-order-modal-container');
+    this.$orderIdModalContainer = $("#order-id-modal-container");
   }
   
   registerButtonNewModal() {
@@ -31,7 +32,17 @@ class EventsHandler {
     });
   }
 
-
+  registerOnNextButtonClick() {
+    let rootThis = this;
+    this.$orderIdModalContainer.on('click','#button-next-order', function(event) {
+      $('#orderIdModal').modal('hide');
+      rootThis.restRenderer.renderNewOrderModal(rootThis.restRepository.menu);
+  
+      let input = document.getElementById('validationCustom06');
+      let autocomplete = new google.maps.places.Autocomplete(input);
+      $("#newOrderModal").modal('show');
+    })
+  }
   registerSubmitOrderButton() {
     let rootThis=this;
     this.$newOrderModalContainer.on('submit','#new-order-form',(event) => {
