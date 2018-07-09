@@ -1,0 +1,59 @@
+@mixin mQ($args) {
+  @media screen and (max-width:$args) {
+    @content;
+  }
+}
+
+@mixin back-image {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url('../img/1.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, top left;
+}
+
+@mixin another-page-button {
+  // margin-top: 20px;
+  height: 40px;
+  width: 170px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: $color-orange;
+  color: white;
+  box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  padding-left: 13px;
+  border: none;
+}
+
+@mixin arrow-on-hover {
+  opacity: 0;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(253, 175, 80);
+  }
+  &:active {
+    border: none;
+    box-shadow: 0px 1px 10px 0px rgb(185, 185, 194);
+  }
+}
+
+@mixin employee-order-cube {
+  color: #fff;
+  background-image: linear-gradient($color-orange, #f7b15d);
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  padding: 5px;
+  -webkit-box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
+  -moz-box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
+  box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
+  &:hover {
+    cursor: pointer;
+    background: #ec6104 !important;
+  }
+}

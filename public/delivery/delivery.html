@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="../css/main.css" rel="stylesheet">
+
+  <title>Choose Delivery</title>
+</head>
+
+<body id="deliver-background">
+  <div class="before-delivery">
+    <section class="employees">
+      <div class="select-employee">
+        <h1>Delivery Employees</h1>
+        <hr/>
+        <div class="employeesList-wrapper">
+          <ul class="employeesList"></ul>
+        </div>
+      </div>
+    </section>
+    <!--END select-employee -->
+
+    <section class="select-orders">
+      <div class="employee-selected"></div>
+      <ul class="orders-list"></ul>
+      <button type="button" id="ready-to-deliver" class="btn">Ready to Go</button>
+      <div class="msg"></div>
+    </section>
+    <!--END select-orders -->
+
+    <section class="select-destination-section">
+      <div class="select-destination-div">
+        <h2>Select Your Destination</h2>
+        <p>
+          <b>Start:</b>
+          <span class="restaurant-location"></span>
+        </p>
+        <p>
+          <b>Destination:</b>
+          <select id="destination" name="destination"> </select>
+        </p>
+        <button type="button" id="select-Destination" class="btn">Go</button>
+      </div>
+      <ul class="orders-deliver-list"></ul>
+    </section>
+    <!--END select-destination -->
+  </div>
+  <!-- END before-delivery -->
+
+  <div class="on-the-way-section">
+    <div id="directions-panel"></div>
+    <div id="map"></div>
+    <button type="button" id="floating-button">Orders</button>
+    <ul class="orders-map-list"></ul>
+  </div>
+  <!-- END on-the-way -->
+
+  <script id="delivery-template" type="text/x-handlebars-template">
+    <li class="employee" data-id="{{employeeId}}" data-name="{{name}}">
+      <h4>{{name}}</h4>
+      <p>Employee ID: {{employeeId}}</p>
+    </li>
+  </script>
+
+  <script id="orders-template" type="text/x-handlebars-template">
+    <li class="order" data-id="{{orderId}}">
+      <div class="order-header">
+        <button type="button" class="icon-selected">
+          <i class="fas fa-check"></i>
+        </button>
+        <button type="button" class="select-to-deliver">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <!-- END order-header -->
+
+      <h4 class="order-number">{{orderId}}
+      </h4>
+      <p class="address">{{location}}</p>
+      <h3 class="order-name">{{name}}</h3>
+      <p class="phone">Phone: {{phoneNumber}}</p>
+      <p class="dishes">Dish: {{dishes}}</p>
+      <p class="total-price">Total:
+        <b>{{totalPrice}}$</b>, Paid in:
+        <b>{{paymentMethod}}</b>
+      </p>
+    </li>
+  </script>
+
+  <script id="readyToDeliverOrders-template" type="text/x-handlebars-template">
+    <li class="order-selected" data-id="{{orderId}}">
+      <h3>{{name}} - {{phoneNumber}}</h3>
+      <div class="selected-order-content">
+        <p class="address">{{location}}</p>
+        <p class="dishes">Dish: {{dishes}}</p>
+        <p class="price-payment">Total:
+          <b>{{totalPrice}}$</b>, Paid in:
+          <b>{{paymentMethod}}</b>
+        </p>
+        <button type="button" class="deliverd-complete btn">Delivered
+        </button>
+      </div>
+      <!-- END selected-order-content -->
+    </li>
+  </script>
+
+  <script src="../jquery/dist/jquery.js"></script>
+  <script src="../handlebars/dist/handlebars.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewucBzhp4DIePd6P0JHbpkQ4JtPzCShE&language=en" async defer></script>
+  <script src="delivery-js/main-delivery.js" type="module"></script>
+
+</body>
+
+</html>

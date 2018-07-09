@@ -1,0 +1,183 @@
+* {
+  font-family: $font-poirer;
+}
+
+button:focus {
+    outline: 0;
+  }
+
+#rest-background {
+  @include back-image;
+  padding: 30px;
+}
+
+#refreshOrders {
+  color: #fff;
+  font-size: 25px;
+  margin: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+h1.orders {
+  text-align: center;
+  font-family: 'Chewy', cursive;
+  letter-spacing: 2.5px;
+  font-size: 50px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* table */
+
+table, th, td {
+  color: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+  border: 1px solid black;
+}
+
+[data-status="received"] {
+  background-color: rgb(95, 179, 247) !important;
+}
+
+.table-hover tbody tr:hover [data-status="received"] {
+  background-color: rgb(95, 179, 247) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+  color: black !important;
+}
+
+[data-status="ready"] {
+  background-color: green !important;
+}
+
+.table-hover tbody tr:hover [data-status="ready"] {
+  background-color: green !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+[data-status="out for delivery"] {
+  background-color: DarkOrchid !important;
+}
+
+.table-hover tbody tr:hover [data-status="out for delivery"] {
+  background-color: DarkOrchid !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+[data-status="delivered"] {
+  background-color: #fffff0  !important;
+}
+
+.table-hover tbody tr:hover [data-status="delivered"] {
+  background-color: #fffff0  !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+[data-status="canceled"] {
+  background-color: #df382f !important;
+  color: white !important;
+}
+
+.table-hover tbody tr:hover {
+  [data-status="canceled"] {
+    background-color: #df382f !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+  }
+  td, th {
+    background-color: rgba(89, 109, 199, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+  }
+}
+
+.table-striped tbody tr {
+  &:nth-of-type(odd) {
+  background-color: #ddd !important;
+  }
+  background-color: #eee !important;
+}
+
+.table-hover tbody tr {
+  &:hover [data-status="delivered"] .button-status, [data-status="delivered"] .button-status {
+    color: black;
+  }
+  &:hover .button-status {
+    color: white;
+  }
+}
+
+.button-status {
+  color: #fff;
+}
+
+/* buttons directing to another page*/
+
+.delivery-button, .new-order-button {
+  @include another-page-button;
+}
+
+.new-order-button span:after {
+  content: ' \00bb';
+  @include arrow-on-hover;
+}
+
+.delivery-button span:before {
+  content: '\00ab  ';
+  @include arrow-on-hover;
+}
+
+.new-order-button:hover span:after, .delivery-button:hover span:before {
+  opacity: 1;
+  right: 0;
+}
+
+.form-horizontal {
+  &::before {
+    display: table;
+    content: "";
+  }
+  &::after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+}
+
+/* modal */
+
+.modal-content {
+  border-radius: 20px;
+  background-color: $color-orange;
+}
+
+.pac-container {
+  z-index: 1051 !important;
+}
+
+.edit-status-form, .edit-order-form {
+  font-weight: bold;
+}
+
+.modal-body, .modal-footer {
+  background: #eee;
+}
+
+.modal-header {
+  background-color: $color-orange;
+  color: #fff;
+}
+
+
+
+
+
+
+

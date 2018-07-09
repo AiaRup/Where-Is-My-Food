@@ -5,14 +5,10 @@
 @import 'helpers/mixins';
 @import 'helpers/variables';
 
-// Components
-@import 'components/button';
-@import 'components/input';
-
 // Pages
 @import 'pages/customer';
+@import 'pages/customerTime';
 @import 'pages/delivery';
 @import 'pages/restaurant';
+@import 'pages/orders';
 
-// Layout
-@import 'layout/_responsive';

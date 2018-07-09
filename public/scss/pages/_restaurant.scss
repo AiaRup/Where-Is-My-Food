@@ -1,112 +1,125 @@
-body {
-  background-color: $color-gray;
-  color: $color-turquize;
-  height: 100%;
-  width: 100%;
+* {
+  font-family: $font-poirer;
+  font-weight: bold;
+}
+
+#rest-background {
+  @include back-image;
+}
+// for the autocomplete to be above the modal
+.pac-container {
+  z-index: 1051 !important;
+}
+
+/* page cubes and rest name*/
+
+h1.restaurant-name {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 15px;
+  font-size: 60px;
+  letter-spacing: 2px;
+  color: #fff;
+  font-family: 'Chewy', cursive;
 }
 
 .order-cubes {
-  border: 1px solid black;
-  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   height: 400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding:0 150px;
+  @include mQ(1050px) {
+    flex-direction: column;
+    align-content: center;
+  }
 }
 
-.headline {
-  text-align: center;
-  margin: 50px 0;
-  padding: 10px;
-}
-
-.new-order,
-.update-order {
-  position: relative;
-  width: 40%;
-  height: 50%; // position: relative;
-  // top: 50%;
-  // transform: translateY(-50%);
-  font-size: $font-size-large;
+.new-order, .update-order {
   color: #fff;
-  background-color: $color-turquize;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Roboto, sans-serif;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 30px;
+  width: 300px;
+  height: 200px;
+  box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+  transition: transform .5s;
   &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: 0.5s;
+    box-shadow: 0px 3px 10px 0px rgba(155, 155, 163, 1);
+    color: #000;
+  }
+  &:active {
+    box-shadow: 0px 1px 10px 0px rgb(185, 185, 194);
+    transform: translateY(3px);
+  }
+  @include mQ(1050px) {
+    margin: 10px 0;
+  }
+}
+
+.new-order {
+  background-image: linear-gradient($color-orange, #f7b15d);
+  &:hover {
+    background-image: linear-gradient(#ff8c00, #ff9e28);
+  }
+}
+
+.update-order {
+  background-image: linear-gradient($color-red, rgb(248, 76, 73));
+  &:hover {
+    background-image: linear-gradient(rgb(236, 37, 33), rgb(250, 60, 57));
+  }
+}
+
+/* modal form */
+.reset-button {
+  position: absolute;
+  left: 3%;
+}
+
+label {
+  color: black;
+}
+
+button {
+  &:active, &:focus, &:hover {
+    outline: none;
     cursor: pointer;
   }
 }
 
-/* Aligning the dish & amount in the form/ */
+input {
+  &:placholder {
+    padding-left: 3px;
+    height: 20px;
+  }
+  &[type=text], &[type=number] {
+    font-size: 18px;
+  }
+}
 
-// .order-menu {
-//   width: 40%;
-// }
-
-// .dish {
-//   display: inline-block;
-// }
-
-// .amount {
-//   display: inline-block;
-//   width: 40%;
-// }
-
-.order-form,
 .modal {
   display: none;
 }
 
-/* modal (popup window) */
-
-.modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.3);
+.cDish {
+  color: black !important;
+  text-align: center !important;
 }
 
-.modal-content {
-  background-color: #f4f4f4;
-  margin: 20% auto;
-  padding: 20px;
-  width: 70%;
-  height: 40%;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2)
+.orderID {
+  color: $color-red;
 }
 
-.order-form {
-  background-color: #fff;
-  width: 700px;
-  // height: 30px;
-  border-radius: 5px;
-  position: absolute;
-  top: 110%;
-  left: 50px;
-  padding: 10px;
-  font-family: Roboto, sans-serif;
-  font-size: $font-size-medium;
-  line-height: 22px;
-  color: #313333;
+.modal-body h4 {
   text-align: center;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-  &:before {
-    content: ' ';
-    width: 0px;
-    height: 0px;
-    border-bottom: 20px solid #fff;
-    border-left: 20px solid transparent;
-    border-top: 20px solid transparent;
-    border-right: 20px solid transparent;
-    position: absolute;
-    top: -40px;
-    left: 120px;
-  }
 }
+
+.modal-header {
+  background-color: #FD9C28;
+  color: #fff;
+}
+

@@ -22,25 +22,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // PORT
-const SERVER_PORT = process.env.PORT || 8000;
+const SERVER_PORT = process.env.PORT || 7000;
 app.listen(SERVER_PORT, () => console.log(`Server up and running on port ${SERVER_PORT}...`));
 
 
-// restaurant
+/****** RESTAURANT ******/
 // 1) get the restaurant homepage
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/html/restaurant.html'));
+  res.sendFile(path.join(__dirname + '/public/restaurant/restaurant.html'));
 });
 
 // 2) get the orders homepage and post new order
 app.route('/orders')
   .get((req, res) => {
-    res.sendFile(path.join(__dirname + '/public/html/orders.html'));
+    res.sendFile(path.join(__dirname + '/public/restaurant/orders.html'));
   })
   .put((req, res) => {
     console.log(req.body);
 
-    Restaurant.findOneAndUpdate({}, { $push:{ orders: req.body } }, { new:true }, (err, updatedRes) => {
+    Restaurant.findOneAndUpdate({}, { $push: { orders: req.body } }, { new: true }, (err, updatedRes) => {
       res.send(updatedRes);
     }
     );
@@ -64,7 +64,7 @@ app.route('/restaurant/restauranNumOrders')
   })
   .put((req, res) => {
     console.log(req.body.ordersNumber);
-    Restaurant.findOneAndUpdate({}, { numOrders : req.body.ordersNumber }, { new:true }, (err, updatedRes) => {
+    Restaurant.findOneAndUpdate({}, { numOrders: req.body.ordersNumber }, { new: true }, (err, updatedRes) => {
       res.send(updatedRes);
     });
   });
@@ -94,7 +94,7 @@ app.put('/orders/:id/map', (req, res) => {
   Restaurant.findOne({ 'orders.orderId': id }, (err, updatedRestaurant) => {
     if (err) throw err;
 
-    for(let i=0; i< updatedRestaurant.orders.length; i++) {
+    for(let i = 0; i < updatedRestaurant.orders.length; i++) {
       if (updatedRestaurant.orders[i].orderId == id) {
         updatedRestaurant.orders[i].mapRoute.push(req.body.address);
       }
@@ -106,10 +106,10 @@ app.put('/orders/:id/map', (req, res) => {
   });
 });
 
-// delivery
+/****** DELIVERY ******/
 // 1) get the delivery homepage
 app.get('/delivery', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/html/delivery.html'));
+  res.sendFile(path.join(__dirname + '/public/delivery/delivery.html'));
 });
 
 // 3) get the list of employees
@@ -136,14 +136,14 @@ app.get('/delivery/restauranLocation', (req, res) => {
   });
 });
 
-// customer
+/****** CUSTOMER ******/
 // 1) get the customer homepage
 app.get('/customer', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/html/customer.html'));
+  res.sendFile(path.join(__dirname + '/public/customer/customer.html'));
 });
 
 app.get('/customerTime', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/html/customerTime.html'));
+  res.sendFile(path.join(__dirname + '/public/customer/customerTime.html'));
 });
 
 app.get('/customer/:id', (req, res) => {
@@ -157,7 +157,7 @@ app.get('/customer/:id', (req, res) => {
       res.send('Order Not Found');
     } else {
     // order exist
-      for(let i=0; i< restaResult.orders.length; i++) {
+      for(let i = 0; i < restaResult.orders.length; i++) {
         if (restaResult.orders[i].orderId == id) {
           res.send(restaResult.orders[i]);
         }
@@ -165,57 +165,51 @@ app.get('/customer/:id', (req, res) => {
     }
   });
 });
-app.route('/ord/menu') // need to add that it will get restuarnt name as parameter
-  .get((req,res) => {
-    Restaurant.findOne({name: "Bar & Mazi" }, function(err, restaurant) {
-      if(err){
-        res.send(err);
-      }
-      else {
-        res.send(restaurant.menu);
-      }
-       
-  });
-})
-// orders (add by Kobi for orders page)
+
+/****** ORDERS ******/
+// 1.
+// app.route('/ord/menu') // need to add that it will get restuarnt name as parameter
+//   .get((req, res) => {
+//     Restaurant.findOne({ name: 'Bar & Mazi' }, function(err, restaurant) {
+//       if(err){
+//         res.send(err);
+//       }
+//       else {
+//         res.send(restaurant.menu);
+//       }
+//     });
+//   });
+
 app.route('/ord')
   .put((req, res) => {
-    // console.log(req.body)
-    Restaurant.findOne({ orders: { $elemMatch:{ orderId: req.body.orderId } } }, function(err, restaurant) {
-      // console.log(restaurant);
+    Restaurant.findOne({ orders: { $elemMatch: { orderId: req.body.orderId } } }, function(err, restaurant) {
 
-      for(var i=0; i< restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
-      console.log(i);
-      restaurant.orders[i].name =req.body.name;
-      restaurant.orders[i].phoneNumber =req.body.phoneNumber;
-      restaurant.orders[i].status =req.body.status;
-      restaurant.orders[i].location =req.body.location;
-      restaurant.orders[i].dishes =req.body.dishes;
-      restaurant.orders[i].totalPrice =req.body.totalPrice.slice(0, 2);
+      for(var i = 0; i < restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
+      restaurant.orders[i].name = req.body.name;
+      restaurant.orders[i].phoneNumber = req.body.phoneNumber;
+      restaurant.orders[i].status = req.body.status;
+      restaurant.orders[i].location = req.body.location;
+      restaurant.orders[i].dishes = req.body.dishes;
+      restaurant.orders[i].totalPrice = req.body.totalPrice.slice(0, 2);
       restaurant.save(function(err) {
         if (err) console.log(err);
         else res.send('order successfully updated!');
       });
     });
   });
-  
+
 app.route('/ord2')
   .put((req, res) => {
-    // console.log(req.body)
-    Restaurant.findOne({ orders: { $elemMatch:{ orderId: req.body.orderId } } }, function(err, restaurant) {
-      // console.log(restaurant);
+    Restaurant.findOne({ orders: { $elemMatch: { orderId: req.body.orderId } } }, function(err, restaurant) {
 
-      for(var i=0; i< restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
-      console.log(i);
-      restaurant.orders[i].name =req.body.name;
-      restaurant.orders[i].status =req.body.status;
+      for(var i = 0; i < restaurant.orders.length && restaurant.orders[i].orderId != req.body.orderId; i++);
+      restaurant.orders[i].name = req.body.name;
+      restaurant.orders[i].status = req.body.status;
       restaurant.save(function(err) {
         if (err) console.log(err);
         else res.send('order successfully updated!');
       });
     });
   });
-// Restaurant.findOneAndUpdate({}, {$push:{orders:req.body}}, {new:true}, (err, updatedRes) => {
-//   console.log(updatedRes)
-//   res.send(updatedRes);
+
 
