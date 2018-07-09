@@ -50,6 +50,8 @@ body {
 .employee {
   @include employee-order-cube;
   text-align: center;
+  border-radius: 5px;
+  height: 100px;
   h4 {
     margin: 20px 0;
     font-family: 'Chewy', cursive;
@@ -73,11 +75,11 @@ body {
   margin: 10px 0;
   color: #fff;
   border-radius: 5px;
-  background-color: $color-turquoise;
+  background-color: $color-red;
   padding: 10px;
   border: none;
   &:hover {
-    background-color: #188a7e;
+    background-color: rgb(226, 93, 90);
   }
 }
 
@@ -108,11 +110,11 @@ body {
   flex-basis: calc(25% - 10px);
   min-height: 170px;
   max-width: 250px;
-  background-image: linear-gradient($color-orange, #f7b15d);
+  background-image: linear-gradient($color-blue, #40c0c2);
   box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
   &:hover {
     cursor: pointer;
-    background: #ec6104 !important;
+    background: #59d7da;
   }
   * {
     margin-bottom: 5px;
@@ -177,7 +179,8 @@ body {
   text-align: left;
   padding: 10px;
   margin: 10px;
-  background-image: linear-gradient($color-orange, #f7b15d);
+  max-height: 200px;
+  background-image: linear-gradient($color-blue, #40c0c2);
   box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
   h3 {
     color: #fff;
@@ -187,6 +190,9 @@ body {
   }
   .selected-order-content {
     color: #000;
+    * {
+      margin: 8px 0;
+    }
   }
 }
 
@@ -229,21 +235,24 @@ body {
   position: absolute;
   top: 10px;
   left: 35%;
-  z-index: 5;
+  z-index: 6;
 }
 
 .orders-map-list {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 80px;
-  left: 35%;
+  top: 0;
+  right: 0;
   z-index: 5;
-  width: 600px;
+  width: 70%;
+  height: 100%;
+  padding-top: 80px;
 }
 
 // general
-.msg {
+.select-orders .msg {
   color: red;
+  text-align: center;
 }
 
 .show {

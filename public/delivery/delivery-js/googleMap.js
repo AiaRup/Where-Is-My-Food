@@ -25,13 +25,12 @@ class GoogleMap {
       preserveViewport: true
     });
 
-    // var directionsDisplay = new google.maps.DirectionsRenderer;
-
     let map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: restaurantLocation,
       mapTypeControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     directionsDisplay.setMap(map);
     return directionsDisplay;

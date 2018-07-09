@@ -16,18 +16,21 @@
 }
 
 @mixin another-page-button {
-  // margin-top: 20px;
   height: 40px;
   width: 170px;
   letter-spacing: 1.5px;
   font-weight: 700;
   font-size: 16px;
   border-radius: 5px;
-  background-color: $color-orange;
-  color: white;
-  box-shadow: 0px 2px 8px 0px rgba(155, 155, 163, 1);
+   color: white;
   padding-left: 13px;
   border: none;
+  background-image: linear-gradient($color-red, rgb(248, 76, 73));
+  &:hover,
+  &:active {
+    background-color: rgb(236, 37, 33);
+    border: none;
+  }
 }
 
 @mixin arrow-on-hover {
@@ -45,7 +48,7 @@
 
 @mixin employee-order-cube {
   color: #fff;
-  background-image: linear-gradient($color-orange, #f7b15d);
+  background-image: linear-gradient($color-blue, #40c0c2);
   -ms-flex-preferred-size: 20%;
   flex-basis: 20%;
   padding: 5px;
@@ -54,6 +57,6 @@
   box-shadow: 0px 3px 12px 0px rgba(155, 155, 163, 1);
   &:hover {
     cursor: pointer;
-    background: #ec6104 !important;
+    background: #59d7da !important;
   }
 }

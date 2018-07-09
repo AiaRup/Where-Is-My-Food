@@ -85,14 +85,14 @@ class EventsHandlerDelivery {
 
   registerReadyToGo() {
     $('.select-orders').on('click', '#ready-to-deliver', () => {
-      $('.select-orders').css('display', 'none');
-      $('.select-destination-section').css('display', 'block');
       this.deliveryRepository.makeNewDelivery();
       // if no order was selected to delivery
       if (!this.deliveryRepository.selectedOrders.length) {
-        $('.msg').text('Please select at least one order to deliver.').show().fadeOut(3000);
+        $('.msg').text('Please select at least one order to deliver.').show().fadeOut(5000);
         return;
       }
+      $('.select-orders').css('display', 'none');
+      $('.select-destination-section').css('display', 'block');
       // show selected orders
       this.deliveryRenderer.renderOrdersToDeliver(this.deliveryRepository.selectedOrders);
       $('.deliverd-complete').hide();
