@@ -1,7 +1,6 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let ObjectID = require('mongodb').ObjectID;
 let path = require('path');
 let Restaurant = require('./models/restaurantModel');
 
@@ -38,8 +37,6 @@ app.route('/orders')
     res.sendFile(path.join(__dirname + '/public/restaurant/orders.html'));
   })
   .put((req, res) => {
-    console.log(req.body);
-
     Restaurant.findOneAndUpdate({}, { $push: { orders: req.body } }, { new: true }, (err, updatedRes) => {
       res.send(updatedRes);
     }
@@ -63,7 +60,6 @@ app.route('/restaurant/restauranNumOrders')
     });
   })
   .put((req, res) => {
-    console.log(req.body.ordersNumber);
     Restaurant.findOneAndUpdate({}, { numOrders: req.body.ordersNumber }, { new: true }, (err, updatedRes) => {
       res.send(updatedRes);
     });
@@ -72,10 +68,6 @@ app.route('/restaurant/restauranNumOrders')
 // 5) update order property
 app.put('/orders/:id', (req, res) => {
   let id = req.params.id;
-  console.log('property', req.body.property);
-  console.log('value', req.body.value);
-
-
   let $update = { $set: {} };
   $update.$set[`orders.$.${req.body.property}`] = req.body.value;
 
@@ -88,8 +80,6 @@ app.put('/orders/:id', (req, res) => {
 // 6) update map info to specific order
 app.put('/orders/:id/map', (req, res) => {
   let id = req.params.id;
-  console.log('body data adrees string', req.body);
-
 
   Restaurant.findOne({ 'orders.orderId': id }, (err, updatedRestaurant) => {
     if (err) throw err;
@@ -142,13 +132,14 @@ app.get('/customer', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/customer/customer.html'));
 });
 
+// 2) get the customerTime page
 app.get('/customerTime', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/customer/customerTime.html'));
 });
 
+// 3) get the customer order by entered ID
 app.get('/customer/:id', (req, res) => {
   let id = req.params.id;
-  console.log('id in server', id);
 
   Restaurant.findOne({ 'orders.orderId': id }, (err, restaResult) => {
     if (err) throw err;
@@ -167,19 +158,7 @@ app.get('/customer/:id', (req, res) => {
 });
 
 /****** ORDERS ******/
-// 1.
-// app.route('/ord/menu') // need to add that it will get restuarnt name as parameter
-//   .get((req, res) => {
-//     Restaurant.findOne({ name: 'Bar & Mazi' }, function(err, restaurant) {
-//       if(err){
-//         res.send(err);
-//       }
-//       else {
-//         res.send(restaurant.menu);
-//       }
-//     });
-//   });
-
+// 1) update orders properties
 app.route('/ord')
   .put((req, res) => {
     Restaurant.findOne({ orders: { $elemMatch: { orderId: req.body.orderId } } }, function(err, restaurant) {
@@ -192,12 +171,13 @@ app.route('/ord')
       restaurant.orders[i].dishes = req.body.dishes;
       restaurant.orders[i].totalPrice = req.body.totalPrice.slice(0, 2);
       restaurant.save(function(err) {
-        if (err) console.log(err);
+        if (err) throw err;
         else res.send('order successfully updated!');
       });
     });
   });
 
+// 2) update order status
 app.route('/ord2')
   .put((req, res) => {
     Restaurant.findOne({ orders: { $elemMatch: { orderId: req.body.orderId } } }, function(err, restaurant) {
@@ -206,7 +186,7 @@ app.route('/ord2')
       restaurant.orders[i].name = req.body.name;
       restaurant.orders[i].status = req.body.status;
       restaurant.save(function(err) {
-        if (err) console.log(err);
+        if (err) throw err;
         else res.send('order successfully updated!');
       });
     });
